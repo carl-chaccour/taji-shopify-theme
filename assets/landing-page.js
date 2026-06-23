@@ -38,9 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
   var hamburger = document.getElementById('taji-nav-hamburger');
   var drawer = document.getElementById('taji-nav-drawer');
   if (hamburger && drawer) {
+    var drawerNav = document.getElementById('taji-main-nav');
     hamburger.addEventListener('click', function () {
       var isOpen = drawer.classList.toggle('open');
       hamburger.classList.toggle('open', isOpen);
+      if (drawerNav) drawerNav.classList.toggle('drawer-open', isOpen);
       hamburger.setAttribute('aria-expanded', String(isOpen));
       drawer.setAttribute('aria-hidden', String(!isOpen));
       document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -49,6 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
       link.addEventListener('click', function () {
         drawer.classList.remove('open');
         hamburger.classList.remove('open');
+        if (drawerNav) drawerNav.classList.remove('drawer-open');
         hamburger.setAttribute('aria-expanded', 'false');
         drawer.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';

@@ -22,7 +22,7 @@ body { font-family: 'Jost', sans-serif; color: #0A0A0A; background: #FAF8F4; }
   top: 0;
   left: 0;
   right: 0;
-  z-index: 101;
+  z-index: 201;
   height: 36px;
   background: var(--gold);
   display: flex;
@@ -47,7 +47,7 @@ nav {
   top: 36px;
   left: 0;
   right: 0;
-  z-index: 100;
+  z-index: 200;
   background: rgba(250,248,244,0.97);
   border-bottom: 1px solid var(--gold);
   transition: box-shadow 0.3s ease;
@@ -735,7 +735,7 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
 .nav-drawer {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  z-index: 99;
+  z-index: 160;
   background: var(--cream);
   display: flex;
   flex-direction: column;
@@ -818,6 +818,11 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
   /* Logo: white on transparent nav, original on scrolled */
   .nav-logo img { filter: brightness(0) invert(1); }
   nav.scrolled .nav-logo img { filter: none; }
+  /* When drawer open: show only X, hide other icons */
+  nav.drawer-open .nav-mobile-left { filter: invert(1); }
+  nav.drawer-open .nav-mobile-left .nav-icon-btn { display: none; }
+  nav.drawer-open .nav-right { visibility: hidden; }
+  nav.drawer-open .nav-logo { filter: none; }
 
   /* MOBILE: full-screen hero image */
   .hero {
