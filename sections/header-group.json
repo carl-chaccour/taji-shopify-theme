@@ -1,1 +1,345 @@
-{"name":"t:sections.header.name","type":"header","sections":{"announcement-bar":{"type":"announcement-bar","blocks":{"announcement-bar-0":{"type":"announcement","settings":{"text":"Welcome to our store","link":""}}},"block_order":["announcement-bar-0"],"settings":{"auto_rotate":false,"change_slides_speed":5,"color_scheme":"scheme-1","show_line_separator":true,"show_social":false,"enable_country_selector":false,"enable_language_selector":false}},"header":{"type":"header","settings":{"logo_position":"middle-left","mobile_logo_position":"center","menu":"main-menu","menu_type_desktop":"dropdown","sticky_header_type":"on-scroll-up","show_line_separator":true,"color_scheme":"scheme-1","menu_color_scheme":"scheme-1","enable_country_selector":true,"enable_language_selector":true,"enable_customer_avatar":true,"margin_bottom":0,"padding_top":20,"padding_bottom":20}}},"order":["announcement-bar","header"]}
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "name": "t:sections.header.name",
+  "type": "header",
+  "sections": {
+    "announcement-bar": {
+      "type": "announcement-bar",
+      "blocks": {
+        "announcement-bar-0": {
+          "type": "announcement",
+          "settings": {
+            "text": "Welcome to our store",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "announcement-bar-0"
+      ],
+      "settings": {
+        "auto_rotate": false,
+        "change_slides_speed": 5,
+        "color_scheme": "scheme-1",
+        "show_line_separator": true,
+        "show_social": false,
+        "enable_country_selector": false,
+        "enable_language_selector": false
+      }
+    },
+    "header": {
+      "type": "header",
+      "settings": {
+        "logo_position": "middle-left",
+        "mobile_logo_position": "center",
+        "menu": "main-menu",
+        "menu_type_desktop": "dropdown",
+        "sticky_header_type": "on-scroll-up",
+        "show_line_separator": true,
+        "color_scheme": "scheme-1",
+        "menu_color_scheme": "scheme-1",
+        "enable_country_selector": true,
+        "enable_language_selector": true,
+        "enable_customer_avatar": true,
+        "margin_bottom": 0,
+        "padding_top": 20,
+        "padding_bottom": 20
+      }
+    },
+    "landing_page_FqxDNp": {
+      "type": "landing-page",
+      "blocks": {
+        "trust_item_ixaLrt": {
+          "type": "trust_item",
+          "settings": {
+            "label": "Anti-Slip Technology"
+          }
+        },
+        "trust_item_myXHFx": {
+          "type": "trust_item",
+          "settings": {
+            "label": "All Hair Types"
+          }
+        },
+        "trust_item_4qGymT": {
+          "type": "trust_item",
+          "settings": {
+            "label": "Sweat-Resistant"
+          }
+        },
+        "trust_item_xYChgT": {
+          "type": "trust_item",
+          "settings": {
+            "label": "Lebanese Brand"
+          }
+        },
+        "pain_card_JjPBmN": {
+          "type": "pain_card",
+          "settings": {
+            "text": "Your hijab slips forward within an hour."
+          }
+        },
+        "pain_card_pyhy4n": {
+          "type": "pain_card",
+          "settings": {
+            "text": "You're constantly adjusting in public."
+          }
+        },
+        "pain_card_BtniAY": {
+          "type": "pain_card",
+          "settings": {
+            "text": "You've tried everything — pins, undercaps, sprays. Nothing holds."
+          }
+        },
+        "product_bullet_QdyRcX": {
+          "type": "product_bullet",
+          "settings": {
+            "text": "Grips hair on one side, anchors hijab on the other"
+          }
+        },
+        "product_bullet_CEgBgT": {
+          "type": "product_bullet",
+          "settings": {
+            "text": "Available in Nylon (smooth hair) and Rubber (fine/slippery hair)"
+          }
+        },
+        "product_bullet_ecPfzb": {
+          "type": "product_bullet",
+          "settings": {
+            "text": "Discreet under any hijab style"
+          }
+        },
+        "product_bullet_t8WJd6": {
+          "type": "product_bullet",
+          "settings": {
+            "text": "Designed for all-day wear"
+          }
+        },
+        "step_bJ9NbR": {
+          "type": "step",
+          "settings": {
+            "number": "01",
+            "name": "Place",
+            "desc": "Position the crown on your head like a headband"
+          }
+        },
+        "step_jmQELL": {
+          "type": "step",
+          "settings": {
+            "number": "02",
+            "name": "Wrap",
+            "desc": "Drape your hijab as usual — it grips instantly"
+          }
+        },
+        "step_YttQUE": {
+          "type": "step",
+          "settings": {
+            "number": "03",
+            "name": "Forget",
+            "desc": "Go about your day. It's not going anywhere."
+          }
+        },
+        "story_card_JmpWf8": {
+          "type": "story_card",
+          "settings": {
+            "label": "How to Place",
+            "sublabel": "Step 1",
+            "bg_color": "#1a1209"
+          }
+        },
+        "story_card_h6KMHF": {
+          "type": "story_card",
+          "settings": {
+            "label": "Wrap Your Hijab",
+            "sublabel": "The drape method",
+            "bg_color": "#141010"
+          }
+        },
+        "story_card_bNb33P": {
+          "type": "story_card",
+          "settings": {
+            "label": "Wind Test",
+            "sublabel": "Stays in gusts",
+            "bg_color": "#0d0d0d"
+          }
+        },
+        "story_card_UKfWKp": {
+          "type": "story_card",
+          "settings": {
+            "label": "Fine Hair",
+            "sublabel": "Rubber variant",
+            "bg_color": "#121008"
+          }
+        },
+        "story_card_ycUYRy": {
+          "type": "story_card",
+          "settings": {
+            "label": "All Day Wear",
+            "sublabel": "8-hour hold",
+            "bg_color": "#0f0f0f"
+          }
+        },
+        "review_RrK4rJ": {
+          "type": "review",
+          "settings": {
+            "text": "I forgot I was even wearing it. I went a full 8-hour shift without touching my hijab once.",
+            "stars": "★★★★★",
+            "author": "— Fatima R., Beirut"
+          }
+        },
+        "review_CegygE": {
+          "type": "review",
+          "settings": {
+            "text": "Finally something that actually works. The rubber version is perfect for my fine hair.",
+            "stars": "★★★★★",
+            "author": "— Nour K., Tripoli"
+          }
+        },
+        "review_kjWUq6": {
+          "type": "review",
+          "settings": {
+            "text": "The packaging alone made me feel like I was treating myself. The product delivered.",
+            "stars": "★★★★★",
+            "author": "— Sara M., Jounieh"
+          }
+        },
+        "variant_pGWdF4": {
+          "type": "variant",
+          "settings": {
+            "product": "",
+            "label": "Variant 01",
+            "name": "Nylon",
+            "material": "PA12 — Smooth Grip",
+            "desc": "Best for: thick, coarse, or normal hair. Smooth grip, structured feel.",
+            "button_text": "Add to Cart"
+          }
+        },
+        "variant_8JCtkg": {
+          "type": "variant",
+          "settings": {
+            "product": "",
+            "label": "Variant 02",
+            "name": "Rubber",
+            "material": "TPEE — Soft Grip",
+            "desc": "Best for: fine, silky, or slippery hair. Soft grip, flexible wear.",
+            "button_text": "Add to Cart"
+          }
+        }
+      },
+      "block_order": [
+        "trust_item_ixaLrt",
+        "trust_item_myXHFx",
+        "trust_item_4qGymT",
+        "trust_item_xYChgT",
+        "pain_card_JjPBmN",
+        "pain_card_pyhy4n",
+        "pain_card_BtniAY",
+        "product_bullet_QdyRcX",
+        "product_bullet_CEgBgT",
+        "product_bullet_ecPfzb",
+        "product_bullet_t8WJd6",
+        "step_bJ9NbR",
+        "step_jmQELL",
+        "step_YttQUE",
+        "story_card_JmpWf8",
+        "story_card_h6KMHF",
+        "story_card_bNb33P",
+        "story_card_UKfWKp",
+        "story_card_ycUYRy",
+        "review_RrK4rJ",
+        "review_CegygE",
+        "review_kjWUq6",
+        "variant_pGWdF4",
+        "variant_8JCtkg"
+      ],
+      "name": "TAJI Landing Page",
+      "settings": {
+        "announcement_text": "Free Shipping on Orders Over $50 · Lebanon Delivery",
+        "nav_logo": "shopify://shop_images/taji-logo.png",
+        "nav_shop_btn_text": "Shop Now",
+        "nav_shop_btn_url": "",
+        "nav_link_1_label": "Home",
+        "nav_link_1_url": "",
+        "nav_link_2_label": "Products",
+        "nav_link_2_url": "",
+        "nav_link_3_label": "About Us",
+        "nav_link_3_url": "",
+        "nav_link_4_label": "Contact",
+        "nav_link_4_url": "",
+        "hero_eyebrow": "✦   The Hijab Grip Crown   ✦",
+        "hero_headline_line1": "Your Hijab.",
+        "hero_headline_italic": "Finally Stays.",
+        "hero_subhead": "Wear it. Forget it. Own the day.",
+        "hero_arabic": "ارتدِيه، انسَيه، وامتلكي يومك.",
+        "hero_cta_text": "Crown Yourself →",
+        "hero_cta_url": "",
+        "hero_image": "shopify://shop_images/hero-woman.png",
+        "hero_shipping_text": "Free shipping on orders over $50 · Lebanon delivery",
+        "hero_callout_image": "shopify://shop_images/product-inside.png",
+        "hero_callout_label": "Hidden inside",
+        "hero_callout_text": "The rubber grip crown — invisible, unshakeable.",
+        "problem_eyebrow": "The Problem",
+        "problem_headline": "Sound familiar?",
+        "problem_divider_text": "There's a better way.",
+        "product_eyebrow": "The Crown",
+        "product_headline": "Meet The Crown",
+        "product_body": "TAJI's grip crown locks your hijab in place from the inside. No pins. No pulling. No second-guessing. Just confidence that moves with you.",
+        "product_image1_label": "The Package",
+        "product_image2_label": "The Crown",
+        "product_shop_text": "Shop The Crown",
+        "product_shop_url": "",
+        "steps_eyebrow": "The Method",
+        "steps_headline": "Three Steps to Freedom",
+        "stories_eyebrow": "See It In Action",
+        "stories_headline": "Watch. Learn. Crown.",
+        "stories_hint": "Hover to preview ✦ Tap to play",
+        "reviews_eyebrow": "Social Proof",
+        "reviews_headline": "She tried it. She's never going back.",
+        "variants_eyebrow": "The Collection",
+        "variants_headline": "Find Your Fit",
+        "brand_story_headline": "TAJI means My Crown.",
+        "brand_story_body": "We built TAJI for every woman who refuses to let her hijab be a distraction. Because confidence isn't something you adjust. It's something you wear.",
+        "cta_eyebrow": "Ready?",
+        "cta_headline": "Crown Yourself Today",
+        "cta_sub": "Free delivery across Lebanon · 30-day satisfaction guarantee",
+        "cta_button_text": "Shop Now — $42",
+        "cta_product": "",
+        "cta_fallback_url": "",
+        "cta_fine": "Limited launch stock · Handcrafted packaging",
+        "footer_arabic": "تاجي — ارتدي تاجكِ",
+        "footer_tagline": "The hijab grip crown designed for women who refuse to be distracted. Made in Lebanon.",
+        "footer_links_title": "Quick Links",
+        "footer_legal_title": "Legal",
+        "footer_terms_label": "Terms of Service",
+        "footer_terms_url": "",
+        "footer_privacy_label": "Privacy Policy",
+        "footer_privacy_url": "",
+        "footer_refund_label": "Refund Policy",
+        "footer_refund_url": "",
+        "footer_shipping_label": "Shipping Policy",
+        "footer_shipping_url": "",
+        "footer_contact_title": "Contact Us",
+        "footer_email": "hello@tajilb.com",
+        "footer_instagram_url": "",
+        "footer_instagram_label": "Instagram @tajilb",
+        "footer_location": "Lebanon — nationwide delivery",
+        "footer_response_time": "We reply within 24 hours",
+        "footer_whatsapp_url": "",
+        "footer_copy": "© 2025 TAJI. All rights reserved."
+      }
+    }
+  },
+  "order": [
+    "announcement-bar",
+    "header",
+    "landing_page_FqxDNp"
+  ]
+}
