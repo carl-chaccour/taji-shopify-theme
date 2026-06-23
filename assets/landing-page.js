@@ -24,9 +24,13 @@ function tajiInitLogoOverlay() {
 document.addEventListener('DOMContentLoaded', function () {
   // Sticky nav shadow on scroll
   var nav = document.getElementById('taji-main-nav');
+  var announcementBar = document.querySelector('.taji-announcement-bar');
   if (nav) {
     window.addEventListener('scroll', function () {
-      nav.classList.toggle('scrolled', window.scrollY > 20);
+      var threshold = window.innerWidth <= 768 ? window.innerHeight * 0.8 : 20;
+      var isScrolled = window.scrollY > threshold;
+      nav.classList.toggle('scrolled', isScrolled);
+      if (announcementBar) announcementBar.classList.toggle('scrolled', isScrolled);
     });
   }
 
