@@ -4,6 +4,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet" />
 
 {%- comment -%} ======= ANNOUNCEMENT BAR ======= {%- endcomment -%}
+{%- comment -%} ======= LOGO SCROLL OVERLAY ======= {%- endcomment -%}
+<div class="logo-scroll-overlay" id="taji-logo-scroll-overlay">
+  {%- if section.settings.nav_logo != blank -%}
+    <img src="{{ section.settings.nav_logo | image_url: width: 600 }}" alt="{{ shop.name }}" />
+  {%- else -%}
+    <img src="{{ 'taji-logo-alone.png' | asset_url }}" alt="{{ shop.name }}" />
+  {%- endif -%}
+</div>
+
 {%- if section.settings.announcement_text != blank -%}
   <div class="taji-announcement-bar">
     <p>{{ section.settings.announcement_text | escape }}</p>
