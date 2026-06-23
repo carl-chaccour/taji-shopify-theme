@@ -219,6 +219,7 @@
             "name": "Nylon",
             "material": "PA12 — Smooth Grip",
             "desc": "Best for: thick, coarse, or normal hair. Smooth grip, structured feel.",
+            "image": "shopify://shop_images/rubber-nobg.png",
             "button_text": "Add to Cart"
           }
         },
@@ -230,6 +231,7 @@
             "name": "Rubber",
             "material": "TPEE — Soft Grip",
             "desc": "Best for: fine, silky, or slippery hair. Soft grip, flexible wear.",
+            "image": "shopify://shop_images/rubber-nobg.png",
             "button_text": "Add to Cart"
           }
         }
