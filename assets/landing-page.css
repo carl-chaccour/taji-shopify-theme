@@ -797,6 +797,15 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
     color: var(--black);
   }
 
+  /* Trust bar: 2x2 grid on mobile, stars aligned */
+  .trust-bar-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 8px;
+    justify-items: start;
+    padding: 0 24px;
+  }
+
   /* MOBILE: transparent nav overlaid on hero */
   nav {
     background: transparent;
