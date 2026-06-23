@@ -266,6 +266,7 @@
       "settings": {
         "announcement_text": "Free Shipping on Orders Over $50 · Lebanon Delivery",
         "nav_logo": "shopify://shop_images/taji-logo.png",
+        "overlay_logo": "shopify://shop_images/taji-logo-alone.png",
         "nav_shop_btn_text": "Shop Now",
         "nav_shop_btn_url": "",
         "nav_link_1_label": "Home",
