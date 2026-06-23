@@ -6,8 +6,8 @@
 {%- comment -%} ======= ANNOUNCEMENT BAR ======= {%- endcomment -%}
 {%- comment -%} ======= LOGO SCROLL OVERLAY ======= {%- endcomment -%}
 <div class="logo-scroll-overlay" id="taji-logo-scroll-overlay">
-  {%- if section.settings.nav_logo != blank -%}
-    <img src="{{ section.settings.nav_logo | image_url: width: 600 }}" alt="{{ shop.name }}" />
+  {%- if section.settings.overlay_logo != blank -%}
+    <img src="{{ section.settings.overlay_logo | image_url: width: 600 }}" alt="{{ shop.name }}" />
   {%- else -%}
     <img src="{{ 'taji-logo-alone.png' | asset_url }}" alt="{{ shop.name }}" />
   {%- endif -%}
@@ -628,7 +628,12 @@
     {
       "type": "image_picker",
       "id": "nav_logo",
-      "label": "Logo image"
+      "label": "Logo image (header & footer)"
+    },
+    {
+      "type": "image_picker",
+      "id": "overlay_logo",
+      "label": "Scroll overlay logo (taji-logo-alone.png) ⚠️ Assign after import"
     },
     {
       "type": "text",
