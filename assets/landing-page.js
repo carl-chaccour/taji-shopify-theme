@@ -1,5 +1,26 @@
 // TAJI Landing Page JS
 
+function tajiInitLogoOverlay() {
+  var logoOverlay = document.getElementById('taji-logo-scroll-overlay');
+  if (!logoOverlay) return;
+  var fadeEnd = window.innerHeight * 0.5;
+  function update() {
+    var scrollY = window.scrollY || window.pageYOffset;
+    if (scrollY >= fadeEnd) {
+      logoOverlay.style.opacity = '0';
+      logoOverlay.style.pointerEvents = 'none';
+    } else {
+      var progress = scrollY / fadeEnd;
+      var opacity = 1 - progress;
+      var scale = 1 - progress * 0.55;
+      logoOverlay.style.opacity = opacity;
+      logoOverlay.style.transform = 'translateX(-50%) scale(' + scale + ')';
+    }
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
 document.addEventListener('DOMContentLoaded', function () {
   // Sticky nav shadow on scroll
   var nav = document.getElementById('taji-main-nav');
@@ -31,29 +52,16 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // Logo scroll shrink + fade overlay
-  var logoOverlay = document.getElementById('taji-logo-scroll-overlay');
-  if (logoOverlay) {
-    var fadeEnd = window.innerHeight * 0.5;
-    function updateLogoOverlay() {
-      var scrollY = window.scrollY;
-      if (scrollY >= fadeEnd) {
-        logoOverlay.classList.add('hidden');
-      } else {
-        logoOverlay.classList.remove('hidden');
-        var progress = scrollY / fadeEnd;
-        var opacity = 1 - progress;
-        var scale = 1 - progress * 0.55;
-        logoOverlay.style.opacity = opacity;
-        logoOverlay.style.transform = 'translateX(-50%) scale(' + scale + ')';
-      }
-    }
-    window.addEventListener('scroll', updateLogoOverlay, { passive: true });
-    updateLogoOverlay();
-  }
+  // Logo overlay
+  tajiInitLogoOverlay();
 
   // Cart forms: let Shopify's native theme JS handle AJAX cart if present.
   // This file intentionally does NOT intercept form submissions — the theme's
   // own cart drawer / AJAX handler (e.g. Dawn's cart-notification.js) will
   // pick up the standard product form submission automatically.
 });
+
+// Also run immediately in case DOMContentLoaded already fired
+if (document.readyState === 'interactive' || document.readyState === 'complete') {
+  tajiInitLogoOverlay();
+}
