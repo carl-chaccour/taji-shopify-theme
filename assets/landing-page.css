@@ -689,7 +689,7 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
 @media (max-width: 768px) {
   .logo-scroll-overlay {
     left: 50%;
-    top: 160px;
+    top: 220px;
   }
   .logo-scroll-overlay img {
     width: clamp(160px, 60vw, 280px);
@@ -782,7 +782,7 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
   .stories-row { justify-content: flex-start; padding: 0 20px 16px; gap: 12px; }
   .story-card { flex: 0 0 150px; height: 252px; border-radius: 12px; }
   .hero-callout { left: 0; bottom: -80px; }
-  .hero { padding: 140px 32px 80px; }
+  .hero { padding: 100px 32px 80px; }
 }
 @media (max-width: 480px) {
   .footer-top { grid-template-columns: 1fr; gap: 32px; }
