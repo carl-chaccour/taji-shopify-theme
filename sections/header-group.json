@@ -267,7 +267,7 @@
       "name": "TAJI Landing Page",
       "settings": {
         "announcement_text": "Free Shipping on Orders Over $50 · Lebanon Delivery",
-        "nav_logo": "shopify://shop_images/taji-logo.png",
+        "nav_logo": "shopify://shop_images/taji-logo-fit.png",
         "overlay_logo": "shopify://shop_images/taji-logo-alone.png",
         "nav_shop_btn_text": "Shop Now",
         "nav_shop_btn_url": "",
