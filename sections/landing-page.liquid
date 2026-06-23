@@ -177,40 +177,6 @@
   </div>
 {%- endif -%}
 
-{%- comment -%} ======= PROBLEM SECTION ======= {%- endcomment -%}
-{%- assign pain_cards = section.blocks | where: 'type', 'pain_card' -%}
-<section class="section section-white" id="problem">
-  <div class="section-inner">
-    {%- if section.settings.problem_eyebrow != blank -%}
-      <p class="section-eyebrow">{{ section.settings.problem_eyebrow | escape }}</p>
-    {%- endif -%}
-    {%- if section.settings.problem_headline != blank -%}
-      <h2 class="section-headline serif">{{ section.settings.problem_headline | escape }}</h2>
-    {%- endif -%}
-    {%- if pain_cards.size > 0 -%}
-      <div class="pain-grid">
-        {%- for block in pain_cards -%}
-          <div class="pain-card" {{ block.shopify_attributes }}>
-            <div class="pain-icon" aria-hidden="true">◆</div>
-            <p class="pain-text">{{ block.settings.text | escape }}</p>
-          </div>
-        {%- endfor -%}
-      </div>
-    {%- endif -%}
-    {%- if section.settings.problem_divider_text != blank -%}
-      <div style="text-align:center;">
-        <div class="section-divider">
-          <div class="gold-rule"></div>
-          <span style="font-size:11px; letter-spacing:0.2em; color:var(--gold); white-space:nowrap; font-weight:500;">
-            {{- section.settings.problem_divider_text | escape -}}
-          </span>
-          <div class="gold-rule"></div>
-        </div>
-      </div>
-    {%- endif -%}
-  </div>
-</section>
-
 {%- comment -%} ======= PRODUCT SECTION ======= {%- endcomment -%}
 {%- assign product_bullets = section.blocks | where: 'type', 'product_bullet' -%}
 <section class="section section-cream" id="product">
@@ -263,6 +229,40 @@
         </a>
       </div>
     </div>
+  </div>
+</section>
+
+{%- comment -%} ======= PROBLEM SECTION ======= {%- endcomment -%}
+{%- assign pain_cards = section.blocks | where: 'type', 'pain_card' -%}
+<section class="section section-white" id="problem">
+  <div class="section-inner">
+    {%- if section.settings.problem_eyebrow != blank -%}
+      <p class="section-eyebrow">{{ section.settings.problem_eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.problem_headline != blank -%}
+      <h2 class="section-headline serif">{{ section.settings.problem_headline | escape }}</h2>
+    {%- endif -%}
+    {%- if pain_cards.size > 0 -%}
+      <div class="pain-grid">
+        {%- for block in pain_cards -%}
+          <div class="pain-card" {{ block.shopify_attributes }}>
+            <div class="pain-icon" aria-hidden="true">◆</div>
+            <p class="pain-text">{{ block.settings.text | escape }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.problem_divider_text != blank -%}
+      <div style="text-align:center;">
+        <div class="section-divider">
+          <div class="gold-rule"></div>
+          <span style="font-size:11px; letter-spacing:0.2em; color:var(--gold); white-space:nowrap; font-weight:500;">
+            {{- section.settings.problem_divider_text | escape -}}
+          </span>
+          <div class="gold-rule"></div>
+        </div>
+      </div>
+    {%- endif -%}
   </div>
 </section>
 
