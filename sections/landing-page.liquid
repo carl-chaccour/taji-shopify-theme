@@ -1,0 +1,1372 @@
+{{ 'landing-page.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+
+{%- comment -%} ======= ANNOUNCEMENT BAR ======= {%- endcomment -%}
+{%- if section.settings.announcement_text != blank -%}
+  <div class="taji-announcement-bar">
+    <p>{{ section.settings.announcement_text | escape }}</p>
+  </div>
+{%- endif -%}
+
+{%- comment -%} ======= NAVIGATION ======= {%- endcomment -%}
+<nav id="taji-main-nav">
+  <div class="nav-inner">
+
+    <!-- Mobile-left: hamburger + search -->
+    <div class="nav-mobile-left">
+      <button class="nav-hamburger" id="taji-nav-hamburger" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="{{ routes.search_url }}" class="nav-icon-btn" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+      </a>
+    </div>
+
+    <!-- Logo (left on desktop, absolutely centered on mobile) -->
+    <a href="{{ section.settings.nav_link_1_url | default: '/' }}" class="nav-logo">
+      {%- if section.settings.nav_logo != blank -%}
+        <img src="{{ section.settings.nav_logo | image_url: width: 300 }}" alt="{{ shop.name }}" />
+      {%- else -%}
+        <img src="{{ 'taji-logo.png' | asset_url }}" alt="{{ shop.name }}" />
+      {%- endif -%}
+    </a>
+
+    <!-- Desktop nav links -->
+    <ul class="nav-links">
+      {%- if section.settings.nav_link_1_label != blank -%}
+        <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}">{{ section.settings.nav_link_1_label }}</a></li>
+      {%- endif -%}
+      {%- if section.settings.nav_link_2_label != blank -%}
+        <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}">{{ section.settings.nav_link_2_label }}</a></li>
+      {%- endif -%}
+      {%- if section.settings.nav_link_3_label != blank -%}
+        <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}">{{ section.settings.nav_link_3_label }}</a></li>
+      {%- endif -%}
+      {%- if section.settings.nav_link_4_label != blank -%}
+        <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}">{{ section.settings.nav_link_4_label }}</a></li>
+      {%- endif -%}
+    </ul>
+
+    <!-- Right group -->
+    <div class="nav-right">
+      <!-- Search: desktop only -->
+      <a href="{{ routes.search_url }}" class="nav-icon-btn nav-search-desktop" aria-label="Search">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/>
+        </svg>
+      </a>
+      <!-- Account + cart: always visible -->
+      <div class="nav-icons">
+        <a href="{{ routes.account_url }}" class="nav-icon-btn" aria-label="My Account">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </a>
+        <a href="{{ routes.cart_url }}" class="nav-icon-btn" aria-label="Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+          </svg>
+        </a>
+      </div>
+      <!-- Shop Now: desktop only -->
+      <a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}" class="btn-nav">
+        {{- section.settings.nav_shop_btn_text | default: 'Shop Now' -}}
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+{%- comment -%} MOBILE DRAWER {%- endcomment -%}
+<div class="nav-drawer" id="taji-nav-drawer" aria-hidden="true">
+  <ul class="nav-drawer-links">
+    {%- if section.settings.nav_link_1_label != blank -%}
+      <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}">{{ section.settings.nav_link_1_label }}</a></li>
+    {%- endif -%}
+    {%- if section.settings.nav_link_2_label != blank -%}
+      <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}">{{ section.settings.nav_link_2_label }}</a></li>
+    {%- endif -%}
+    {%- if section.settings.nav_link_3_label != blank -%}
+      <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}">{{ section.settings.nav_link_3_label }}</a></li>
+    {%- endif -%}
+    {%- if section.settings.nav_link_4_label != blank -%}
+      <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}">{{ section.settings.nav_link_4_label }}</a></li>
+    {%- endif -%}
+  </ul>
+  <div class="nav-drawer-cta">
+    <a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}" class="btn-primary">
+      {{- section.settings.nav_shop_btn_text | default: 'Shop Now' -}}
+    </a>
+  </div>
+</div>
+
+{%- comment -%} ======= HERO ======= {%- endcomment -%}
+<section class="hero">
+  <div class="hero-bg-motif" aria-hidden="true">تاجي</div>
+  <div class="hero-inner">
+    <div>
+      {%- if section.settings.hero_eyebrow != blank -%}
+        <p class="hero-eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
+      {%- endif -%}
+      <h1 class="hero-headline serif">
+        {{ section.settings.hero_headline_line1 | escape }}<br />
+        <span>{{ section.settings.hero_headline_italic | escape }}</span>
+      </h1>
+      {%- if section.settings.hero_subhead != blank -%}
+        <p class="hero-subhead">{{ section.settings.hero_subhead | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.hero_arabic != blank -%}
+        <p class="hero-arabic">{{ section.settings.hero_arabic | escape }}</p>
+      {%- endif -%}
+      <div class="hero-cta-wrap">
+        <a href="{{ section.settings.hero_cta_url | default: routes.all_products_collection_url }}" class="btn-primary">
+          {{- section.settings.hero_cta_text | default: 'Crown Yourself →' -}}
+        </a>
+      </div>
+      {%- if section.settings.hero_shipping_text != blank -%}
+        <p class="hero-shipping">{{ section.settings.hero_shipping_text | escape }}</p>
+      {%- endif -%}
+    </div>
+    <div class="hero-image-wrap">
+      <div style="position:relative; overflow:visible;">
+        {%- if section.settings.hero_image != blank -%}
+          <img
+            src="{{ section.settings.hero_image | image_url: width: 800 }}"
+            alt="{{ section.settings.hero_image.alt | default: 'Woman wearing TAJI crown' }}"
+            style="width:100%; border-radius:2px; display:block;"
+            loading="eager"
+          />
+        {%- else -%}
+          <img src="{{ 'hero-woman.png' | asset_url }}" alt="Woman wearing TAJI crown" style="width:100%; border-radius:2px; display:block;" />
+        {%- endif -%}
+        <div class="hero-callout">
+          {%- if section.settings.hero_callout_image != blank -%}
+            <img
+              src="{{ section.settings.hero_callout_image | image_url: width: 120 }}"
+              alt="{{ section.settings.hero_callout_image.alt | default: 'Crown detail' }}"
+            />
+          {%- else -%}
+            <img src="{{ 'product-inside.png' | asset_url }}" alt="Rubber crown under hijab" />
+          {%- endif -%}
+          <div>
+            <p class="hero-callout-label">{{ section.settings.hero_callout_label | default: 'Hidden inside' | escape }}</p>
+            <p class="hero-callout-text">{{ section.settings.hero_callout_text | default: 'The rubber grip crown — invisible, unshakeable.' | escape }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ======= TRUST BAR ======= {%- endcomment -%}
+{%- assign trust_items = section.blocks | where: 'type', 'trust_item' -%}
+{%- if trust_items.size > 0 -%}
+  <div class="trust-bar">
+    <div class="trust-bar-inner">
+      {%- for block in trust_items -%}
+        <div class="trust-item" {{ block.shopify_attributes }}>
+          <span class="trust-icon" aria-hidden="true">✦</span>
+          <span>{{ block.settings.label | escape }}</span>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endif -%}
+
+{%- comment -%} ======= PROBLEM SECTION ======= {%- endcomment -%}
+{%- assign pain_cards = section.blocks | where: 'type', 'pain_card' -%}
+<section class="section section-white" id="problem">
+  <div class="section-inner">
+    {%- if section.settings.problem_eyebrow != blank -%}
+      <p class="section-eyebrow">{{ section.settings.problem_eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.problem_headline != blank -%}
+      <h2 class="section-headline serif">{{ section.settings.problem_headline | escape }}</h2>
+    {%- endif -%}
+    {%- if pain_cards.size > 0 -%}
+      <div class="pain-grid">
+        {%- for block in pain_cards -%}
+          <div class="pain-card" {{ block.shopify_attributes }}>
+            <div class="pain-icon" aria-hidden="true">◆</div>
+            <p class="pain-text">{{ block.settings.text | escape }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.problem_divider_text != blank -%}
+      <div style="text-align:center;">
+        <div class="section-divider">
+          <div class="gold-rule"></div>
+          <span style="font-size:11px; letter-spacing:0.2em; color:var(--gold); white-space:nowrap; font-weight:500;">
+            {{- section.settings.problem_divider_text | escape -}}
+          </span>
+          <div class="gold-rule"></div>
+        </div>
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- comment -%} ======= PRODUCT SECTION ======= {%- endcomment -%}
+{%- assign product_bullets = section.blocks | where: 'type', 'product_bullet' -%}
+<section class="section section-cream" id="product">
+  <div class="section-inner">
+    <div class="product-split">
+      <div class="product-images">
+        <div class="product-img-col">
+          {%- if section.settings.product_image1 != blank -%}
+            <img
+              src="{{ section.settings.product_image1 | image_url: width: 600 }}"
+              alt="{{ section.settings.product_image1.alt | default: 'TAJI Packaging' }}"
+            />
+          {%- else -%}
+            <img src="{{ 'package-nobg.png' | asset_url }}" alt="TAJI Packaging" />
+          {%- endif -%}
+          <p class="product-img-label">{{ section.settings.product_image1_label | default: 'The Package' | escape }}</p>
+        </div>
+        <div class="product-divider"></div>
+        <div class="product-img-col rubber">
+          {%- if section.settings.product_image2 != blank -%}
+            <img
+              src="{{ section.settings.product_image2 | image_url: width: 600 }}"
+              alt="{{ section.settings.product_image2.alt | default: 'TAJI Crown' }}"
+            />
+          {%- else -%}
+            <img src="{{ 'rubber-nobg.png' | asset_url }}" alt="TAJI Rubber Crown" />
+          {%- endif -%}
+          <p class="product-img-label">{{ section.settings.product_image2_label | default: 'The Crown' | escape }}</p>
+        </div>
+      </div>
+      <div>
+        {%- if section.settings.product_eyebrow != blank -%}
+          <p class="section-eyebrow" style="text-align:left;">{{ section.settings.product_eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.product_headline != blank -%}
+          <h2 class="section-headline serif" style="text-align:left; margin-bottom:24px;">{{ section.settings.product_headline | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.product_body != blank -%}
+          <p class="product-body">{{ section.settings.product_body | escape }}</p>
+        {%- endif -%}
+        {%- if product_bullets.size > 0 -%}
+          <ul class="product-bullets">
+            {%- for block in product_bullets -%}
+              <li {{ block.shopify_attributes }}>{{ block.settings.text | escape }}</li>
+            {%- endfor -%}
+          </ul>
+        {%- endif -%}
+        <a href="{{ section.settings.product_shop_url | default: routes.all_products_collection_url }}" class="btn-primary">
+          {{- section.settings.product_shop_text | default: 'Shop The Crown' -}}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- comment -%} ======= HOW IT WORKS ======= {%- endcomment -%}
+{%- assign steps = section.blocks | where: 'type', 'step' -%}
+<section class="section section-white" id="how-it-works">
+  <div class="section-inner">
+    {%- if section.settings.steps_eyebrow != blank -%}
+      <p class="section-eyebrow">{{ section.settings.steps_eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.steps_headline != blank -%}
+      <h2 class="section-headline serif">{{ section.settings.steps_headline | escape }}</h2>
+    {%- endif -%}
+    {%- if steps.size > 0 -%}
+      <div class="steps-grid">
+        {%- for block in steps -%}
+          <div class="step-item" {{ block.shopify_attributes }}>
+            <div class="step-number serif">{{ block.settings.number | escape }}</div>
+            <h3 class="step-name serif">{{ block.settings.name | escape }}</h3>
+            <p class="step-desc">{{ block.settings.desc | escape }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- comment -%} ======= STORIES WIDGET ======= {%- endcomment -%}
+{%- assign story_cards = section.blocks | where: 'type', 'story_card' -%}
+<section class="stories-section" id="stories">
+  <div class="stories-inner">
+    {%- if section.settings.stories_eyebrow != blank -%}
+      <p class="section-eyebrow" style="text-align:center; margin-bottom:12px;">{{ section.settings.stories_eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.stories_headline != blank -%}
+      <h2 class="section-headline serif" style="margin-bottom:40px;">{{ section.settings.stories_headline | escape }}</h2>
+    {%- endif -%}
+    {%- if story_cards.size > 0 -%}
+      <div class="stories-row">
+        {%- for block in story_cards -%}
+          <div
+            class="story-card"
+            style="background: {{ block.settings.bg_color | default: '#0d0d0d' }};"
+            {{ block.shopify_attributes }}
+          >
+            <div class="story-ring"></div>
+            <div class="story-progress"><div class="story-progress-bar"></div></div>
+            {%- if block.settings.image != blank -%}
+              <img
+                src="{{ block.settings.image | image_url: width: 400 }}"
+                alt="{{ block.settings.image.alt | default: block.settings.label }}"
+                class="story-thumb"
+                loading="lazy"
+              />
+            {%- else -%}
+              <img src="{{ 'product-top.png' | asset_url }}" alt="{{ block.settings.label | escape }}" class="story-thumb" />
+            {%- endif -%}
+            <div class="story-gradient"></div>
+            <div class="story-play-btn"><div class="story-play-icon"></div></div>
+            <div class="story-label">
+              <span class="story-label-text">{{ block.settings.label | escape }}</span>
+              <span class="story-label-sub">{{ block.settings.sublabel | escape }}</span>
+            </div>
+            <div class="story-mute-badge" aria-hidden="true">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round">
+                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+              </svg>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+    {%- if section.settings.stories_hint != blank -%}
+      <p class="stories-hint">{{ section.settings.stories_hint | escape }}</p>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- comment -%} ======= REVIEWS ======= {%- endcomment -%}
+{%- assign reviews = section.blocks | where: 'type', 'review' -%}
+<section class="section section-cream-alt" id="reviews">
+  <div class="section-inner">
+    {%- if section.settings.reviews_eyebrow != blank -%}
+      <p class="section-eyebrow">{{ section.settings.reviews_eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.reviews_headline != blank -%}
+      <h2 class="section-headline serif">{{ section.settings.reviews_headline | escape }}</h2>
+    {%- endif -%}
+    {%- if reviews.size > 0 -%}
+      <div class="reviews-grid">
+        {%- for block in reviews -%}
+          <div class="review-card" {{ block.shopify_attributes }}>
+            <div class="review-quote-mark serif" aria-hidden="true">"</div>
+            <p class="review-text">{{ block.settings.text | escape }}</p>
+            <div class="review-stars" aria-label="5 stars">{{ block.settings.stars | default: '★★★★★' | escape }}</div>
+            <p class="review-author">{{ block.settings.author | escape }}</p>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- comment -%} ======= VARIANTS / COLLECTION ======= {%- endcomment -%}
+{%- assign variants = section.blocks | where: 'type', 'variant' -%}
+<section class="section section-white" id="collection">
+  <div class="section-inner">
+    {%- if section.settings.variants_eyebrow != blank -%}
+      <p class="section-eyebrow">{{ section.settings.variants_eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.variants_headline != blank -%}
+      <h2 class="section-headline serif">{{ section.settings.variants_headline | escape }}</h2>
+    {%- endif -%}
+    {%- if variants.size > 0 -%}
+      <div class="variants-grid">
+        {%- for block in variants -%}
+          {%- assign variant_product = block.settings.product -%}
+          <div class="variant-card" {{ block.shopify_attributes }}>
+            <div class="variant-img-box">
+              {%- if block.settings.image != blank -%}
+                <img
+                  src="{{ block.settings.image | image_url: width: 500 }}"
+                  alt="{{ block.settings.image.alt | default: block.settings.name }}"
+                  loading="lazy"
+                />
+              {%- elsif variant_product != blank and variant_product.featured_image != blank -%}
+                <img
+                  src="{{ variant_product.featured_image | image_url: width: 500 }}"
+                  alt="{{ variant_product.title }}"
+                  loading="lazy"
+                />
+              {%- else -%}
+                <img src="{{ 'product-top.png' | asset_url }}" alt="{{ block.settings.name | escape }}" />
+              {%- endif -%}
+            </div>
+            <p class="variant-label">{{ block.settings.label | escape }}</p>
+            <h3 class="variant-name serif">{{ block.settings.name | escape }}</h3>
+            <p class="variant-material">{{ block.settings.material | escape }}</p>
+            <p class="variant-desc">{{ block.settings.desc | escape }}</p>
+
+            {%- if variant_product != blank -%}
+              {%- assign first_variant = variant_product.selected_or_first_available_variant -%}
+              {%- form 'product', variant_product, class: 'variant-form' -%}
+                <input type="hidden" name="id" value="{{ first_variant.id }}" />
+                <input type="hidden" name="quantity" value="1" />
+                <button type="submit" class="btn-secondary">
+                  {{- block.settings.button_text | default: 'Add to Cart' -}}
+                </button>
+              {%- endform -%}
+            {%- else -%}
+              {%- if request.design_mode -%}
+                <p class="variant-no-product">No product selected — assign one in the theme editor</p>
+              {%- endif -%}
+              <button type="button" class="btn-secondary" disabled>
+                {{- block.settings.button_text | default: 'Add to Cart' -}}
+              </button>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{%- comment -%} ======= BRAND STORY ======= {%- endcomment -%}
+<div class="brand-story" id="brand-story">
+  <div class="brand-story-watermark" aria-hidden="true">تاجي</div>
+  <div class="brand-story-inner">
+    <div style="margin-bottom:32px;">
+      {%- if section.settings.brand_story_logo != blank -%}
+        <img
+          src="{{ section.settings.brand_story_logo | image_url: width: 300 }}"
+          alt="{{ section.settings.brand_story_logo.alt | default: 'Crown Yourself' }}"
+          style="height:48px; opacity:0.85;"
+        />
+      {%- else -%}
+        <img src="{{ 'crown-yourself.png' | asset_url }}" alt="Crown Yourself" style="height:48px; opacity:0.85;" />
+      {%- endif -%}
+    </div>
+    {%- if section.settings.brand_story_headline != blank -%}
+      <h2 class="brand-story-headline serif">{{ section.settings.brand_story_headline | escape }}</h2>
+    {%- endif -%}
+    {%- if section.settings.brand_story_body != blank -%}
+      <p class="brand-story-body">{{ section.settings.brand_story_body | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{%- comment -%} ======= FINAL CTA ======= {%- endcomment -%}
+{%- assign cta_product = section.settings.cta_product -%}
+<div class="final-cta" id="cta">
+  {%- if section.settings.cta_eyebrow != blank -%}
+    <p class="section-eyebrow">{{ section.settings.cta_eyebrow | escape }}</p>
+  {%- endif -%}
+  {%- if section.settings.cta_headline != blank -%}
+    <h2 class="final-cta-headline serif">{{ section.settings.cta_headline | escape }}</h2>
+  {%- endif -%}
+  {%- if section.settings.cta_sub != blank -%}
+    <p class="final-cta-sub">{{ section.settings.cta_sub | escape }}</p>
+  {%- endif -%}
+
+  {%- if cta_product != blank -%}
+    {%- assign cta_variant = cta_product.selected_or_first_available_variant -%}
+    {%- form 'product', cta_product, class: 'final-cta-form' -%}
+      <input type="hidden" name="id" value="{{ cta_variant.id }}" />
+      <input type="hidden" name="quantity" value="1" />
+      <button type="submit" class="btn-primary final-cta-btn">
+        {{- section.settings.cta_button_text | default: 'Shop Now' -}}
+      </button>
+    {%- endform -%}
+  {%- else -%}
+    {%- if request.design_mode -%}
+      <p class="variant-no-product">No product selected — assign one in the theme editor</p>
+    {%- endif -%}
+    <a
+      href="{{ section.settings.cta_fallback_url | default: routes.all_products_collection_url }}"
+      class="btn-primary final-cta-btn"
+    >
+      {{- section.settings.cta_button_text | default: 'Shop Now' -}}
+    </a>
+  {%- endif -%}
+
+  {%- if section.settings.cta_fine != blank -%}
+    <p class="final-cta-fine">{{ section.settings.cta_fine | escape }}</p>
+  {%- endif -%}
+</div>
+
+{%- comment -%} ======= FOOTER ======= {%- endcomment -%}
+<footer>
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        {%- if section.settings.nav_logo != blank -%}
+          <img
+            src="{{ section.settings.nav_logo | image_url: width: 300 }}"
+            alt="{{ shop.name }}"
+            class="footer-logo"
+          />
+        {%- else -%}
+          <img src="{{ 'taji-logo.png' | asset_url }}" alt="{{ shop.name }}" class="footer-logo" />
+        {%- endif -%}
+        {%- if section.settings.footer_arabic != blank -%}
+          <p class="footer-brand-arabic">{{ section.settings.footer_arabic | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.footer_tagline != blank -%}
+          <p class="footer-brand-tagline">{{ section.settings.footer_tagline | escape }}</p>
+        {%- endif -%}
+      </div>
+      <div>
+        <p class="footer-col-title">{{ section.settings.footer_links_title | default: 'Quick Links' | escape }}</p>
+        <ul class="footer-col-links">
+          {%- if section.settings.nav_link_1_label != blank -%}
+            <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}">{{ section.settings.nav_link_1_label | escape }}</a></li>
+          {%- endif -%}
+          {%- if section.settings.nav_link_2_label != blank -%}
+            <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}">{{ section.settings.nav_link_2_label | escape }}</a></li>
+          {%- endif -%}
+          {%- if section.settings.nav_link_3_label != blank -%}
+            <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}">{{ section.settings.nav_link_3_label | escape }}</a></li>
+          {%- endif -%}
+          {%- if section.settings.nav_link_4_label != blank -%}
+            <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}">{{ section.settings.nav_link_4_label | escape }}</a></li>
+          {%- endif -%}
+          {%- if section.settings.nav_shop_btn_text != blank -%}
+            <li><a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}">{{ section.settings.nav_shop_btn_text | escape }}</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">{{ section.settings.footer_legal_title | default: 'Legal' | escape }}</p>
+        <ul class="footer-col-links">
+          {%- if section.settings.footer_terms_url != blank -%}
+            <li><a href="{{ section.settings.footer_terms_url }}">{{ section.settings.footer_terms_label | default: 'Terms of Service' | escape }}</a></li>
+          {%- endif -%}
+          {%- if section.settings.footer_privacy_url != blank -%}
+            <li><a href="{{ section.settings.footer_privacy_url }}">{{ section.settings.footer_privacy_label | default: 'Privacy Policy' | escape }}</a></li>
+          {%- endif -%}
+          {%- if section.settings.footer_refund_url != blank -%}
+            <li><a href="{{ section.settings.footer_refund_url }}">{{ section.settings.footer_refund_label | default: 'Refund Policy' | escape }}</a></li>
+          {%- endif -%}
+          {%- if section.settings.footer_shipping_url != blank -%}
+            <li><a href="{{ section.settings.footer_shipping_url }}">{{ section.settings.footer_shipping_label | default: 'Shipping Policy' | escape }}</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-title">{{ section.settings.footer_contact_title | default: 'Contact Us' | escape }}</p>
+        {%- if section.settings.footer_email != blank -%}
+          <div class="footer-contact-line">
+            <span class="footer-contact-icon" aria-hidden="true">✉</span>
+            <p class="footer-contact-text">
+              <a href="mailto:{{ section.settings.footer_email }}">{{ section.settings.footer_email | escape }}</a>
+            </p>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.footer_instagram_label != blank -%}
+          <div class="footer-contact-line">
+            <span class="footer-contact-icon" aria-hidden="true">✦</span>
+            <p class="footer-contact-text">
+              <a href="{{ section.settings.footer_instagram_url | default: '#' }}">{{ section.settings.footer_instagram_label | escape }}</a>
+            </p>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.footer_location != blank -%}
+          <div class="footer-contact-line">
+            <span class="footer-contact-icon" aria-hidden="true">◎</span>
+            <p class="footer-contact-text">{{ section.settings.footer_location | escape }}</p>
+          </div>
+        {%- endif -%}
+        {%- if section.settings.footer_response_time != blank -%}
+          <div class="footer-contact-line">
+            <span class="footer-contact-icon" aria-hidden="true">◷</span>
+            <p class="footer-contact-text">{{ section.settings.footer_response_time | escape }}</p>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">{{ section.settings.footer_copy | default: '© 2025 TAJI. All rights reserved.' | escape }}</p>
+      <div class="footer-social">
+        {%- if section.settings.footer_instagram_url != blank -%}
+          <a href="{{ section.settings.footer_instagram_url }}">Instagram</a>
+        {%- endif -%}
+        {%- if section.settings.footer_whatsapp_url != blank -%}
+          <a href="{{ section.settings.footer_whatsapp_url }}">WhatsApp</a>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</footer>
+
+{{ 'landing-page.js' | asset_url | script_tag }}
+
+{% schema %}
+{
+  "name": "TAJI Landing Page",
+  "tag": "div",
+  "class": "taji-landing-page",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement text",
+      "default": "Free Shipping on Orders Over $50 · Lebanon Delivery"
+    },
+    {
+      "type": "header",
+      "content": "Navigation"
+    },
+    {
+      "type": "image_picker",
+      "id": "nav_logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "nav_shop_btn_text",
+      "label": "Shop button label",
+      "default": "Shop Now"
+    },
+    {
+      "type": "url",
+      "id": "nav_shop_btn_url",
+      "label": "Shop button URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_1_label",
+      "label": "Nav link 1 label",
+      "default": "Home"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_1_url",
+      "label": "Nav link 1 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_2_label",
+      "label": "Nav link 2 label",
+      "default": "Products"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_2_url",
+      "label": "Nav link 2 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_3_label",
+      "label": "Nav link 3 label",
+      "default": "About Us"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_3_url",
+      "label": "Nav link 3 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_4_label",
+      "label": "Nav link 4 label",
+      "default": "Contact"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_4_url",
+      "label": "Nav link 4 URL"
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "hero_eyebrow",
+      "label": "Hero eyebrow",
+      "default": "✦   The Hijab Grip Crown   ✦"
+    },
+    {
+      "type": "text",
+      "id": "hero_headline_line1",
+      "label": "Headline — line 1",
+      "default": "Your Hijab."
+    },
+    {
+      "type": "text",
+      "id": "hero_headline_italic",
+      "label": "Headline — italic line",
+      "default": "Finally Stays."
+    },
+    {
+      "type": "text",
+      "id": "hero_subhead",
+      "label": "Hero subheading",
+      "default": "Wear it. Forget it. Own the day."
+    },
+    {
+      "type": "text",
+      "id": "hero_arabic",
+      "label": "Arabic tagline",
+      "default": "ارتدِيه، انسَيه، وامتلكي يومك."
+    },
+    {
+      "type": "text",
+      "id": "hero_cta_text",
+      "label": "Hero CTA button text",
+      "default": "Crown Yourself →"
+    },
+    {
+      "type": "url",
+      "id": "hero_cta_url",
+      "label": "Hero CTA button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image (woman wearing crown)"
+    },
+    {
+      "type": "text",
+      "id": "hero_shipping_text",
+      "label": "Shipping note",
+      "default": "Free shipping on orders over $50 · Lebanon delivery"
+    },
+    {
+      "type": "image_picker",
+      "id": "hero_callout_image",
+      "label": "Hero callout product image"
+    },
+    {
+      "type": "text",
+      "id": "hero_callout_label",
+      "label": "Hero callout label",
+      "default": "Hidden inside"
+    },
+    {
+      "type": "text",
+      "id": "hero_callout_text",
+      "label": "Hero callout text",
+      "default": "The rubber grip crown — invisible, unshakeable."
+    },
+    {
+      "type": "header",
+      "content": "Problem Section"
+    },
+    {
+      "type": "text",
+      "id": "problem_eyebrow",
+      "label": "Problem eyebrow",
+      "default": "The Problem"
+    },
+    {
+      "type": "text",
+      "id": "problem_headline",
+      "label": "Problem headline",
+      "default": "Sound familiar?"
+    },
+    {
+      "type": "text",
+      "id": "problem_divider_text",
+      "label": "Divider text",
+      "default": "There's a better way."
+    },
+    {
+      "type": "header",
+      "content": "Product Section"
+    },
+    {
+      "type": "text",
+      "id": "product_eyebrow",
+      "label": "Product eyebrow",
+      "default": "The Crown"
+    },
+    {
+      "type": "text",
+      "id": "product_headline",
+      "label": "Product headline",
+      "default": "Meet The Crown"
+    },
+    {
+      "type": "textarea",
+      "id": "product_body",
+      "label": "Product body text",
+      "default": "TAJI's grip crown locks your hijab in place from the inside. No pins. No pulling. No second-guessing. Just confidence that moves with you."
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image1",
+      "label": "Product image 1 (left)"
+    },
+    {
+      "type": "text",
+      "id": "product_image1_label",
+      "label": "Product image 1 label",
+      "default": "The Package"
+    },
+    {
+      "type": "image_picker",
+      "id": "product_image2",
+      "label": "Product image 2 (right)"
+    },
+    {
+      "type": "text",
+      "id": "product_image2_label",
+      "label": "Product image 2 label",
+      "default": "The Crown"
+    },
+    {
+      "type": "text",
+      "id": "product_shop_text",
+      "label": "Product CTA button text",
+      "default": "Shop The Crown"
+    },
+    {
+      "type": "url",
+      "id": "product_shop_url",
+      "label": "Product CTA button URL"
+    },
+    {
+      "type": "header",
+      "content": "How It Works"
+    },
+    {
+      "type": "text",
+      "id": "steps_eyebrow",
+      "label": "Steps eyebrow",
+      "default": "The Method"
+    },
+    {
+      "type": "text",
+      "id": "steps_headline",
+      "label": "Steps headline",
+      "default": "Three Steps to Freedom"
+    },
+    {
+      "type": "header",
+      "content": "Stories Widget"
+    },
+    {
+      "type": "text",
+      "id": "stories_eyebrow",
+      "label": "Stories eyebrow",
+      "default": "See It In Action"
+    },
+    {
+      "type": "text",
+      "id": "stories_headline",
+      "label": "Stories headline",
+      "default": "Watch. Learn. Crown."
+    },
+    {
+      "type": "text",
+      "id": "stories_hint",
+      "label": "Stories hint text",
+      "default": "Hover to preview ✦ Tap to play"
+    },
+    {
+      "type": "header",
+      "content": "Reviews"
+    },
+    {
+      "type": "text",
+      "id": "reviews_eyebrow",
+      "label": "Reviews eyebrow",
+      "default": "Social Proof"
+    },
+    {
+      "type": "text",
+      "id": "reviews_headline",
+      "label": "Reviews headline",
+      "default": "She tried it. She's never going back."
+    },
+    {
+      "type": "header",
+      "content": "Variants / Collection"
+    },
+    {
+      "type": "text",
+      "id": "variants_eyebrow",
+      "label": "Variants eyebrow",
+      "default": "The Collection"
+    },
+    {
+      "type": "text",
+      "id": "variants_headline",
+      "label": "Variants headline",
+      "default": "Find Your Fit"
+    },
+    {
+      "type": "header",
+      "content": "Brand Story"
+    },
+    {
+      "type": "image_picker",
+      "id": "brand_story_logo",
+      "label": "Brand story logo / wordmark image"
+    },
+    {
+      "type": "text",
+      "id": "brand_story_headline",
+      "label": "Brand story headline",
+      "default": "TAJI means My Crown."
+    },
+    {
+      "type": "textarea",
+      "id": "brand_story_body",
+      "label": "Brand story body",
+      "default": "We built TAJI for every woman who refuses to let her hijab be a distraction. Because confidence isn't something you adjust. It's something you wear."
+    },
+    {
+      "type": "header",
+      "content": "Final CTA"
+    },
+    {
+      "type": "text",
+      "id": "cta_eyebrow",
+      "label": "CTA eyebrow",
+      "default": "Ready?"
+    },
+    {
+      "type": "text",
+      "id": "cta_headline",
+      "label": "CTA headline",
+      "default": "Crown Yourself Today"
+    },
+    {
+      "type": "text",
+      "id": "cta_sub",
+      "label": "CTA subtext",
+      "default": "Free delivery across Lebanon · 30-day satisfaction guarantee"
+    },
+    {
+      "type": "text",
+      "id": "cta_button_text",
+      "label": "CTA button text",
+      "default": "Shop Now — $42"
+    },
+    {
+      "type": "product",
+      "id": "cta_product",
+      "label": "CTA product (Add to Cart) ⚠️ Assign after import"
+    },
+    {
+      "type": "url",
+      "id": "cta_fallback_url",
+      "label": "CTA fallback URL (used if no product selected)"
+    },
+    {
+      "type": "text",
+      "id": "cta_fine",
+      "label": "CTA fine print",
+      "default": "Limited launch stock · Handcrafted packaging"
+    },
+    {
+      "type": "header",
+      "content": "Footer"
+    },
+    {
+      "type": "text",
+      "id": "footer_arabic",
+      "label": "Footer Arabic text",
+      "default": "تاجي — ارتدي تاجكِ"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_tagline",
+      "label": "Footer brand tagline",
+      "default": "The hijab grip crown designed for women who refuse to be distracted. Made in Lebanon."
+    },
+    {
+      "type": "text",
+      "id": "footer_links_title",
+      "label": "Quick links column title",
+      "default": "Quick Links"
+    },
+    {
+      "type": "text",
+      "id": "footer_legal_title",
+      "label": "Legal column title",
+      "default": "Legal"
+    },
+    {
+      "type": "text",
+      "id": "footer_terms_label",
+      "label": "Terms of Service label",
+      "default": "Terms of Service"
+    },
+    {
+      "type": "url",
+      "id": "footer_terms_url",
+      "label": "Terms of Service URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_privacy_label",
+      "label": "Privacy Policy label",
+      "default": "Privacy Policy"
+    },
+    {
+      "type": "url",
+      "id": "footer_privacy_url",
+      "label": "Privacy Policy URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_refund_label",
+      "label": "Refund Policy label",
+      "default": "Refund Policy"
+    },
+    {
+      "type": "url",
+      "id": "footer_refund_url",
+      "label": "Refund Policy URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_shipping_label",
+      "label": "Shipping Policy label",
+      "default": "Shipping Policy"
+    },
+    {
+      "type": "url",
+      "id": "footer_shipping_url",
+      "label": "Shipping Policy URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_contact_title",
+      "label": "Contact column title",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "footer_email",
+      "label": "Contact email",
+      "default": "hello@tajilb.com"
+    },
+    {
+      "type": "url",
+      "id": "footer_instagram_url",
+      "label": "Instagram URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_instagram_label",
+      "label": "Instagram label",
+      "default": "Instagram @tajilb"
+    },
+    {
+      "type": "text",
+      "id": "footer_location",
+      "label": "Location / delivery note",
+      "default": "Lebanon — nationwide delivery"
+    },
+    {
+      "type": "text",
+      "id": "footer_response_time",
+      "label": "Response time note",
+      "default": "We reply within 24 hours"
+    },
+    {
+      "type": "url",
+      "id": "footer_whatsapp_url",
+      "label": "WhatsApp URL"
+    },
+    {
+      "type": "text",
+      "id": "footer_copy",
+      "label": "Copyright text",
+      "default": "© 2025 TAJI. All rights reserved."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "trust_item",
+      "name": "Trust Bar Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Anti-Slip Technology"
+        }
+      ]
+    },
+    {
+      "type": "pain_card",
+      "name": "Problem Card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Problem text",
+          "default": "Your hijab slips forward within an hour."
+        }
+      ]
+    },
+    {
+      "type": "product_bullet",
+      "name": "Product Bullet Point",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Bullet point text",
+          "default": "Grips hair on one side, anchors hijab on the other"
+        }
+      ]
+    },
+    {
+      "type": "step",
+      "name": "How It Works Step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "number",
+          "label": "Step number",
+          "default": "01"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Step name",
+          "default": "Place"
+        },
+        {
+          "type": "text",
+          "id": "desc",
+          "label": "Step description",
+          "default": "Position the crown on your head like a headband"
+        }
+      ]
+    },
+    {
+      "type": "story_card",
+      "name": "Story Card",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Story thumbnail image"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Story label",
+          "default": "How to Place"
+        },
+        {
+          "type": "text",
+          "id": "sublabel",
+          "label": "Story sub-label",
+          "default": "Step 1"
+        },
+        {
+          "type": "text",
+          "id": "bg_color",
+          "label": "Card background color (hex)",
+          "default": "#0d0d0d"
+        }
+      ]
+    },
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Review text",
+          "default": "I forgot I was even wearing it. I went a full 8-hour shift without touching my hijab once."
+        },
+        {
+          "type": "text",
+          "id": "stars",
+          "label": "Stars (e.g. ★★★★★)",
+          "default": "★★★★★"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Reviewer name / location",
+          "default": "— Fatima R., Beirut"
+        }
+      ]
+    },
+    {
+      "type": "variant",
+      "name": "Variant Card",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product ⚠️ Assign after import"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Variant label (e.g. Variant 01)",
+          "default": "Variant 01"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Variant name",
+          "default": "Nylon"
+        },
+        {
+          "type": "text",
+          "id": "material",
+          "label": "Material / grip type",
+          "default": "PA12 — Smooth Grip"
+        },
+        {
+          "type": "textarea",
+          "id": "desc",
+          "label": "Variant description",
+          "default": "Best for: thick, coarse, or normal hair. Smooth grip, structured feel."
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Variant image (overrides product image)"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button text",
+          "default": "Add to Cart"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TAJI Landing Page",
+      "blocks": [
+        {
+          "type": "trust_item",
+          "settings": { "label": "Anti-Slip Technology" }
+        },
+        {
+          "type": "trust_item",
+          "settings": { "label": "All Hair Types" }
+        },
+        {
+          "type": "trust_item",
+          "settings": { "label": "Sweat-Resistant" }
+        },
+        {
+          "type": "trust_item",
+          "settings": { "label": "Lebanese Brand" }
+        },
+        {
+          "type": "pain_card",
+          "settings": { "text": "Your hijab slips forward within an hour." }
+        },
+        {
+          "type": "pain_card",
+          "settings": { "text": "You're constantly adjusting in public." }
+        },
+        {
+          "type": "pain_card",
+          "settings": { "text": "You've tried everything — pins, undercaps, sprays. Nothing holds." }
+        },
+        {
+          "type": "product_bullet",
+          "settings": { "text": "Grips hair on one side, anchors hijab on the other" }
+        },
+        {
+          "type": "product_bullet",
+          "settings": { "text": "Available in Nylon (smooth hair) and Rubber (fine/slippery hair)" }
+        },
+        {
+          "type": "product_bullet",
+          "settings": { "text": "Discreet under any hijab style" }
+        },
+        {
+          "type": "product_bullet",
+          "settings": { "text": "Designed for all-day wear" }
+        },
+        {
+          "type": "step",
+          "settings": { "number": "01", "name": "Place", "desc": "Position the crown on your head like a headband" }
+        },
+        {
+          "type": "step",
+          "settings": { "number": "02", "name": "Wrap", "desc": "Drape your hijab as usual — it grips instantly" }
+        },
+        {
+          "type": "step",
+          "settings": { "number": "03", "name": "Forget", "desc": "Go about your day. It's not going anywhere." }
+        },
+        {
+          "type": "story_card",
+          "settings": { "label": "How to Place", "sublabel": "Step 1", "bg_color": "#1a1209" }
+        },
+        {
+          "type": "story_card",
+          "settings": { "label": "Wrap Your Hijab", "sublabel": "The drape method", "bg_color": "#141010" }
+        },
+        {
+          "type": "story_card",
+          "settings": { "label": "Wind Test", "sublabel": "Stays in gusts", "bg_color": "#0d0d0d" }
+        },
+        {
+          "type": "story_card",
+          "settings": { "label": "Fine Hair", "sublabel": "Rubber variant", "bg_color": "#121008" }
+        },
+        {
+          "type": "story_card",
+          "settings": { "label": "All Day Wear", "sublabel": "8-hour hold", "bg_color": "#0f0f0f" }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "text": "I forgot I was even wearing it. I went a full 8-hour shift without touching my hijab once.",
+            "stars": "★★★★★",
+            "author": "— Fatima R., Beirut"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "text": "Finally something that actually works. The rubber version is perfect for my fine hair.",
+            "stars": "★★★★★",
+            "author": "— Nour K., Tripoli"
+          }
+        },
+        {
+          "type": "review",
+          "settings": {
+            "text": "The packaging alone made me feel like I was treating myself. The product delivered.",
+            "stars": "★★★★★",
+            "author": "— Sara M., Jounieh"
+          }
+        },
+        {
+          "type": "variant",
+          "settings": {
+            "label": "Variant 01",
+            "name": "Nylon",
+            "material": "PA12 — Smooth Grip",
+            "desc": "Best for: thick, coarse, or normal hair. Smooth grip, structured feel.",
+            "button_text": "Add to Cart"
+          }
+        },
+        {
+          "type": "variant",
+          "settings": {
+            "label": "Variant 02",
+            "name": "Rubber",
+            "material": "TPEE — Soft Grip",
+            "desc": "Best for: fine, silky, or slippery hair. Soft grip, flexible wear.",
+            "button_text": "Add to Cart"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
