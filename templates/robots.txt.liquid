@@ -1,0 +1,30 @@
+{% layout none %}
+{%- for group in robots.default_groups -%}
+  {{- group.user_agent -}}
+  {{- newline -}}
+  {%- for rule in group.rules -%}
+    {{- rule -}}
+    {{- newline -}}
+  {%- endfor -%}
+  {{- newline -}}
+{%- endfor -%}
+
+User-agent: *
+Disallow: /admin
+Disallow: /cart
+Disallow: /orders
+Disallow: /checkouts/
+Disallow: /checkout
+Disallow: /cgi-bin
+Disallow: /wp-login.php
+Disallow: /account
+Disallow: /collections/*sort_by*
+Disallow: /collections/*+*
+Disallow: /search
+Allow: /collections/
+Allow: /products/
+Allow: /pages/
+Allow: /blogs/
+Allow: /
+
+Sitemap: {{ request.origin }}/sitemap.xml

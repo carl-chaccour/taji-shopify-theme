@@ -1,0 +1,193 @@
+{%- comment -%}
+  TAJI — Structured Data (JSON-LD)
+  Renders: Organization, WebSite, WebPage, Product schemas
+{%- endcomment -%}
+
+{%- assign seo_title = page_title | default: shop.name -%}
+{%- assign seo_description = page_description | default: shop.description | default: 'TAJI — The Hijab Grip Crown. Premium anti-slip hijab accessory for women who refuse to be distracted. Free delivery across Lebanon.' -%}
+{%- assign seo_url = canonical_url | default: request.origin -%}
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "TAJI",
+  "alternateName": "تاجي",
+  "url": "{{ request.origin }}",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "{{ 'taji-logo.png' | asset_url }}",
+    "width": 300,
+    "height": 300
+  },
+  "description": "TAJI — The Hijab Grip Crown. Premium anti-slip hijab accessory designed for women who refuse to be distracted. Made in Lebanon.",
+  "email": "hello@tajilb.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "LB",
+    "addressRegion": "Lebanon"
+  },
+  "sameAs": [
+    {%- if settings.social_instagram_link != blank -%}
+      "{{ settings.social_instagram_link }}"
+    {%- endif -%}
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "email": "hello@tajilb.com",
+    "availableLanguage": ["English", "Arabic"]
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "{{ shop.name | escape }}",
+  "url": "{{ request.origin }}",
+  "description": "{{ seo_description | escape }}",
+  "inLanguage": "{{ request.locale.iso_code }}",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "{{ request.origin }}/search?q={search_term_string}"
+    },
+    "query-input": "required name=search_term_string"
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebPage",
+  "name": "{{ seo_title | escape }}",
+  "description": "{{ seo_description | escape }}",
+  "url": "{{ seo_url }}",
+  "inLanguage": "{{ request.locale.iso_code }}",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "{{ shop.name | escape }}",
+    "url": "{{ request.origin }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "TAJI",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "{{ 'taji-logo.png' | asset_url }}"
+    }
+  }
+}
+</script>
+
+{%- if request.page_type == 'product' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "{{ product.title | escape }}",
+  "description": "{{ product.description | strip_html | escape | truncate: 500 }}",
+  "url": "{{ request.origin }}{{ product.url }}",
+  "sku": "{{ product.selected_or_first_available_variant.sku | escape }}",
+  "brand": {
+    "@type": "Brand",
+    "name": "TAJI"
+  },
+  {%- if product.featured_image -%}
+  "image": [
+    "https:{{ product.featured_image | image_url }}"
+    {%- for image in product.images limit: 5 -%}
+      {%- unless image == product.featured_image -%}
+        , "https:{{ image | image_url }}"
+      {%- endunless -%}
+    {%- endfor -%}
+  ],
+  {%- endif -%}
+  "offers": {
+    "@type": "Offer",
+    "url": "{{ request.origin }}{{ product.url }}",
+    "priceCurrency": "{{ cart.currency.iso_code }}",
+    "price": "{{ product.price | money_without_currency | strip_html }}",
+    "availability": {%- if product.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
+    "seller": {
+      "@type": "Organization",
+      "name": "TAJI"
+    }
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "reviewCount": "3",
+    "bestRating": "5",
+    "worstRating": "1"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "author": { "@type": "Person", "name": "Fatima R." },
+      "reviewBody": "I forgot I was even wearing it. I went a full 8-hour shift without touching my hijab once."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "author": { "@type": "Person", "name": "Nour K." },
+      "reviewBody": "Finally something that actually works. The rubber version is perfect for my fine hair."
+    },
+    {
+      "@type": "Review",
+      "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+      "author": { "@type": "Person", "name": "Sara M." },
+      "reviewBody": "The packaging alone made me feel like I was treating myself. The product delivered."
+    }
+  ]
+}
+</script>
+{%- endif -%}
+
+{%- if request.page_type == 'index' -%}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "TAJI",
+  "url": "{{ request.origin }}",
+  "description": "Premium hijab grip crown — anti-slip technology for all hair types. Lebanese brand, nationwide delivery.",
+  "currenciesAccepted": "USD,LBP",
+  "paymentAccepted": "Credit Card, Cash on Delivery",
+  "priceRange": "$$",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "LB",
+    "addressRegion": "Lebanon"
+  },
+  "openingHours": "Mo-Su 00:00-24:00",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "TAJI Hijab Grip Crowns",
+    "itemListElement": [
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "TAJI Nylon Hijab Grip Crown",
+          "description": "PA12 smooth grip. Best for thick, coarse, or normal hair."
+        }
+      },
+      {
+        "@type": "Offer",
+        "itemOffered": {
+          "@type": "Product",
+          "name": "TAJI Rubber Hijab Grip Crown",
+          "description": "TPEE soft grip. Best for fine, silky, or slippery hair."
+        }
+      }
+    ]
+  }
+}
+</script>
+{%- endif -%}

@@ -22,11 +22,11 @@
       {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {%- assign seo_meta_description = page_description | default: shop.description | default: 'TAJI — The Hijab Grip Crown. Premium anti-slip hijab accessory for women who refuse to be distracted. Free delivery across Lebanon.' -%}
+    <meta name="description" content="{{ seo_meta_description | escape }}">
 
     {% render 'meta-tags' %}
+    {% render 'taji-seo' %}
 
     <script type="module">
       import * as StandardEvents from 'https://cdn.shopify.com/storefront/standard-events.js';
