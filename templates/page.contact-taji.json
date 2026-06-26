@@ -9,15 +9,15 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-page",
+    "taji-contact": {
+      "type": "taji-contact",
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "email": "hello@tajilb.com",
+        "instagram_label": "@tajilb",
+        "location": "Lebanon — nationwide delivery",
+        "response_time": "We reply within 24 hours"
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["taji-contact"]
 }
