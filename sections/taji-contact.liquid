@@ -164,7 +164,7 @@
     <div class="contact-hero-inner">
       <p class="contact-eyebrow">{{ section.settings.eyebrow | default: 'Contact Us' | escape }}</p>
       <h1 class="contact-headline serif">{{ section.settings.headline | default: 'Get in Touch' | escape }}</h1>
-      <p class="contact-subhead">{{ section.settings.subhead | default: 'A question, a collaboration, or just want to say hello — we\'d love to hear from you.' | escape }}</p>
+      <p class="contact-subhead">{{ section.settings.subhead | default: "A question, a collaboration, or just want to say hello — we'd love to hear from you." | escape }}</p>
     </div>
   </div>
 
@@ -253,7 +253,7 @@
       {%- form 'contact', class: 'contact-form' -%}
         {%- if form.posted_successfully? -%}
           <div style="padding: 20px; background: #f0fdf4; border: 1px solid #86efac; margin-bottom: 24px; font-size: 14px; color: #166534;">
-            ✓ {{ section.settings.form_success | default: 'Thank you! We\'ll be in touch within 24 hours.' | escape }}
+            ✓ {{ section.settings.form_success | default: "Thank you! We'll be in touch within 24 hours." | escape }}
           </div>
         {%- endif -%}
         {%- if form.errors -%}
