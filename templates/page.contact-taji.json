@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "taji-contact": {
+      "type": "taji-contact",
+      "settings": {
+        "email": "hello@tajilb.com",
+        "instagram_label": "@tajilb",
+        "location": "Lebanon — nationwide delivery",
+        "response_time": "We reply within 24 hours"
+      }
+    }
+  },
+  "order": ["taji-contact"]
+}

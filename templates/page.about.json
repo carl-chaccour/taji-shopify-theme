@@ -1,0 +1,35 @@
+{
+  "sections": {
+    "taji-about": {
+      "type": "taji-about",
+      "blocks": {
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "icon": "✦",
+            "name": "Precision",
+            "desc": "Every detail of the TAJI crown is engineered for grip, comfort, and all-day wear."
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "icon": "◆",
+            "name": "Confidence",
+            "desc": "We exist to remove the one thing that holds women back: constantly adjusting their hijab."
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "icon": "◎",
+            "name": "Heritage",
+            "desc": "Proudly Lebanese. Designed locally, built to travel with you anywhere in the world."
+          }
+        }
+      },
+      "block_order": ["value-1", "value-2", "value-3"]
+    }
+  },
+  "order": ["taji-about"]
+}

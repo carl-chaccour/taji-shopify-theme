@@ -1,0 +1,310 @@
+{{ 'landing-page.css' | asset_url | stylesheet_tag }}
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Jost:wght@300;400;500;600&family=Noto+Naskh+Arabic:wght@400;700&display=swap" rel="stylesheet" />
+
+<style>
+  .taji-about { background: var(--cream); }
+
+  /* HERO */
+  .about-hero {
+    background: var(--cream-alt);
+    padding: 160px 32px 100px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-hero-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 340px;
+    color: var(--gold);
+    opacity: 0.05;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 0;
+    line-height: 1;
+  }
+  .about-hero-inner { position: relative; z-index: 1; max-width: 720px; margin: 0 auto; }
+  .about-eyebrow {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 20px;
+  }
+  .about-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(40px, 6vw, 68px);
+    font-weight: 300; letter-spacing: 0.08em;
+    color: var(--black); margin-bottom: 24px; line-height: 1.1;
+  }
+  .about-subhead {
+    font-size: 18px; font-weight: 300; line-height: 1.8;
+    color: #444; letter-spacing: 0.03em; margin-bottom: 0;
+  }
+
+  /* MISSION */
+  .about-mission {
+    padding: 100px 32px;
+    background: var(--white);
+  }
+  .about-mission-inner {
+    max-width: 900px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+  .about-mission-label {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 20px;
+  }
+  .about-mission-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 400; letter-spacing: 0.06em;
+    color: var(--black); line-height: 1.25; margin-bottom: 24px;
+  }
+  .about-mission-body {
+    font-size: 16px; font-weight: 300; line-height: 1.9;
+    color: #444; letter-spacing: 0.02em;
+  }
+  .about-mission-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    direction: rtl; text-align: right;
+    color: var(--gold); font-size: 28px;
+    line-height: 1.6; margin-bottom: 24px;
+  }
+  .about-mission-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-style: italic;
+    color: var(--black); line-height: 1.6;
+    border-left: 2px solid var(--gold);
+    padding-left: 24px;
+    margin-top: 32px;
+  }
+
+  /* VALUES */
+  .about-values {
+    padding: 100px 32px;
+    background: var(--cream);
+  }
+  .about-values-inner { max-width: 1100px; margin: 0 auto; }
+  .about-values-eyebrow {
+    font-size: 12px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; text-align: center; margin-bottom: 16px;
+  }
+  .about-values-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 4vw, 44px);
+    font-weight: 400; letter-spacing: 0.06em;
+    color: var(--black); text-align: center; margin-bottom: 64px;
+  }
+  .about-values-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px;
+  }
+  .about-value-card {
+    background: var(--white);
+    border-top: 2px solid var(--gold);
+    padding: 40px 32px;
+    text-align: center;
+  }
+  .about-value-icon {
+    font-size: 28px; color: var(--gold);
+    margin-bottom: 20px;
+  }
+  .about-value-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400;
+    letter-spacing: 0.08em; color: var(--black);
+    margin-bottom: 12px;
+  }
+  .about-value-desc {
+    font-size: 14px; font-weight: 300;
+    line-height: 1.8; color: #555;
+  }
+
+  /* WHY */
+  .about-why {
+    padding: 100px 32px;
+    background: var(--black);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-why-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 300px;
+    color: var(--gold);
+    opacity: 0.04;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 0;
+    line-height: 1;
+  }
+  .about-why-inner { position: relative; z-index: 1; max-width: 680px; margin: 0 auto; }
+  .about-why-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 20px;
+  }
+  .about-why-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300; letter-spacing: 0.08em;
+    color: var(--white); margin-bottom: 28px; line-height: 1.15;
+  }
+  .about-why-body {
+    font-size: 17px; font-weight: 300; line-height: 1.9;
+    color: rgba(255,255,255,0.7); margin-bottom: 48px;
+  }
+
+  /* CTA */
+  .about-cta {
+    padding: 100px 32px;
+    background: var(--cream-alt);
+    text-align: center;
+  }
+  .about-cta-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300; letter-spacing: 0.08em;
+    color: var(--black); margin-bottom: 16px;
+  }
+  .about-cta-sub {
+    font-size: 14px; letter-spacing: 0.08em;
+    color: #666; margin-bottom: 40px;
+  }
+
+  @media (max-width: 768px) {
+    .about-hero { padding: 120px 24px 80px; }
+    .about-hero-watermark { font-size: 160px; }
+    .about-mission-inner { grid-template-columns: 1fr; gap: 48px; }
+    .about-values-grid { grid-template-columns: 1fr; gap: 24px; }
+    .about-why-watermark { font-size: 140px; }
+    .about-mission, .about-values, .about-why, .about-cta { padding: 72px 24px; }
+  }
+</style>
+
+<div class="taji-about">
+
+  <!-- HERO -->
+  <div class="about-hero">
+    <div class="about-hero-watermark" aria-hidden="true">تاجي</div>
+    <div class="about-hero-inner">
+      <p class="about-eyebrow">{{ section.settings.hero_eyebrow | default: 'Our Story' | escape }}</p>
+      <h1 class="about-headline serif">{{ section.settings.hero_headline | default: 'TAJI means My Crown.' | escape }}</h1>
+      <p class="about-subhead">{{ section.settings.hero_subhead | default: 'We built TAJI for every woman who refuses to let her hijab be a distraction. Because confidence isn\'t something you adjust. It\'s something you wear.' | escape }}</p>
+    </div>
+  </div>
+
+  <!-- MISSION -->
+  <div class="about-mission">
+    <div class="about-mission-inner">
+      <div>
+        <p class="about-mission-label">{{ section.settings.mission_label | default: 'Our Mission' | escape }}</p>
+        <h2 class="about-mission-title serif">{{ section.settings.mission_title | default: 'Designed for women who move with purpose.' | escape }}</h2>
+        <p class="about-mission-body">{{ section.settings.mission_body | default: 'Every TAJI crown is engineered around a simple truth: your hijab should support you, not hold you back. We obsessed over materials, grip mechanics, and comfort so you never have to think about it again.' | escape }}</p>
+        <blockquote class="about-mission-quote serif">{{ section.settings.mission_quote | default: '"Wear it. Forget it. Own the day."' | escape }}</blockquote>
+      </div>
+      <div>
+        <p class="about-mission-arabic">{{ section.settings.mission_arabic | default: 'تاجي — ارتدي تاجكِ' | escape }}</p>
+        <p class="about-mission-body">{{ section.settings.mission_body_2 | default: 'Made in Lebanon. Built for the world. TAJI is a Lebanese brand that believes premium craftsmanship and everyday practicality are not a compromise — they are a standard.' | escape }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUES -->
+  <div class="about-values">
+    <div class="about-values-inner">
+      <p class="about-values-eyebrow">{{ section.settings.values_eyebrow | default: 'What We Stand For' | escape }}</p>
+      <h2 class="about-values-title serif">{{ section.settings.values_title | default: 'Built on three principles.' | escape }}</h2>
+      <div class="about-values-grid">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'value' -%}
+            <div class="about-value-card" {{ block.shopify_attributes }}>
+              <div class="about-value-icon" aria-hidden="true">{{ block.settings.icon | default: '✦' }}</div>
+              <h3 class="about-value-name serif">{{ block.settings.name | escape }}</h3>
+              <p class="about-value-desc">{{ block.settings.desc | escape }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY TAJI -->
+  <div class="about-why">
+    <div class="about-why-watermark" aria-hidden="true">تاجي</div>
+    <div class="about-why-inner">
+      <p class="about-why-eyebrow">{{ section.settings.why_eyebrow | default: 'Why TAJI' | escape }}</p>
+      <h2 class="about-why-title serif">{{ section.settings.why_title | default: 'The last hijab accessory you will ever need.' | escape }}</h2>
+      <p class="about-why-body">{{ section.settings.why_body | default: 'We tried every solution on the market. Pins leave holes. Undercaps add bulk. Sprays damage fabric. TAJI works differently — a single crown that grips your hair on one side and anchors your hijab on the other. No compromise. All day.' | escape }}</p>
+      <a href="{{ section.settings.why_cta_url | default: routes.all_products_collection_url }}" class="btn-primary">
+        {{- section.settings.why_cta_text | default: 'Discover The Crown' -}}
+      </a>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="about-cta">
+    <h2 class="about-cta-title serif">{{ section.settings.cta_title | default: 'Ready to crown yourself?' | escape }}</h2>
+    <p class="about-cta-sub">{{ section.settings.cta_sub | default: 'Free delivery across Lebanon · 30-day satisfaction guarantee' | escape }}</p>
+    <a href="{{ section.settings.cta_url | default: routes.all_products_collection_url }}" class="btn-primary">
+      {{- section.settings.cta_text | default: 'Shop Now' -}}
+    </a>
+  </div>
+
+</div>
+
+{% schema %}
+{
+  "name": "TAJI About Us",
+  "tag": "div",
+  "class": "taji-about-page",
+  "settings": [
+    { "type": "text", "id": "hero_eyebrow", "label": "Hero eyebrow", "default": "Our Story" },
+    { "type": "text", "id": "hero_headline", "label": "Hero headline", "default": "TAJI means My Crown." },
+    { "type": "textarea", "id": "hero_subhead", "label": "Hero subheading", "default": "We built TAJI for every woman who refuses to let her hijab be a distraction. Because confidence isn't something you adjust. It's something you wear." },
+    { "type": "text", "id": "mission_label", "label": "Mission label", "default": "Our Mission" },
+    { "type": "text", "id": "mission_title", "label": "Mission title", "default": "Designed for women who move with purpose." },
+    { "type": "textarea", "id": "mission_body", "label": "Mission body (left)", "default": "Every TAJI crown is engineered around a simple truth: your hijab should support you, not hold you back. We obsessed over materials, grip mechanics, and comfort so you never have to think about it again." },
+    { "type": "text", "id": "mission_quote", "label": "Mission pull quote", "default": "\"Wear it. Forget it. Own the day.\"" },
+    { "type": "text", "id": "mission_arabic", "label": "Arabic text", "default": "تاجي — ارتدي تاجكِ" },
+    { "type": "textarea", "id": "mission_body_2", "label": "Mission body (right)", "default": "Made in Lebanon. Built for the world. TAJI is a Lebanese brand that believes premium craftsmanship and everyday practicality are not a compromise — they are a standard." },
+    { "type": "text", "id": "values_eyebrow", "label": "Values eyebrow", "default": "What We Stand For" },
+    { "type": "text", "id": "values_title", "label": "Values title", "default": "Built on three principles." },
+    { "type": "text", "id": "why_eyebrow", "label": "Why TAJI eyebrow", "default": "Why TAJI" },
+    { "type": "text", "id": "why_title", "label": "Why TAJI title", "default": "The last hijab accessory you will ever need." },
+    { "type": "textarea", "id": "why_body", "label": "Why TAJI body", "default": "We tried every solution on the market. Pins leave holes. Undercaps add bulk. Sprays damage fabric. TAJI works differently — a single crown that grips your hair on one side and anchors your hijab on the other. No compromise. All day." },
+    { "type": "text", "id": "why_cta_text", "label": "Why TAJI CTA text", "default": "Discover The Crown" },
+    { "type": "url", "id": "why_cta_url", "label": "Why TAJI CTA URL" },
+    { "type": "text", "id": "cta_title", "label": "Bottom CTA title", "default": "Ready to crown yourself?" },
+    { "type": "text", "id": "cta_sub", "label": "Bottom CTA subtext", "default": "Free delivery across Lebanon · 30-day satisfaction guarantee" },
+    { "type": "text", "id": "cta_text", "label": "Bottom CTA button text", "default": "Shop Now" },
+    { "type": "url", "id": "cta_url", "label": "Bottom CTA URL" }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Brand Value",
+      "settings": [
+        { "type": "text", "id": "icon", "label": "Icon (emoji or symbol)", "default": "✦" },
+        { "type": "text", "id": "name", "label": "Value name", "default": "Precision" },
+        { "type": "textarea", "id": "desc", "label": "Value description", "default": "Every detail of the TAJI crown is engineered for grip, comfort, and all-day wear." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TAJI About Us",
+      "blocks": [
+        { "type": "value", "settings": { "icon": "✦", "name": "Precision", "desc": "Every detail of the TAJI crown is engineered for grip, comfort, and all-day wear." } },
+        { "type": "value", "settings": { "icon": "◆", "name": "Confidence", "desc": "We exist to remove the one thing that holds women back: constantly adjusting their hijab." } },
+        { "type": "value", "settings": { "icon": "◎", "name": "Heritage", "desc": "Proudly Lebanese. Designed locally, built to travel with you anywhere in the world." } }
+      ]
+    }
+  ]
+}
+{% endschema %}
