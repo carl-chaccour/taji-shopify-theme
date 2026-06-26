@@ -12,12 +12,29 @@
     "taji-contact": {
       "type": "taji-contact",
       "settings": {
-        "email": "hello@tajilb.com",
+        "eyebrow": "Contact Us",
+        "headline": "Get in Touch",
+        "subhead": "A question, a collaboration, or just want to say hello — we'd love to hear from you.",
+        "info_label": "Ways to reach us",
+        "email": "info@tajilb.com",
+        "instagram_url": "",
         "instagram_label": "@tajilb",
         "location": "Lebanon — nationwide delivery",
-        "response_time": "We reply within 24 hours"
+        "response_time": "We reply within 24 hours",
+        "whatsapp_number": "+96170128398",
+        "whatsapp_label": "Chat on WhatsApp",
+        "whatsapp_note": "Typically replies within a few hours",
+        "form_label": "Send us a message",
+        "field_name": "Your Name",
+        "field_email": "Email Address",
+        "field_phone": "Phone (optional)",
+        "field_message": "Your Message",
+        "form_submit": "Send Message",
+        "form_success": "Thank you! We'll be in touch within 24 hours."
       }
     }
   },
-  "order": ["taji-contact"]
+  "order": [
+    "taji-contact"
+  ]
 }
