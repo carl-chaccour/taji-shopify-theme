@@ -1,6 +1,11 @@
 {{ 'landing-page.css' | asset_url | stylesheet_tag }}
 <script src="{{ 'landing-page.js' | asset_url }}" defer="defer"></script>
 
+{%- if request.page_type == 'index' -%}
+  {%- comment -%} Homepage has its own nav in the landing-page section — hide taji-header {%- endcomment -%}
+  <style>#shopify-section-sections--{{ section.id }} { display: none !important; }</style>
+{%- endif -%}
+
 <style>
   /* Hide Dawn's native header/announcement bar */
   .header-wrapper,
