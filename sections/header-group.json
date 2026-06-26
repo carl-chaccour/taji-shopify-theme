@@ -56,6 +56,18 @@
         "padding_bottom": 20
       }
     },
+    "taji-header": {
+      "type": "taji-header",
+      "settings": {
+        "announcement_text": "Free Shipping on Orders Over $50 · Lebanon Delivery",
+        "nav_logo": "shopify://shop_images/taji-logo-fit.png",
+        "nav_shop_btn_text": "Shop Now",
+        "nav_link_1_label": "Home",
+        "nav_link_2_label": "Products",
+        "nav_link_3_label": "About Us",
+        "nav_link_4_label": "Contact"
+      }
+    },
     "landing_page_FqxDNp": {
       "type": "landing-page",
       "blocks": {
@@ -351,6 +363,7 @@
   "order": [
     "announcement-bar",
     "header",
-    "landing_page_FqxDNp"
+    "landing_page_FqxDNp",
+    "taji-header"
   ]
 }
