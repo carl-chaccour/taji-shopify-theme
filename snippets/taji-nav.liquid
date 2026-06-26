@@ -2,6 +2,8 @@
 {{ 'landing-page.js' | asset_url | script_tag }}
 
 <style>
+  /* Hide Dawn's native header on pages using the TAJI nav snippet */
+  .shopify-section-group-header-group { display: none !important; }
   /* On inner pages nav is always cream (not transparent) */
   .taji-inner-page nav#taji-main-nav {
     background: rgba(250,248,244,0.97) !important;
