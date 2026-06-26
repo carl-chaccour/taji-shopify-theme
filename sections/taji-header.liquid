@@ -1,5 +1,4 @@
 {{ 'landing-page.css' | asset_url | stylesheet_tag }}
-<script src="{{ 'landing-page.js' | asset_url }}" defer="defer"></script>
 
 <style>
   /* Hide Dawn's native header/announcement bar */
@@ -9,6 +8,7 @@
 
 {%- comment -%} Do not render nav on homepage — landing-page section handles it {%- endcomment -%}
 {%- unless request.page_type == 'index' -%}
+<script src="{{ 'landing-page.js' | asset_url }}" defer="defer"></script>
 
 {%- comment -%} ANNOUNCEMENT BAR {%- endcomment -%}
 {%- if section.settings.announcement_text != blank -%}
