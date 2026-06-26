@@ -4,6 +4,21 @@
   /* Hide Dawn's native header/announcement bar */
   .header-wrapper,
   .announcement-bar-section { display: none !important; }
+  /* Non-homepage: nav always opaque from the start */
+  #taji-main-nav {
+    background: rgba(250,248,244,0.97) !important;
+    border-bottom: 1px solid var(--gold) !important;
+    backdrop-filter: blur(8px) !important;
+  }
+  .taji-announcement-bar {
+    background: var(--gold) !important;
+    border-bottom: none !important;
+  }
+  .taji-announcement-bar p { color: var(--black) !important; }
+  .nav-mobile-left .nav-hamburger,
+  .nav-mobile-left .nav-icon-btn,
+  .nav-right .nav-icon-btn { color: var(--black) !important; }
+  .nav-logo img { filter: none !important; }
 </style>
 
 {%- comment -%} Do not render nav on homepage — landing-page section handles it {%- endcomment -%}
