@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "taji-policy",
+      "settings": {
+        "eyebrow": "Legal",
+        "title": "Terms of Service",
+        "last_updated": "June 2025",
+        "content": "<p>Welcome to TAJI. By accessing or purchasing from our store, you agree to the following terms.<\/p><h2>1. General<\/h2><p>These Terms of Service apply to all users of the TAJI online store. We reserve the right to update these terms at any time. Continued use of the store following any changes constitutes acceptance of those changes.<\/p><h2>2. Products<\/h2><p>All products are subject to availability. We reserve the right to discontinue any product at any time. Product images are for illustrative purposes and may vary slightly from the actual product.<\/p><h2>3. Pricing<\/h2><p>All prices are listed in USD. We reserve the right to change prices at any time without notice. You will be charged the price displayed at the time of your order.<\/p><h2>4. Orders<\/h2><p>By placing an order, you confirm that all information provided is accurate. We reserve the right to cancel any order at our discretion. You will be notified and fully refunded if your order is cancelled.<\/p><h2>5. Shipping<\/h2><p>We currently deliver across Lebanon. Delivery times are estimates only and are not guaranteed. TAJI is not responsible for delays caused by third-party carriers.<\/p><h2>6. Intellectual Property<\/h2><p>All content on this site — including the TAJI name, logo, product designs, and copy — is the intellectual property of TAJI. Reproduction or use without written permission is prohibited.<\/p><h2>7. Contact<\/h2><p>For any questions about these terms, contact us at <a href=\"mailto:hello@tajilb.com\">hello@tajilb.com<\/a>.<\/p>"
+      }
+    }
+  },
+  "order": ["main"]
+}

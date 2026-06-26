@@ -1,0 +1,87 @@
+{{ 'landing-page.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .taji-policy-page { background: var(--cream); min-height: 100vh; }
+  .taji-policy-hero {
+    background: var(--cream-alt);
+    padding: 140px 32px 64px;
+    text-align: center;
+    border-bottom: 1px solid rgba(212,179,111,0.2);
+  }
+  .taji-policy-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 16px;
+  }
+  .taji-policy-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 5vw, 52px);
+    font-weight: 300; letter-spacing: 0.08em;
+    color: var(--black); line-height: 1.1;
+  }
+  .taji-policy-updated {
+    font-size: 11px; letter-spacing: 0.1em; color: #888;
+    margin-top: 16px; text-transform: uppercase;
+  }
+  .taji-policy-body {
+    max-width: 760px; margin: 0 auto;
+    padding: 72px 32px 100px;
+  }
+  .taji-policy-body h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px; font-weight: 400;
+    letter-spacing: 0.06em; color: var(--black);
+    margin: 48px 0 16px; padding-top: 48px;
+    border-top: 1px solid rgba(212,179,111,0.2);
+  }
+  .taji-policy-body h2:first-of-type { margin-top: 0; padding-top: 0; border-top: none; }
+  .taji-policy-body p {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: #444; margin-bottom: 16px;
+  }
+  .taji-policy-body ul {
+    margin: 0 0 20px 20px;
+  }
+  .taji-policy-body ul li {
+    font-size: 15px; font-weight: 300; line-height: 1.9;
+    color: #444; margin-bottom: 8px;
+  }
+  .taji-policy-body a { color: var(--gold); text-decoration: none; }
+  .taji-policy-body a:hover { text-decoration: underline; }
+  .taji-policy-back {
+    text-align: center; padding: 0 32px 64px;
+  }
+  @media (max-width: 768px) {
+    .taji-policy-hero { padding: 120px 24px 48px; }
+    .taji-policy-body { padding: 48px 24px 72px; }
+  }
+</style>
+
+<div class="taji-policy-page">
+  <div class="taji-policy-hero">
+    <p class="taji-policy-eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    <h1 class="taji-policy-title serif">{{ section.settings.title | escape }}</h1>
+    {%- if section.settings.last_updated != blank -%}
+      <p class="taji-policy-updated">Last updated: {{ section.settings.last_updated | escape }}</p>
+    {%- endif -%}
+  </div>
+  <div class="taji-policy-body">
+    {{ section.settings.content }}
+  </div>
+  <div class="taji-policy-back">
+    <a href="/" class="btn-secondary">← Back to Home</a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "TAJI Policy Page",
+  "tag": "div",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Legal" },
+    { "type": "text", "id": "title", "label": "Page title", "default": "Policy" },
+    { "type": "text", "id": "last_updated", "label": "Last updated date", "default": "June 2025" },
+    { "type": "richtext", "id": "content", "label": "Policy content" }
+  ],
+  "presets": [{ "name": "TAJI Policy Page" }]
+}
+{% endschema %}

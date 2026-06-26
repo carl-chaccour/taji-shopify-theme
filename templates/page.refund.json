@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "main": {
+      "type": "taji-policy",
+      "settings": {
+        "eyebrow": "Legal",
+        "title": "Refund Policy",
+        "last_updated": "June 2025",
+        "content": "<p>Your satisfaction is our priority. If you are not completely happy with your TAJI purchase, we are here to help.<\/p><h2>30-Day Satisfaction Guarantee<\/h2><p>We offer a 30-day satisfaction guarantee from the date of delivery. If you are not satisfied with your product for any reason, please contact us within 30 days of receiving your order.<\/p><h2>Eligibility<\/h2><p>To be eligible for a return or exchange, your item must be:<\/p><ul><li>Unused and in its original condition<\/li><li>In the original packaging<\/li><li>Accompanied by proof of purchase<\/li><\/ul><h2>How to Request a Refund<\/h2><p>Contact us at <a href=\"mailto:hello@tajilb.com\">hello@tajilb.com<\/a> with your order number and reason for return. We will respond within 24 hours with instructions.<\/p><h2>Refund Process<\/h2><p>Once your return is received and inspected, we will notify you of the approval or rejection of your refund. Approved refunds will be processed within 5–7 business days to your original payment method.<\/p><h2>Damaged or Defective Items<\/h2><p>If you received a damaged or defective item, please contact us immediately with photos. We will arrange a replacement or full refund at no additional cost to you.<\/p><h2>Exchanges<\/h2><p>We are happy to exchange your product for a different variant (Nylon or Rubber). Contact us to arrange an exchange.<\/p>"
+      }
+    }
+  },
+  "order": ["main"]
+}
