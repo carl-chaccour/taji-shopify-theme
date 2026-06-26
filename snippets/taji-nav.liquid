@@ -1,5 +1,5 @@
 {{ 'landing-page.css' | asset_url | stylesheet_tag }}
-{{ 'landing-page.js' | asset_url | script_tag }}
+<script src="{{ 'landing-page.js' | asset_url }}" defer="defer"></script>
 
 <style>
   /* Hide Dawn's native header on pages using the TAJI nav snippet */
@@ -47,7 +47,7 @@
       </div>
 
       <a href="/" class="nav-logo">
-        <img src="{{ 'taji-logo.png' | asset_url }}" alt="{{ shop.name }}" />
+        <img src="{{ 'taji-logo.png' | asset_url }}" alt="{{ shop.name }}" width="120" height="76" />
       </a>
 
       <ul class="nav-links">
