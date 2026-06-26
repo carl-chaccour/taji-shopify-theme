@@ -4,7 +4,9 @@
 <style>
   /* Hide Dawn's native header/announcement on all pages */
   #shopify-section-announcement-bar,
-  #shopify-section-header { display: none !important; }
+  #shopify-section-header,
+  [id^="shopify-section-"][id*="announcement"],
+  [id^="shopify-section-"][id*="header"]:not([id*="taji"]) { display: none !important; }
 </style>
 
 {%- comment -%} ANNOUNCEMENT BAR {%- endcomment -%}
