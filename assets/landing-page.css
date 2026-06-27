@@ -62,6 +62,9 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(212,179,111,0.12); }
   justify-content: space-between;
   padding: 16px 32px;
 }
+@media (max-width: 768px) {
+  .nav-inner { padding: 16px 20px 20px; }
+}
 .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
 .nav-logo img { height: 76px; width: auto; }
 .nav-links { display: flex; gap: 40px; list-style: none; }
@@ -832,6 +835,8 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
   nav.drawer-open .nav-mobile-left .nav-icon-btn { display: none; }
   nav.drawer-open .nav-right { visibility: hidden; }
   nav.drawer-open .nav-logo { filter: none; }
+  /* Force X spans to black directly */
+  .nav-hamburger.open span { background: #0A0A0A !important; }
 
   /* MOBILE: full-screen hero image */
   .hero {
