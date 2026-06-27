@@ -344,7 +344,7 @@
     max-width: 900px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
   }
 
@@ -352,26 +352,23 @@
   .taji-quran-roll {
     width: 28px;
     min-height: 180px;
-    background: linear-gradient(to right, #8b6914, #c9973b, #8b6914);
+    background: linear-gradient(to right, #7a5a0e, #d4a63a, #c9973b, #d4a63a, #7a5a0e);
     border-radius: 50%;
     flex-shrink: 0;
-    box-shadow: inset -4px 0 8px rgba(0,0,0,0.3), 4px 0 12px rgba(0,0,0,0.4);
-    transition: height 0.6s ease;
+    box-shadow: inset -3px 0 6px rgba(0,0,0,0.4), 6px 0 16px rgba(0,0,0,0.5);
     z-index: 2;
   }
 
-  /* The paper — starts as a thin rolled strip, expands to full width */
+  /* The paper — starts as 0 width (hidden between rolls), expands on scroll */
   .taji-quran-paper-outer {
-    flex: 1;
-    max-width: 840px;
+    width: 0;
     overflow: hidden;
-    max-height: 200px;
-    /* Rolled state: very narrow */
-    width: 28px;
-    transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+    flex-shrink: 0;
+    max-height: 220px;
+    transition: width 1.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .taji-quran-paper-outer.unrolled {
-    width: 100%;
+    width: calc(100% - 56px);
   }
 
   .taji-quran-paper {
@@ -521,7 +518,7 @@
         setTimeout(function() { paperOuter.classList.add('unrolled'); }, 200);
       }
     });
-  }, { threshold: 0.3 });
+  }, { threshold: 0.2 });
   observer.observe(scrollSection);
 })();
 </script>
