@@ -490,12 +490,12 @@
           {%- else -%}
             <div class="taji-quran-arabic-text">
               <p class="taji-quran-paper-label">{{ section.settings.quran_paper_label | default: 'Your TAJI Gift' | escape }}</p>
-              {{ section.settings.quran_arabic | default: 'وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ' | escape }}
+              {{ section.settings.quran_arabic | default: 'يُدْنِينَ عَلَيْهِنَّ مِن جَلَابِيبِهِنَّ ۚ ذَٰلِكَ أَدْنَىٰ أَن يُعْرَفْنَ' | escape }}
             </div>
             <div class="taji-quran-divider"></div>
             <div class="taji-quran-right">
-              <p class="taji-quran-translation">{{ section.settings.quran_translation | default: '"And We have certainly honoured the children of Adam."' | escape }}</p>
-              <p class="taji-quran-surah">{{ section.settings.quran_surah | default: '— Surah Al-Isra, 17:70' | escape }}</p>
+              <p class="taji-quran-translation">{{ section.settings.quran_translation | default: '"Let them draw their cloaks close around them — that is more proper, so that they will be recognised."' | escape }}</p>
+              <p class="taji-quran-surah">{{ section.settings.quran_surah | default: '— Surah Al-Ahzab, 33:59' | escape }}</p>
             </div>
           {%- endif -%}
         </div>
@@ -1119,9 +1119,9 @@
     { "type": "text", "id": "quran_tag", "label": "Tag label", "default": "✦ Exclusive to TAJI" },
     { "type": "image_picker", "id": "quran_image", "label": "Papyrus photo (optional — replaces the styled card)" },
     { "type": "text", "id": "quran_paper_label", "label": "Paper label", "default": "Your TAJI Gift" },
-    { "type": "text", "id": "quran_arabic", "label": "Arabic verse", "default": "وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ" },
-    { "type": "text", "id": "quran_translation", "label": "Verse translation", "default": "\"And We have certainly honoured the children of Adam.\"" },
-    { "type": "text", "id": "quran_surah", "label": "Surah reference", "default": "— Surah Al-Isra, 17:70" },
+    { "type": "text", "id": "quran_arabic", "label": "Arabic verse", "default": "يُدْنِينَ عَلَيْهِنَّ مِن جَلَابِيبِهِنَّ ۚ ذَٰلِكَ أَدْنَىٰ أَن يُعْرَفْنَ" },
+    { "type": "text", "id": "quran_translation", "label": "Verse translation", "default": "\"Let them draw their cloaks close around them — that is more proper, so that they will be recognised.\"" },
+    { "type": "text", "id": "quran_surah", "label": "Surah reference", "default": "— Surah Al-Ahzab, 33:59" },
     {
       "type": "header",
       "content": "How It Works"
