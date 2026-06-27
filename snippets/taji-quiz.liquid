@@ -1,0 +1,435 @@
+<!-- TAJI Product Finder Quiz -->
+<style>
+  /* FLOATING BUTTON */
+  .taji-quiz-btn {
+    position: fixed;
+    right: 20px;
+    bottom: 32px;
+    z-index: 500;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    padding: 14px 20px;
+    border-radius: 2px;
+    box-shadow: 0 4px 20px rgba(212,179,111,0.35);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .taji-quiz-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(212,179,111,0.45); }
+  .taji-quiz-btn svg { flex-shrink: 0; }
+
+  /* OVERLAY */
+  .taji-quiz-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 600;
+    background: rgba(10,10,10,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .taji-quiz-overlay.open { opacity: 1; pointer-events: all; }
+
+  /* MODAL */
+  .taji-quiz-modal {
+    background: var(--cream, #FAF8F4);
+    width: 100%;
+    max-width: 520px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border-radius: 2px;
+    transform: translateY(20px) scale(0.97);
+    transition: transform 0.3s cubic-bezier(0.22,1,0.36,1);
+    position: relative;
+  }
+  .taji-quiz-overlay.open .taji-quiz-modal { transform: translateY(0) scale(1); }
+
+  .taji-quiz-header {
+    background: var(--black, #0A0A0A);
+    padding: 32px 36px 28px;
+    text-align: center;
+    position: relative;
+  }
+  .taji-quiz-close {
+    position: absolute;
+    top: 16px; right: 16px;
+    background: none; border: none; cursor: pointer;
+    color: rgba(255,255,255,0.5); font-size: 20px; line-height: 1;
+    transition: color 0.2s;
+  }
+  .taji-quiz-close:hover { color: white; }
+  .taji-quiz-eyebrow {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold, #D4B36F); font-weight: 600; margin-bottom: 10px;
+  }
+  .taji-quiz-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px; font-weight: 300; letter-spacing: 0.06em;
+    color: white; line-height: 1.2;
+  }
+
+  /* PROGRESS */
+  .taji-quiz-progress {
+    height: 3px;
+    background: rgba(212,179,111,0.2);
+  }
+  .taji-quiz-progress-bar {
+    height: 100%;
+    background: var(--gold, #D4B36F);
+    transition: width 0.4s ease;
+  }
+
+  /* BODY */
+  .taji-quiz-body { padding: 36px; }
+  .taji-quiz-step { display: none; }
+  .taji-quiz-step.active { display: block; }
+
+  .taji-quiz-q {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px; font-weight: 400; letter-spacing: 0.04em;
+    color: var(--black, #0A0A0A); margin-bottom: 24px; line-height: 1.4;
+  }
+  .taji-quiz-step-label {
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold, #D4B36F); font-weight: 600; margin-bottom: 12px;
+  }
+
+  .taji-quiz-options { display: flex; flex-direction: column; gap: 10px; }
+  .taji-quiz-option {
+    display: flex; align-items: center; gap: 14px;
+    padding: 16px 18px;
+    border: 1.5px solid rgba(212,179,111,0.25);
+    background: white;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px; font-weight: 400; color: #333;
+    text-align: left;
+    border-radius: 2px;
+  }
+  .taji-quiz-option:hover { border-color: var(--gold, #D4B36F); }
+  .taji-quiz-option.selected {
+    border-color: var(--gold, #D4B36F);
+    background: rgba(212,179,111,0.08);
+    color: var(--black, #0A0A0A);
+  }
+  .taji-quiz-option-dot {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1.5px solid rgba(212,179,111,0.4);
+    flex-shrink: 0; display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .taji-quiz-option.selected .taji-quiz-option-dot {
+    background: var(--gold, #D4B36F); border-color: var(--gold, #D4B36F);
+  }
+  .taji-quiz-option.selected .taji-quiz-option-dot::after {
+    content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--black, #0A0A0A);
+  }
+
+  .taji-quiz-nav {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-top: 28px;
+  }
+  .taji-quiz-back {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 12px;
+    color: #888; letter-spacing: 0.1em; text-transform: uppercase;
+    transition: color 0.2s; padding: 0;
+  }
+  .taji-quiz-back:hover { color: var(--black, #0A0A0A); }
+  .taji-quiz-next {
+    background: var(--gold, #D4B36F); color: var(--black, #0A0A0A);
+    border: none; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 11px;
+    font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase;
+    padding: 14px 32px; border-radius: 2px;
+    transition: background 0.2s, opacity 0.2s;
+    opacity: 0.4; pointer-events: none;
+  }
+  .taji-quiz-next.enabled { opacity: 1; pointer-events: all; }
+  .taji-quiz-next.enabled:hover { background: #c4a35f; }
+
+  /* RESULT */
+  .taji-quiz-result { text-align: center; }
+  .taji-quiz-result-badge {
+    display: inline-block;
+    font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold, #D4B36F); font-weight: 600;
+    border: 1px solid rgba(212,179,111,0.3);
+    padding: 6px 16px; border-radius: 2px; margin-bottom: 20px;
+  }
+  .taji-quiz-result-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px; font-weight: 300; letter-spacing: 0.08em;
+    color: var(--black, #0A0A0A); margin-bottom: 8px;
+  }
+  .taji-quiz-result-material {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold, #D4B36F); font-weight: 500; margin-bottom: 20px;
+  }
+  .taji-quiz-result-desc {
+    font-size: 15px; font-weight: 300; line-height: 1.8; color: #555;
+    margin-bottom: 28px;
+  }
+  .taji-quiz-result-img {
+    height: 140px; object-fit: contain;
+    filter: drop-shadow(0 8px 20px rgba(0,0,0,0.12));
+    margin-bottom: 28px;
+  }
+  .taji-quiz-cta { display: block; margin-bottom: 12px; }
+  .taji-quiz-retry {
+    background: none; border: none; cursor: pointer;
+    font-family: 'Jost', sans-serif; font-size: 11px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: #888;
+    transition: color 0.2s;
+  }
+  .taji-quiz-retry:hover { color: var(--black, #0A0A0A); }
+
+  @media (max-width: 480px) {
+    .taji-quiz-body { padding: 24px; }
+    .taji-quiz-header { padding: 24px 24px 20px; }
+    .taji-quiz-btn span { display: none; }
+    .taji-quiz-btn { padding: 14px 16px; }
+  }
+</style>
+
+<!-- Floating button -->
+<button class="taji-quiz-btn" id="taji-quiz-open" aria-label="Find your perfect crown">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/>
+  </svg>
+  <span>Find My Fit</span>
+</button>
+
+<!-- Quiz overlay -->
+<div class="taji-quiz-overlay" id="taji-quiz-overlay" role="dialog" aria-modal="true" aria-label="Product finder quiz">
+  <div class="taji-quiz-modal" id="taji-quiz-modal">
+
+    <div class="taji-quiz-header">
+      <button class="taji-quiz-close" id="taji-quiz-close" aria-label="Close quiz">✕</button>
+      <p class="taji-quiz-eyebrow">Product Finder</p>
+      <h2 class="taji-quiz-title serif">Which crown is right for you?</h2>
+    </div>
+
+    <div class="taji-quiz-progress">
+      <div class="taji-quiz-progress-bar" id="taji-quiz-progress" style="width:0%"></div>
+    </div>
+
+    <div class="taji-quiz-body">
+
+      <!-- STEP 1 -->
+      <div class="taji-quiz-step active" data-step="1">
+        <p class="taji-quiz-step-label">Question 1 of 3</p>
+        <p class="taji-quiz-q serif">How would you describe your hair?</p>
+        <div class="taji-quiz-options">
+          <button class="taji-quiz-option" data-score="nylon">
+            <span class="taji-quiz-option-dot"></span>
+            Thick, full, or coarse
+          </button>
+          <button class="taji-quiz-option" data-score="nylon">
+            <span class="taji-quiz-option-dot"></span>
+            Medium thickness, normal texture
+          </button>
+          <button class="taji-quiz-option" data-score="rubber">
+            <span class="taji-quiz-option-dot"></span>
+            Fine or thin hair
+          </button>
+          <button class="taji-quiz-option" data-score="rubber">
+            <span class="taji-quiz-option-dot"></span>
+            Very silky or slippery hair
+          </button>
+        </div>
+        <div class="taji-quiz-nav">
+          <span></span>
+          <button class="taji-quiz-next" id="taji-quiz-next-1">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div class="taji-quiz-step" data-step="2">
+        <p class="taji-quiz-step-label">Question 2 of 3</p>
+        <p class="taji-quiz-q serif">How does your hijab usually behave?</p>
+        <div class="taji-quiz-options">
+          <button class="taji-quiz-option" data-score="rubber">
+            <span class="taji-quiz-option-dot"></span>
+            Slides forward within the first hour
+          </button>
+          <button class="taji-quiz-option" data-score="nylon">
+            <span class="taji-quiz-option-dot"></span>
+            Gradually slips out of place through the day
+          </button>
+          <button class="taji-quiz-option" data-score="rubber">
+            <span class="taji-quiz-option-dot"></span>
+            Hard to keep pinned — nothing seems to grip
+          </button>
+          <button class="taji-quiz-option" data-score="nylon">
+            <span class="taji-quiz-option-dot"></span>
+            Generally stays but loses shape by evening
+          </button>
+        </div>
+        <div class="taji-quiz-nav">
+          <button class="taji-quiz-back" data-to="1">← Back</button>
+          <button class="taji-quiz-next" id="taji-quiz-next-2">Next →</button>
+        </div>
+      </div>
+
+      <!-- STEP 3 -->
+      <div class="taji-quiz-step" data-step="3">
+        <p class="taji-quiz-step-label">Question 3 of 3</p>
+        <p class="taji-quiz-q serif">What feel do you prefer in an accessory?</p>
+        <div class="taji-quiz-options">
+          <button class="taji-quiz-option" data-score="nylon">
+            <span class="taji-quiz-option-dot"></span>
+            Firm and structured — I want maximum hold
+          </button>
+          <button class="taji-quiz-option" data-score="rubber">
+            <span class="taji-quiz-option-dot"></span>
+            Soft and flexible — I want all-day comfort
+          </button>
+          <button class="taji-quiz-option" data-score="nylon">
+            <span class="taji-quiz-option-dot"></span>
+            No preference — just make it stay
+          </button>
+        </div>
+        <div class="taji-quiz-nav">
+          <button class="taji-quiz-back" data-to="2">← Back</button>
+          <button class="taji-quiz-next" id="taji-quiz-next-3">See My Result →</button>
+        </div>
+      </div>
+
+      <!-- RESULT -->
+      <div class="taji-quiz-step" data-step="result">
+        <div class="taji-quiz-result" id="taji-quiz-result-content">
+          <!-- filled by JS -->
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  var scores = { nylon: 0, rubber: 0 };
+  var currentStep = 1;
+  var totalSteps = 3;
+
+  var overlay = document.getElementById('taji-quiz-overlay');
+  var openBtn = document.getElementById('taji-quiz-open');
+  var closeBtn = document.getElementById('taji-quiz-close');
+  var progressBar = document.getElementById('taji-quiz-progress');
+
+  function openQuiz() {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeQuiz() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function resetQuiz() {
+    scores = { nylon: 0, rubber: 0 };
+    currentStep = 1;
+    document.querySelectorAll('.taji-quiz-step').forEach(function(s) { s.classList.remove('active'); });
+    document.querySelector('[data-step="1"]').classList.add('active');
+    document.querySelectorAll('.taji-quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+    document.querySelectorAll('.taji-quiz-next').forEach(function(b) { b.classList.remove('enabled'); });
+    updateProgress(0);
+  }
+  function updateProgress(step) {
+    progressBar.style.width = (step / totalSteps * 100) + '%';
+  }
+  function showStep(n) {
+    document.querySelectorAll('.taji-quiz-step').forEach(function(s) { s.classList.remove('active'); });
+    var target = document.querySelector('[data-step="' + n + '"]');
+    if (target) target.classList.add('active');
+    if (n !== 'result') {
+      currentStep = n;
+      updateProgress(n - 1);
+    }
+  }
+  function showResult() {
+    updateProgress(totalSteps);
+    var winner = scores.rubber > scores.nylon ? 'rubber' : 'nylon';
+    var results = {
+      nylon: {
+        badge: 'Your Match',
+        name: 'Nylon Crown',
+        material: 'PA12 — Smooth Grip',
+        desc: 'Your hair type and wear style work best with our Nylon crown. It delivers a firm, structured grip that keeps your hijab locked in place all day — even through the longest shifts.',
+        img: '{{ "product-top.png" | asset_url }}',
+        url: '{{ routes.all_products_collection_url }}'
+      },
+      rubber: {
+        badge: 'Your Match',
+        name: 'Rubber Crown',
+        material: 'TPEE — Soft Grip',
+        desc: 'For fine, silky, or slippery hair, our Rubber crown is the answer. Its soft grip technology holds without pulling, giving you all-day comfort and zero slipping.',
+        img: '{{ "rubber-nobg.png" | asset_url }}',
+        url: '{{ routes.all_products_collection_url }}'
+      }
+    };
+    var r = results[winner];
+    document.getElementById('taji-quiz-result-content').innerHTML =
+      '<span class="taji-quiz-result-badge">' + r.badge + '</span>' +
+      '<img src="' + r.img + '" alt="' + r.name + '" class="taji-quiz-result-img" />' +
+      '<h3 class="taji-quiz-result-title serif">' + r.name + '</h3>' +
+      '<p class="taji-quiz-result-material">' + r.material + '</p>' +
+      '<p class="taji-quiz-result-desc">' + r.desc + '</p>' +
+      '<a href="' + r.url + '" class="btn-primary taji-quiz-cta">Shop ' + r.name + ' →</a>' +
+      '<button class="taji-quiz-retry" id="taji-quiz-retry-btn">Retake the quiz</button>';
+    document.getElementById('taji-quiz-retry-btn').addEventListener('click', resetQuiz);
+    showStep('result');
+  }
+
+  openBtn.addEventListener('click', openQuiz);
+  closeBtn.addEventListener('click', closeQuiz);
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeQuiz(); });
+
+  // Option selection
+  document.querySelectorAll('.taji-quiz-option').forEach(function(opt) {
+    opt.addEventListener('click', function() {
+      var step = opt.closest('.taji-quiz-step');
+      step.querySelectorAll('.taji-quiz-option').forEach(function(o) { o.classList.remove('selected'); });
+      opt.classList.add('selected');
+      var nextBtn = step.querySelector('.taji-quiz-next');
+      if (nextBtn) nextBtn.classList.add('enabled');
+    });
+  });
+
+  // Next buttons
+  document.getElementById('taji-quiz-next-1').addEventListener('click', function() {
+    var sel = document.querySelector('[data-step="1"] .taji-quiz-option.selected');
+    if (sel) scores[sel.dataset.score]++;
+    showStep(2);
+  });
+  document.getElementById('taji-quiz-next-2').addEventListener('click', function() {
+    var sel = document.querySelector('[data-step="2"] .taji-quiz-option.selected');
+    if (sel) scores[sel.dataset.score]++;
+    showStep(3);
+  });
+  document.getElementById('taji-quiz-next-3').addEventListener('click', function() {
+    var sel = document.querySelector('[data-step="3"] .taji-quiz-option.selected');
+    if (sel) scores[sel.dataset.score]++;
+    showResult();
+  });
+
+  // Back buttons
+  document.querySelectorAll('.taji-quiz-back').forEach(function(btn) {
+    btn.addEventListener('click', function() { showStep(parseInt(btn.dataset.to)); });
+  });
+})();
+</script>
