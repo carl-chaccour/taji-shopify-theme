@@ -275,6 +275,199 @@
   </div>
 </section>
 
+{%- comment -%} ======= QURAN VERSE GIFT ======= {%- endcomment -%}
+<style>
+  .taji-quran-section {
+    background: var(--black);
+    padding: 100px 32px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+  }
+  .taji-quran-watermark {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 360px;
+    color: var(--gold);
+    opacity: 0.04;
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+    z-index: 0;
+    line-height: 1;
+  }
+  .taji-quran-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    text-align: left;
+  }
+  .taji-quran-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .taji-quran-badge span {
+    display: block;
+    width: 32px;
+    height: 1px;
+    background: var(--gold);
+    opacity: 0.5;
+  }
+  .taji-quran-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 300;
+    letter-spacing: 0.06em;
+    color: white;
+    line-height: 1.25;
+    margin-bottom: 20px;
+  }
+  .taji-quran-body {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 28px;
+  }
+  .taji-quran-tag {
+    display: inline-block;
+    border: 1px solid rgba(212,179,111,0.35);
+    padding: 8px 20px;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    border-radius: 2px;
+  }
+  .taji-quran-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .taji-quran-paper {
+    background: #f5ead8;
+    border-radius: 4px;
+    padding: 36px 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5), inset 0 0 40px rgba(0,0,0,0.08);
+    transform: rotate(-2deg);
+    max-width: 320px;
+    width: 100%;
+    text-align: right;
+    position: relative;
+  }
+  .taji-quran-paper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 4px;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(139,109,56,0.12) 27px,
+      rgba(139,109,56,0.12) 28px
+    );
+    pointer-events: none;
+  }
+  .taji-quran-paper-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #a0856a;
+    font-weight: 600;
+    margin-bottom: 16px;
+    text-align: left;
+  }
+  .taji-quran-arabic-text {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 22px;
+    line-height: 2;
+    color: #3d2b1a;
+    direction: rtl;
+    margin-bottom: 16px;
+  }
+  .taji-quran-translation {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    font-style: italic;
+    color: #7a5c3e;
+    line-height: 1.7;
+    text-align: left;
+    border-top: 1px solid rgba(139,109,56,0.2);
+    padding-top: 12px;
+    margin-top: 4px;
+  }
+  .taji-quran-surah {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: #a0856a;
+    font-weight: 600;
+    margin-top: 10px;
+    text-align: left;
+  }
+  @media (max-width: 768px) {
+    .taji-quran-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
+    .taji-quran-paper { transform: rotate(-1deg); margin: 0 auto; }
+    .taji-quran-section { padding: 72px 24px; }
+    .taji-quran-watermark { font-size: 160px; }
+  }
+</style>
+
+<section class="taji-quran-section">
+  <div class="taji-quran-watermark" aria-hidden="true">تاجي</div>
+  <div class="taji-quran-inner">
+
+    <div>
+      <div class="taji-quran-badge">
+        <span></span>
+        {{ section.settings.quran_eyebrow | default: 'A Gift Inside Every Package' | escape }}
+        <span></span>
+      </div>
+      <h2 class="taji-quran-headline serif">{{ section.settings.quran_headline | default: 'A Verse That Travels With You.' | escape }}</h2>
+      <p class="taji-quran-body">{{ section.settings.quran_body | default: 'Every TAJI crown arrives with a hand-selected Quran verse printed on authentic papyrus paper. A reminder of grace, confidence, and purpose — tucked inside every order.' | escape }}</p>
+      <span class="taji-quran-tag">{{ section.settings.quran_tag | default: '✦ Exclusive to TAJI' | escape }}</span>
+    </div>
+
+    <div class="taji-quran-visual">
+      {%- if section.settings.quran_image != blank -%}
+        <img
+          src="{{ section.settings.quran_image | image_url: width: 600 }}"
+          alt="{{ section.settings.quran_image.alt | default: 'Quran verse on papyrus' }}"
+          style="max-width:320px; width:100%; border-radius:4px; box-shadow:0 20px 60px rgba(0,0,0,0.5); transform:rotate(-2deg);"
+          loading="lazy"
+        />
+      {%- else -%}
+        <div class="taji-quran-paper">
+          <p class="taji-quran-paper-label">{{ section.settings.quran_paper_label | default: 'Your TAJI Gift' | escape }}</p>
+          <p class="taji-quran-arabic-text">{{ section.settings.quran_arabic | default: 'وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ' | escape }}</p>
+          <p class="taji-quran-translation">{{ section.settings.quran_translation | default: '"And We have certainly honoured the children of Adam."' | escape }}</p>
+          <p class="taji-quran-surah">{{ section.settings.quran_surah | default: '— Surah Al-Isra, 17:70' | escape }}</p>
+        </div>
+      {%- endif -%}
+    </div>
+
+  </div>
+</section>
+
 {%- comment -%} ======= HOW IT WORKS ======= {%- endcomment -%}
 {%- assign steps = section.blocks | where: 'type', 'step' -%}
 <section class="section section-white" id="how-it-works">
@@ -861,6 +1054,19 @@
       "id": "product_shop_url",
       "label": "Product CTA button URL"
     },
+    {
+      "type": "header",
+      "content": "Quran Verse Gift Section"
+    },
+    { "type": "text", "id": "quran_eyebrow", "label": "Eyebrow", "default": "A Gift Inside Every Package" },
+    { "type": "text", "id": "quran_headline", "label": "Headline", "default": "A Verse That Travels With You." },
+    { "type": "textarea", "id": "quran_body", "label": "Body text", "default": "Every TAJI crown arrives with a hand-selected Quran verse printed on authentic papyrus paper. A reminder of grace, confidence, and purpose — tucked inside every order." },
+    { "type": "text", "id": "quran_tag", "label": "Tag label", "default": "✦ Exclusive to TAJI" },
+    { "type": "image_picker", "id": "quran_image", "label": "Papyrus photo (optional — replaces the styled card)" },
+    { "type": "text", "id": "quran_paper_label", "label": "Paper label", "default": "Your TAJI Gift" },
+    { "type": "text", "id": "quran_arabic", "label": "Arabic verse", "default": "وَلَقَدْ كَرَّمْنَا بَنِي آدَمَ" },
+    { "type": "text", "id": "quran_translation", "label": "Verse translation", "default": "\"And We have certainly honoured the children of Adam.\"" },
+    { "type": "text", "id": "quran_surah", "label": "Surah reference", "default": "— Surah Al-Isra, 17:70" },
     {
       "type": "header",
       "content": "How It Works"
