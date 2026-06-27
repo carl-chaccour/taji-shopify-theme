@@ -830,13 +830,23 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
   /* Logo: white on transparent nav, original on scrolled */
   .nav-logo img { filter: brightness(0) invert(1); }
   nav.scrolled .nav-logo img { filter: none; }
-  /* When drawer open: show only X, hide other icons */
-  nav.drawer-open .nav-mobile-left { filter: invert(1); }
+  /* When drawer open: hide icons, keep logo */
   nav.drawer-open .nav-mobile-left .nav-icon-btn { display: none; }
   nav.drawer-open .nav-right { visibility: hidden; }
-  nav.drawer-open .nav-logo { filter: none; }
-  /* Force X spans to black directly */
-  .nav-hamburger.open span { background: #0A0A0A !important; }
+  /* Hide the 3 spans and show a dark X via pseudo-element */
+  .nav-hamburger { position: relative; }
+  .nav-hamburger.open span { opacity: 0; }
+  .nav-hamburger.open::after {
+    content: '✕';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    color: #0A0A0A;
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+    font-family: 'Jost', sans-serif;
+  }
 
   /* MOBILE: full-screen hero image */
   .hero {
