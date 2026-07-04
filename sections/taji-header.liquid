@@ -57,10 +57,28 @@
       {%- endif -%}
     </a>
 
+    {%- assign taji_about_url = '' -%}
+    {%- assign taji_contact_url = '' -%}
+    {%- for p in pages -%}
+      {%- if p.template_suffix == 'about' -%}{%- assign taji_about_url = p.url -%}{%- endif -%}
+      {%- if p.template_suffix == 'contact-taji' -%}{%- assign taji_contact_url = p.url -%}{%- endif -%}
+    {%- endfor -%}
     {%- assign nav_url_1 = section.settings.nav_link_1_url | default: '/' -%}
     {%- assign nav_url_2 = section.settings.nav_link_2_url | default: routes.all_products_collection_url -%}
-    {%- assign nav_url_3 = section.settings.nav_link_3_url | default: '/pages/about' -%}
-    {%- assign nav_url_4 = section.settings.nav_link_4_url | default: '/pages/contact-taji' -%}
+    {%- if section.settings.nav_link_3_url != blank -%}
+      {%- assign nav_url_3 = section.settings.nav_link_3_url -%}
+    {%- elsif taji_about_url != blank -%}
+      {%- assign nav_url_3 = taji_about_url -%}
+    {%- else -%}
+      {%- assign nav_url_3 = '/pages/about' -%}
+    {%- endif -%}
+    {%- if section.settings.nav_link_4_url != blank -%}
+      {%- assign nav_url_4 = section.settings.nav_link_4_url -%}
+    {%- elsif taji_contact_url != blank -%}
+      {%- assign nav_url_4 = taji_contact_url -%}
+    {%- else -%}
+      {%- assign nav_url_4 = '/pages/contact' -%}
+    {%- endif -%}
     <ul class="nav-links">
       {%- if section.settings.nav_link_1_label != blank -%}
         <li><a href="{{ nav_url_1 }}" {% if request.path == nav_url_1 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_1_label }}</a></li>
