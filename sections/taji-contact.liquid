@@ -121,26 +121,34 @@
   .contact-form .field {
     margin-bottom: 28px;
     position: relative;
+    display: flex !important;
+    flex-direction: column !important;
   }
   .contact-form label {
-    display: block;
+    display: block !important;
+    width: auto !important;
+    float: none !important;
     font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
     color: var(--gold); font-weight: 600; margin-bottom: 10px;
+    padding: 0 !important;
+    border: none !important;
+    background: none !important;
   }
   .contact-form input,
   .contact-form textarea,
   .contact-form select {
-    width: 100%;
-    padding: 14px 18px;
-    border: 1px solid rgba(10,10,10,0.14);
-    background: #fff;
-    font-family: 'Jost', sans-serif;
-    font-size: 14px; font-weight: 300; color: var(--black);
-    outline: none;
+    width: 100% !important;
+    padding: 14px 18px !important;
+    border: 1px solid rgba(10,10,10,0.14) !important;
+    background: #fff !important;
+    font-family: 'Jost', sans-serif !important;
+    font-size: 14px !important; font-weight: 300 !important; color: var(--black) !important;
+    outline: none !important;
     transition: border-color 0.25s;
-    border-radius: 0;
-    appearance: none;
-    box-sizing: border-box;
+    border-radius: 0 !important;
+    appearance: none !important;
+    box-sizing: border-box !important;
+    float: none !important;
   }
   .contact-form input:focus,
   .contact-form textarea:focus,
