@@ -693,10 +693,10 @@
         <img
           src="{{ section.settings.brand_story_logo | image_url: width: 300 }}"
           alt="{{ section.settings.brand_story_logo.alt | default: 'Crown Yourself' }}"
-          style="height:48px; opacity:0.85;"
+          style="height:120px; opacity:0.85;"
         />
       {%- else -%}
-        <img src="{{ 'crown-yourself.png' | asset_url }}" alt="Crown Yourself" style="height:48px; opacity:0.85;" />
+        <img src="{{ 'crown-yourself.png' | asset_url }}" alt="Crown Yourself" style="height:120px; opacity:0.85;" />
       {%- endif -%}
     </div>
     {%- if section.settings.brand_story_headline != blank -%}
