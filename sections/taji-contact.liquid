@@ -149,9 +149,48 @@
   .contact-form textarea { min-height: 130px; resize: none; text-align: left; }
   .contact-form textarea::placeholder { text-align: left; }
   .contact-form .btn-primary { border: none; cursor: pointer; font-size: 12px; width: 100%; text-align: center; margin-top: 12px; }
-  .contact-phone-wrap { display: flex; gap: 8px; }
-  .contact-phone-wrap select { width: 140px; flex-shrink: 0; color: var(--black); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
+  .contact-phone-wrap { display: flex; gap: 8px; position: relative; }
   .contact-phone-wrap input { flex: 1; }
+  .taji-country-select { position: relative; flex-shrink: 0; width: 130px; }
+  .taji-country-btn {
+    display: flex; align-items: center; gap: 8px;
+    width: 100%; height: 100%;
+    padding: 0 12px;
+    border: 1px solid rgba(10,10,10,0.14);
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px; font-weight: 300; color: var(--black);
+    cursor: pointer; box-sizing: border-box;
+    white-space: nowrap; overflow: hidden;
+    justify-content: space-between;
+  }
+  .taji-country-btn:focus { border-color: var(--gold); outline: none; }
+  .taji-country-btn .taji-flag { font-size: 18px; line-height: 1; }
+  .taji-country-btn .taji-code { font-size: 13px; }
+  .taji-country-btn .taji-chevron { font-size: 10px; color: #999; margin-left: 4px; }
+  .taji-country-dropdown {
+    display: none; position: absolute; top: 100%; left: 0;
+    width: 260px; max-height: 240px; overflow-y: auto;
+    background: #fff; border: 1px solid rgba(10,10,10,0.14);
+    border-top: none; z-index: 999;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  }
+  .taji-country-dropdown.open { display: block; }
+  .taji-country-search {
+    width: 100%; padding: 10px 14px; border: none;
+    border-bottom: 1px solid rgba(10,10,10,0.1);
+    font-family: 'Jost', sans-serif; font-size: 13px;
+    outline: none; box-sizing: border-box; text-align: left;
+  }
+  .taji-country-option {
+    display: flex; align-items: center; gap: 10px;
+    padding: 9px 14px; cursor: pointer;
+    font-size: 13px; font-family: 'Jost', sans-serif;
+    transition: background 0.15s;
+  }
+  .taji-country-option:hover { background: rgba(212,179,111,0.1); }
+  .taji-country-option .taji-flag { font-size: 18px; }
+  .taji-country-option.selected { background: rgba(212,179,111,0.15); font-weight: 500; }
 
   @media (max-width: 768px) {
     .contact-hero { padding: 120px 24px 64px; }
@@ -277,7 +316,22 @@
         <div class="field">
           <label for="ContactPhone">{{ section.settings.field_phone | default: 'Phone (optional)' | escape }}</label>
           <div class="contact-phone-wrap">
-            <select name="contact[phone_code]" aria-label="Country code">
+            <input type="hidden" name="contact[phone_code]" id="taji-phone-code-val" value="+961">
+            <div class="taji-country-select">
+              <button type="button" class="taji-country-btn" id="taji-country-btn" aria-haspopup="listbox" aria-expanded="false">
+                <span class="taji-flag">🇱🇧</span>
+                <span class="taji-code">+961</span>
+                <span class="taji-chevron">▼</span>
+              </button>
+              <div class="taji-country-dropdown" id="taji-country-dropdown" role="listbox">
+                <input type="text" class="taji-country-search" placeholder="Search country…" id="taji-country-search" autocomplete="off">
+                <div id="taji-country-list">
+            <!-- options injected by JS -->
+                </div>
+              </div>
+            </div>
+            <!-- old select preserved as data source, hidden -->
+            <select name="contact[phone_code_raw]" aria-label="Country code" style="display:none">
               <option value="+93">🇦🇫 +93</option>
               <option value="+355">🇦🇱 +355</option>
               <option value="+213">🇩🇿 +213</option>
@@ -444,7 +498,7 @@
               <option value="+260">🇿🇲 +260</option>
               <option value="+263">🇿🇼 +263</option>
             </select>
-            <input type="tel" id="ContactPhone" name="contact[phone]" autocomplete="tel" placeholder="XX XXX XXX" />
+            <input type="tel" id="ContactPhone" name="contact[phone]" autocomplete="tel" placeholder="Phone (optional)" />
           </div>
         </div>
         <div class="field">
@@ -460,6 +514,69 @@
   </div>
 </div>
 </div>
+
+<script>
+(function() {
+  document.addEventListener('DOMContentLoaded', function() {
+    var hiddenSelect = document.querySelector('select[name="contact[phone_code_raw]"]');
+    if (!hiddenSelect) return;
+
+    var countries = [];
+    hiddenSelect.querySelectorAll('option').forEach(function(opt) {
+      var text = opt.textContent.trim();
+      var parts = text.match(/^(\S+)\s+(.+)$/);
+      if (parts) {
+        countries.push({ flag: parts[1], code: parts[2], value: opt.value, name: text });
+      }
+    });
+
+    var btn = document.getElementById('taji-country-btn');
+    var dropdown = document.getElementById('taji-country-dropdown');
+    var search = document.getElementById('taji-country-search');
+    var list = document.getElementById('taji-country-list');
+    var hiddenVal = document.getElementById('taji-phone-code-val');
+
+    function renderList(filter) {
+      list.innerHTML = '';
+      var filtered = filter ? countries.filter(function(c) {
+        return c.name.toLowerCase().includes(filter.toLowerCase());
+      }) : countries;
+      filtered.forEach(function(c) {
+        var div = document.createElement('div');
+        div.className = 'taji-country-option' + (c.value === hiddenVal.value ? ' selected' : '');
+        div.setAttribute('role', 'option');
+        div.innerHTML = '<span class="taji-flag">' + c.flag + '</span><span>' + c.code + '</span>';
+        div.addEventListener('click', function() {
+          hiddenVal.value = c.value;
+          btn.querySelector('.taji-flag').textContent = c.flag;
+          btn.querySelector('.taji-code').textContent = c.code;
+          dropdown.classList.remove('open');
+          btn.setAttribute('aria-expanded', 'false');
+        });
+        list.appendChild(div);
+      });
+    }
+
+    renderList('');
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      var open = dropdown.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) { search.value = ''; renderList(''); search.focus(); }
+    });
+
+    search.addEventListener('input', function() { renderList(this.value); });
+
+    document.addEventListener('click', function() {
+      dropdown.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+
+    dropdown.addEventListener('click', function(e) { e.stopPropagation(); });
+  });
+})();
+</script>
 
 {% schema %}
 {
