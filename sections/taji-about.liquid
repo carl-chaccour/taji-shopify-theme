@@ -48,7 +48,7 @@
   }
   .about-mission-inner {
     max-width: 900px; margin: 0 auto;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
   }
   .about-mission-label {
     font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
@@ -207,7 +207,6 @@
         <blockquote class="about-mission-quote serif">{{ section.settings.mission_quote | default: '"Wear it. Forget it. Own the day."' | escape }}</blockquote>
       </div>
       <div>
-        <p class="about-mission-arabic">{{ section.settings.mission_arabic | default: 'تاجي — ارتدي تاجكِ' | escape }}</p>
         <p class="about-mission-body">{{ section.settings.mission_body_2 | default: 'Made in Lebanon. Built for the world. TAJI is a Lebanese brand that believes premium craftsmanship and everyday practicality are not a compromise — they are a standard.' | escape }}</p>
       </div>
     </div>
