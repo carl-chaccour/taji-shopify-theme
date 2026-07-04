@@ -119,43 +119,35 @@
     color: var(--gold); font-weight: 600; margin-bottom: 32px;
   }
   .contact-form .field {
-    margin-bottom: 28px;
+    margin-bottom: 24px;
     position: relative;
-    display: flex !important;
-    flex-direction: column !important;
   }
   .contact-form label {
-    display: block !important;
-    width: auto !important;
-    float: none !important;
-    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); font-weight: 600; margin-bottom: 10px;
-    padding: 0 !important;
-    border: none !important;
-    background: none !important;
+    display: none;
   }
   .contact-form input,
   .contact-form textarea,
   .contact-form select {
-    width: 100% !important;
-    padding: 14px 18px !important;
-    border: 1px solid rgba(10,10,10,0.14) !important;
-    background: #fff !important;
-    font-family: 'Jost', sans-serif !important;
-    font-size: 14px !important; font-weight: 300 !important; color: var(--black) !important;
-    outline: none !important;
+    width: 100%;
+    padding: 16px 20px;
+    border: 1px solid rgba(10,10,10,0.14);
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 14px; font-weight: 300; color: var(--black);
+    outline: none;
     transition: border-color 0.25s;
-    border-radius: 0 !important;
-    appearance: none !important;
-    box-sizing: border-box !important;
-    float: none !important;
+    border-radius: 0;
+    appearance: none;
+    box-sizing: border-box;
+    text-align: center;
   }
   .contact-form input:focus,
   .contact-form textarea:focus,
   .contact-form select:focus { border-color: var(--gold); }
   .contact-form input::placeholder,
-  .contact-form textarea::placeholder { color: #c0b9b0; font-weight: 300; font-size: 13px; }
-  .contact-form textarea { min-height: 130px; resize: none; }
+  .contact-form textarea::placeholder { color: #aaa; font-weight: 300; font-size: 13px; letter-spacing: 0.06em; text-align: center; }
+  .contact-form textarea { min-height: 130px; resize: none; text-align: left; }
+  .contact-form textarea::placeholder { text-align: left; }
   .contact-form .btn-primary { border: none; cursor: pointer; font-size: 12px; width: 100%; text-align: center; margin-top: 12px; }
   .contact-phone-wrap { display: flex; gap: 8px; }
   .contact-phone-wrap select { width: 140px; flex-shrink: 0; color: var(--black); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px; }
@@ -276,11 +268,11 @@
         {%- endif -%}
         <div class="field">
           <label for="ContactName">{{ section.settings.field_name | default: 'Your Name' | escape }}</label>
-          <input type="text" id="ContactName" name="contact[name]" autocomplete="name" value="{{ form.name }}" placeholder="Enter your full name" required />
+          <input type="text" id="ContactName" name="contact[name]" autocomplete="name" value="{{ form.name }}" placeholder="Your Name" required />
         </div>
         <div class="field">
           <label for="ContactEmail">{{ section.settings.field_email | default: 'Email Address' | escape }}</label>
-          <input type="email" id="ContactEmail" name="contact[email]" autocomplete="email" value="{{ form.email }}" placeholder="your@email.com" required />
+          <input type="email" id="ContactEmail" name="contact[email]" autocomplete="email" value="{{ form.email }}" placeholder="Email Address" required />
         </div>
         <div class="field">
           <label for="ContactPhone">{{ section.settings.field_phone | default: 'Phone (optional)' | escape }}</label>
@@ -457,7 +449,7 @@
         </div>
         <div class="field">
           <label for="ContactMessage">{{ section.settings.field_message | default: 'Your Message' | escape }}</label>
-          <textarea id="ContactMessage" name="contact[body]" placeholder="Write your message here…" required>{{ form.body }}</textarea>
+          <textarea id="ContactMessage" name="contact[body]" placeholder="Your Message" required>{{ form.body }}</textarea>
         </div>
         <button type="submit" class="btn-primary">
           {{ section.settings.form_submit | default: 'Send Message' | escape }}
