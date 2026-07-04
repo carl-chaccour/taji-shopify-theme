@@ -57,18 +57,22 @@
       {%- endif -%}
     </a>
 
+    {%- assign nav_url_1 = section.settings.nav_link_1_url | default: '/' -%}
+    {%- assign nav_url_2 = section.settings.nav_link_2_url | default: routes.all_products_collection_url -%}
+    {%- assign nav_url_3 = section.settings.nav_link_3_url | default: '/pages/about' -%}
+    {%- assign nav_url_4 = section.settings.nav_link_4_url | default: '/pages/contact-taji' -%}
     <ul class="nav-links">
       {%- if section.settings.nav_link_1_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}" {% if request.path == section.settings.nav_link_1_url %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_1_label }}</a></li>
+        <li><a href="{{ nav_url_1 }}" {% if request.path == nav_url_1 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_1_label }}</a></li>
       {%- endif -%}
       {%- if section.settings.nav_link_2_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}" {% if request.path == section.settings.nav_link_2_url %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_2_label }}</a></li>
+        <li><a href="{{ nav_url_2 }}" {% if request.path == nav_url_2 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_2_label }}</a></li>
       {%- endif -%}
       {%- if section.settings.nav_link_3_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}" {% if request.path == section.settings.nav_link_3_url %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_3_label }}</a></li>
+        <li><a href="{{ nav_url_3 }}" {% if request.path == nav_url_3 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_3_label }}</a></li>
       {%- endif -%}
       {%- if section.settings.nav_link_4_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}" {% if request.path == section.settings.nav_link_4_url %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_4_label }}</a></li>
+        <li><a href="{{ nav_url_4 }}" {% if request.path == nav_url_4 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_4_label }}</a></li>
       {%- endif -%}
     </ul>
 
@@ -102,16 +106,16 @@
 <div class="nav-drawer" id="taji-nav-drawer" aria-hidden="true">
   <ul class="nav-drawer-links">
     {%- if section.settings.nav_link_1_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}">{{ section.settings.nav_link_1_label }}</a></li>
+      <li><a href="{{ nav_url_1 }}">{{ section.settings.nav_link_1_label }}</a></li>
     {%- endif -%}
     {%- if section.settings.nav_link_2_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}">{{ section.settings.nav_link_2_label }}</a></li>
+      <li><a href="{{ nav_url_2 }}">{{ section.settings.nav_link_2_label }}</a></li>
     {%- endif -%}
     {%- if section.settings.nav_link_3_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}">{{ section.settings.nav_link_3_label }}</a></li>
+      <li><a href="{{ nav_url_3 }}">{{ section.settings.nav_link_3_label }}</a></li>
     {%- endif -%}
     {%- if section.settings.nav_link_4_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}">{{ section.settings.nav_link_4_label }}</a></li>
+      <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label }}</a></li>
     {%- endif -%}
   </ul>
   <div class="nav-drawer-cta">
