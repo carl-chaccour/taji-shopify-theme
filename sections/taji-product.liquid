@@ -73,6 +73,19 @@
     font-weight: 600; padding: 5px 16px; white-space: nowrap;
   }
 
+  .taji-bundle-image-wrap {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    margin-bottom: 24px;
+    background: var(--cream-alt);
+  }
+
+  .taji-bundle-image-wrap img {
+    width: 100%; height: 100%;
+    object-fit: cover; display: block;
+  }
+
   .taji-bundle-label {
     font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--gold); font-weight: 600; margin-bottom: 10px;
@@ -248,6 +261,13 @@
 
       {%- comment -%} SINGLE CARD {%- endcomment -%}
       <div class="taji-bundle-card">
+        <div class="taji-bundle-image-wrap">
+          {%- if section.settings.single_image != blank -%}
+            <img src="{{ section.settings.single_image | image_url: width: 600 }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" width="600" height="450" />
+          {%- else -%}
+            <img src="{{ 'product-top.png' | asset_url }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" />
+          {%- endif -%}
+        </div>
         <p class="taji-bundle-label">{{ section.settings.single_label | default: 'Single' | escape }}</p>
         <h2 class="taji-bundle-title serif">{{ section.settings.single_title | default: 'One Crown' | escape }}</h2>
         <p class="taji-bundle-desc">{{ section.settings.single_desc | default: 'Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.' | escape }}</p>
@@ -282,6 +302,13 @@
         {%- if section.settings.bundle2_badge != blank -%}
           <div class="taji-bundle-badge">{{ section.settings.bundle2_badge | escape }}</div>
         {%- endif -%}
+        <div class="taji-bundle-image-wrap">
+          {%- if section.settings.bundle2_image != blank -%}
+            <img src="{{ section.settings.bundle2_image | image_url: width: 600 }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" width="600" height="450" />
+          {%- else -%}
+            <img src="{{ 'hero-woman.png' | asset_url }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" />
+          {%- endif -%}
+        </div>
         <p class="taji-bundle-label">{{ section.settings.bundle2_label | default: 'Bundle' | escape }}</p>
         <h2 class="taji-bundle-title serif">{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}</h2>
         <p class="taji-bundle-desc">{{ section.settings.bundle2_desc | default: 'Mix and match — one for everyday wear and one to gift or keep as a spare.' | escape }}</p>
@@ -307,6 +334,13 @@
 
       {%- comment -%} BUNDLE 3+ CARD {%- endcomment -%}
       <div class="taji-bundle-card">
+        <div class="taji-bundle-image-wrap">
+          {%- if section.settings.bundle3_image != blank -%}
+            <img src="{{ section.settings.bundle3_image | image_url: width: 600 }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" width="600" height="450" />
+          {%- else -%}
+            <img src="{{ 'product-angle1.png' | asset_url }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" />
+          {%- endif -%}
+        </div>
         <p class="taji-bundle-label">{{ section.settings.bundle3_label | default: 'Best Value' | escape }}</p>
         <h2 class="taji-bundle-title serif">{{ section.settings.bundle3_title | default: 'Three or More' | escape }}</h2>
         <p class="taji-bundle-desc">{{ section.settings.bundle3_desc | default: 'Stock up or share with your sisters. Free delivery included on all orders of 3 or more.' | escape }}</p>
@@ -387,6 +421,7 @@
       "type": "header",
       "content": "Single Crown"
     },
+    { "type": "image_picker", "id": "single_image", "label": "Card image" },
     { "type": "text", "id": "single_label", "label": "Card label", "default": "Single" },
     { "type": "text", "id": "single_title", "label": "Card title", "default": "One Crown" },
     { "type": "textarea", "id": "single_desc", "label": "Description", "default": "Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch." },
@@ -405,6 +440,7 @@
       "type": "header",
       "content": "Bundle of 2"
     },
+    { "type": "image_picker", "id": "bundle2_image", "label": "Card image" },
     { "type": "text", "id": "bundle2_badge", "label": "Badge text (e.g. Most Popular)", "default": "Most Popular" },
     { "type": "text", "id": "bundle2_label", "label": "Card label", "default": "Bundle" },
     { "type": "text", "id": "bundle2_title", "label": "Card title", "default": "Two Crowns" },
@@ -422,6 +458,7 @@
       "type": "header",
       "content": "3 or More (Free Delivery)"
     },
+    { "type": "image_picker", "id": "bundle3_image", "label": "Card image" },
     { "type": "text", "id": "bundle3_label", "label": "Card label", "default": "Best Value" },
     { "type": "text", "id": "bundle3_title", "label": "Card title", "default": "Three or More" },
     { "type": "textarea", "id": "bundle3_desc", "label": "Description", "default": "Stock up or share with your sisters. Free delivery included on all orders of 3 or more." },
