@@ -333,10 +333,57 @@
         "footer_whatsapp_url": "",
         "footer_copy": "© 2025 TAJI. All rights reserved."
       }
+    },
+    "taji_product_fCGEtK": {
+      "type": "taji-product",
+      "name": "TAJI Product Bundles",
+      "settings": {
+        "eyebrow": "Choose Your Crown",
+        "headline": "Find Your Perfect Fit.",
+        "subhead": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type.",
+        "single_currency": "$",
+        "single_label": "Single",
+        "single_title": "One Crown",
+        "single_desc": "Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.",
+        "single_original_price": "35",
+        "single_price": "25",
+        "single_per": "per crown",
+        "variant_1_label": "Nylon",
+        "variant_2_label": "Rubber",
+        "single_perk_1": "All-day grip",
+        "single_perk_2": "Lightweight & discreet",
+        "single_perk_3": "Choose your fit",
+        "single_cta": "Add to Cart",
+        "single_cta_url": "",
+        "bundle2_badge": "Most Popular",
+        "bundle2_label": "Bundle",
+        "bundle2_title": "Two Crowns",
+        "bundle2_desc": "Mix and match — one for everyday wear and one to gift or keep as a spare.",
+        "bundle2_original_price": "50",
+        "bundle2_price": "45",
+        "bundle2_per": "for two crowns",
+        "bundle2_perk_1": "Save $5 vs two singles",
+        "bundle2_perk_2": "Mix Nylon & Rubber",
+        "bundle2_perk_3": "Perfect gift set",
+        "bundle2_cta": "Add Bundle to Cart",
+        "bundle2_cta_url": "",
+        "bundle3_label": "Best Value",
+        "bundle3_title": "Three or More",
+        "bundle3_desc": "Stock up or share with your sisters. Free delivery included on all orders of 3 or more.",
+        "bundle3_price_text": "From $25 each",
+        "bundle3_per": "+ free delivery",
+        "bundle3_perk_1": "Free delivery included",
+        "bundle3_perk_2": "Mix any variants",
+        "bundle3_perk_3": "Great for gifting",
+        "bundle3_cta": "Shop & Save",
+        "bundle3_cta_url": "",
+        "free_delivery_text": "Order 3 or more crowns and get **free delivery** anywhere in Lebanon."
+      }
     }
   },
   "order": [
     "featured_collection",
-    "landing_page_U9C9VL"
+    "landing_page_U9C9VL",
+    "taji_product_fCGEtK"
   ]
 }
