@@ -45,18 +45,28 @@
     </a>
 
     <!-- Desktop nav links -->
+    {%- assign taji_about_url = '/pages/about' -%}
+    {%- assign taji_contact_url = '/pages/contact' -%}
+    {%- for p in pages -%}
+      {%- if p.template_suffix == 'about' -%}{%- assign taji_about_url = p.url -%}{%- endif -%}
+      {%- if p.template_suffix == 'contact-taji' -%}{%- assign taji_contact_url = p.url -%}{%- endif -%}
+    {%- endfor -%}
+    {%- assign nav_url_1 = section.settings.nav_link_1_url | default: '/' -%}
+    {%- assign nav_url_2 = section.settings.nav_link_2_url | default: '/pages/products' -%}
+    {%- assign nav_url_3 = section.settings.nav_link_3_url | default: taji_about_url -%}
+    {%- assign nav_url_4 = section.settings.nav_link_4_url | default: taji_contact_url -%}
     <ul class="nav-links">
       {%- if section.settings.nav_link_1_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}">{{ section.settings.nav_link_1_label }}</a></li>
+        <li><a href="{{ nav_url_1 }}">{{ section.settings.nav_link_1_label }}</a></li>
       {%- endif -%}
       {%- if section.settings.nav_link_2_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}">{{ section.settings.nav_link_2_label }}</a></li>
+        <li><a href="{{ nav_url_2 }}">{{ section.settings.nav_link_2_label }}</a></li>
       {%- endif -%}
       {%- if section.settings.nav_link_3_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}">{{ section.settings.nav_link_3_label }}</a></li>
+        <li><a href="{{ nav_url_3 }}">{{ section.settings.nav_link_3_label }}</a></li>
       {%- endif -%}
       {%- if section.settings.nav_link_4_label != blank -%}
-        <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}">{{ section.settings.nav_link_4_label }}</a></li>
+        <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label }}</a></li>
       {%- endif -%}
     </ul>
 
@@ -94,16 +104,16 @@
 <div class="nav-drawer" id="taji-nav-drawer" aria-hidden="true">
   <ul class="nav-drawer-links">
     {%- if section.settings.nav_link_1_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}">{{ section.settings.nav_link_1_label }}</a></li>
+      <li><a href="{{ nav_url_1 }}">{{ section.settings.nav_link_1_label }}</a></li>
     {%- endif -%}
     {%- if section.settings.nav_link_2_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}">{{ section.settings.nav_link_2_label }}</a></li>
+      <li><a href="{{ nav_url_2 }}">{{ section.settings.nav_link_2_label }}</a></li>
     {%- endif -%}
     {%- if section.settings.nav_link_3_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}">{{ section.settings.nav_link_3_label }}</a></li>
+      <li><a href="{{ nav_url_3 }}">{{ section.settings.nav_link_3_label }}</a></li>
     {%- endif -%}
     {%- if section.settings.nav_link_4_label != blank -%}
-      <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}">{{ section.settings.nav_link_4_label }}</a></li>
+      <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label }}</a></li>
     {%- endif -%}
   </ul>
   <div class="nav-drawer-cta">
@@ -772,16 +782,16 @@
         <p class="footer-col-title">{{ section.settings.footer_links_title | default: 'Quick Links' | escape }}</p>
         <ul class="footer-col-links">
           {%- if section.settings.nav_link_1_label != blank -%}
-            <li><a href="{{ section.settings.nav_link_1_url | default: '/' }}">{{ section.settings.nav_link_1_label | escape }}</a></li>
+            <li><a href="{{ nav_url_1 }}">{{ section.settings.nav_link_1_label | escape }}</a></li>
           {%- endif -%}
           {%- if section.settings.nav_link_2_label != blank -%}
-            <li><a href="{{ section.settings.nav_link_2_url | default: '#' }}">{{ section.settings.nav_link_2_label | escape }}</a></li>
+            <li><a href="{{ nav_url_2 }}">{{ section.settings.nav_link_2_label | escape }}</a></li>
           {%- endif -%}
           {%- if section.settings.nav_link_3_label != blank -%}
-            <li><a href="{{ section.settings.nav_link_3_url | default: '#' }}">{{ section.settings.nav_link_3_label | escape }}</a></li>
+            <li><a href="{{ nav_url_3 }}">{{ section.settings.nav_link_3_label | escape }}</a></li>
           {%- endif -%}
           {%- if section.settings.nav_link_4_label != blank -%}
-            <li><a href="{{ section.settings.nav_link_4_url | default: '#' }}">{{ section.settings.nav_link_4_label | escape }}</a></li>
+            <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label | escape }}</a></li>
           {%- endif -%}
           {%- if section.settings.nav_shop_btn_text != blank -%}
             <li><a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}">{{ section.settings.nav_shop_btn_text | escape }}</a></li>
