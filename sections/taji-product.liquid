@@ -1,0 +1,446 @@
+{{ 'landing-page.css' | asset_url | stylesheet_tag }}
+
+<style>
+  :root {
+    --gold: #D4B36F;
+    --black: #0A0A0A;
+    --cream: #FAF8F4;
+    --cream-alt: #F2EDE6;
+    --white: #ffffff;
+  }
+
+  .taji-product-page {
+    background: var(--cream);
+    padding: 80px 32px 120px;
+    font-family: 'Jost', sans-serif;
+  }
+
+  .taji-product-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .taji-product-eyebrow {
+    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .taji-product-headline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 400; color: var(--black);
+    text-align: center; margin-bottom: 12px; line-height: 1.2;
+  }
+
+  .taji-product-subhead {
+    font-size: 15px; font-weight: 300; color: #666;
+    text-align: center; max-width: 520px;
+    margin: 0 auto 64px; line-height: 1.7;
+  }
+
+  /* BUNDLE CARDS */
+  .taji-bundles {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    align-items: stretch;
+  }
+
+  .taji-bundle-card {
+    background: var(--white);
+    border: 1px solid rgba(10,10,10,0.1);
+    padding: 40px 32px 36px;
+    display: flex; flex-direction: column;
+    position: relative;
+    transition: box-shadow 0.25s, border-color 0.25s;
+  }
+
+  .taji-bundle-card:hover {
+    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+    border-color: var(--gold);
+  }
+
+  .taji-bundle-card.featured {
+    border-color: var(--gold);
+    background: var(--cream);
+  }
+
+  .taji-bundle-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--black);
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 600; padding: 5px 16px; white-space: nowrap;
+  }
+
+  .taji-bundle-label {
+    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--gold); font-weight: 600; margin-bottom: 10px;
+  }
+
+  .taji-bundle-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px; font-weight: 400; color: var(--black);
+    margin-bottom: 8px; line-height: 1.2;
+  }
+
+  .taji-bundle-desc {
+    font-size: 13px; font-weight: 300; color: #777;
+    line-height: 1.7; margin-bottom: 28px; flex: 1;
+  }
+
+  .taji-bundle-price-wrap {
+    margin-bottom: 24px;
+  }
+
+  .taji-bundle-original {
+    font-size: 14px; color: #aaa; text-decoration: line-through;
+    font-weight: 300; margin-bottom: 4px;
+  }
+
+  .taji-bundle-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px; font-weight: 400; color: var(--black);
+    line-height: 1;
+  }
+
+  .taji-bundle-price sup {
+    font-size: 20px; vertical-align: super; line-height: 0;
+  }
+
+  .taji-bundle-per {
+    font-size: 12px; color: #999; font-weight: 300;
+    margin-top: 4px; letter-spacing: 0.04em;
+  }
+
+  .taji-bundle-perks {
+    list-style: none; padding: 0; margin: 0 0 32px;
+    border-top: 1px solid rgba(10,10,10,0.08);
+    padding-top: 20px;
+  }
+
+  .taji-bundle-perks li {
+    font-size: 13px; font-weight: 300; color: #555;
+    padding: 6px 0; display: flex; align-items: center; gap: 10px;
+  }
+
+  .taji-bundle-perks li::before {
+    content: '✦'; color: var(--gold); font-size: 9px; flex-shrink: 0;
+  }
+
+  /* VARIANT SELECTOR */
+  .taji-variant-label {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #888; font-weight: 600; margin-bottom: 10px;
+  }
+
+  .taji-variant-options {
+    display: flex; gap: 8px; margin-bottom: 24px;
+  }
+
+  .taji-variant-btn {
+    flex: 1; padding: 10px 8px;
+    border: 1px solid rgba(10,10,10,0.15);
+    background: transparent; cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--black); font-weight: 500;
+    transition: all 0.2s;
+  }
+
+  .taji-variant-btn:hover,
+  .taji-variant-btn.active {
+    border-color: var(--gold);
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  /* QUANTITY SELECTOR */
+  .taji-qty-label {
+    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: #888; font-weight: 600; margin-bottom: 10px;
+  }
+
+  .taji-qty-wrap {
+    display: flex; align-items: center; gap: 0;
+    border: 1px solid rgba(10,10,10,0.15);
+    width: fit-content; margin-bottom: 24px;
+  }
+
+  .taji-qty-btn {
+    width: 36px; height: 36px; background: none;
+    border: none; cursor: pointer;
+    font-size: 18px; color: var(--black);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 300;
+  }
+
+  .taji-qty-input {
+    width: 44px; height: 36px; border: none;
+    border-left: 1px solid rgba(10,10,10,0.1);
+    border-right: 1px solid rgba(10,10,10,0.1);
+    text-align: center; font-family: 'Jost', sans-serif;
+    font-size: 14px; font-weight: 400; color: var(--black);
+    background: transparent; outline: none;
+  }
+
+  /* BUTTONS */
+  .taji-bundle-cta {
+    display: block; width: 100%;
+    padding: 15px 24px;
+    background: var(--black); color: var(--white);
+    text-align: center; cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    font-weight: 500; border: 1px solid var(--black);
+    transition: all 0.25s; text-decoration: none;
+  }
+
+  .taji-bundle-cta:hover {
+    background: transparent; color: var(--black);
+  }
+
+  .taji-bundle-card.featured .taji-bundle-cta {
+    background: var(--gold); border-color: var(--gold); color: var(--black);
+  }
+
+  .taji-bundle-card.featured .taji-bundle-cta:hover {
+    background: var(--black); border-color: var(--black); color: var(--white);
+  }
+
+  /* FREE DELIVERY BANNER */
+  .taji-free-delivery {
+    margin-top: 48px;
+    background: var(--black);
+    padding: 28px 40px;
+    display: flex; align-items: center; justify-content: center;
+    gap: 20px; flex-wrap: wrap;
+  }
+
+  .taji-free-delivery-icon {
+    font-size: 24px;
+  }
+
+  .taji-free-delivery-text {
+    color: var(--white);
+    font-size: 14px; font-weight: 300; letter-spacing: 0.06em;
+  }
+
+  .taji-free-delivery-text strong {
+    color: var(--gold); font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .taji-product-page { padding: 60px 20px 80px; }
+    .taji-bundles { grid-template-columns: 1fr; gap: 32px; }
+    .taji-bundle-card { padding: 36px 24px 28px; }
+  }
+</style>
+
+<div class="taji-product-page">
+  <div class="taji-product-inner">
+
+    <p class="taji-product-eyebrow">{{ section.settings.eyebrow | default: 'Choose Your Crown' | escape }}</p>
+    <h1 class="taji-product-headline serif">{{ section.settings.headline | default: 'Find Your Perfect Fit.' | escape }}</h1>
+    <p class="taji-product-subhead">{{ section.settings.subhead | default: 'Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type.' | escape }}</p>
+
+    <div class="taji-bundles">
+
+      {%- comment -%} SINGLE CARD {%- endcomment -%}
+      <div class="taji-bundle-card">
+        <p class="taji-bundle-label">{{ section.settings.single_label | default: 'Single' | escape }}</p>
+        <h2 class="taji-bundle-title serif">{{ section.settings.single_title | default: 'One Crown' | escape }}</h2>
+        <p class="taji-bundle-desc">{{ section.settings.single_desc | default: 'Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.' | escape }}</p>
+
+        <div class="taji-bundle-price-wrap">
+          {%- if section.settings.single_original_price != blank -%}
+            <p class="taji-bundle-original">{{ section.settings.single_currency | default: '$' }}{{ section.settings.single_original_price }}</p>
+          {%- endif -%}
+          <div class="taji-bundle-price"><sup>{{ section.settings.single_currency | default: '$' }}</sup>{{ section.settings.single_price | default: '25' }}</div>
+          <p class="taji-bundle-per">{{ section.settings.single_per | default: 'per crown' | escape }}</p>
+        </div>
+
+        <p class="taji-variant-label">Choose variant</p>
+        <div class="taji-variant-options">
+          <button type="button" class="taji-variant-btn active" data-variant="nylon">{{ section.settings.variant_1_label | default: 'Nylon' | escape }}</button>
+          <button type="button" class="taji-variant-btn" data-variant="rubber">{{ section.settings.variant_2_label | default: 'Rubber' | escape }}</button>
+        </div>
+
+        <ul class="taji-bundle-perks">
+          {%- if section.settings.single_perk_1 != blank -%}<li>{{ section.settings.single_perk_1 | escape }}</li>{%- endif -%}
+          {%- if section.settings.single_perk_2 != blank -%}<li>{{ section.settings.single_perk_2 | escape }}</li>{%- endif -%}
+          {%- if section.settings.single_perk_3 != blank -%}<li>{{ section.settings.single_perk_3 | escape }}</li>{%- endif -%}
+        </ul>
+
+        <a href="{{ section.settings.single_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
+          {{ section.settings.single_cta | default: 'Add to Cart' | escape }}
+        </a>
+      </div>
+
+      {%- comment -%} BUNDLE OF 2 CARD {%- endcomment -%}
+      <div class="taji-bundle-card featured">
+        {%- if section.settings.bundle2_badge != blank -%}
+          <div class="taji-bundle-badge">{{ section.settings.bundle2_badge | escape }}</div>
+        {%- endif -%}
+        <p class="taji-bundle-label">{{ section.settings.bundle2_label | default: 'Bundle' | escape }}</p>
+        <h2 class="taji-bundle-title serif">{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}</h2>
+        <p class="taji-bundle-desc">{{ section.settings.bundle2_desc | default: 'Mix and match — one for everyday wear and one to gift or keep as a spare.' | escape }}</p>
+
+        <div class="taji-bundle-price-wrap">
+          {%- if section.settings.bundle2_original_price != blank -%}
+            <p class="taji-bundle-original">{{ section.settings.single_currency | default: '$' }}{{ section.settings.bundle2_original_price }}</p>
+          {%- endif -%}
+          <div class="taji-bundle-price"><sup>{{ section.settings.single_currency | default: '$' }}</sup>{{ section.settings.bundle2_price | default: '45' }}</div>
+          <p class="taji-bundle-per">{{ section.settings.bundle2_per | default: 'for two crowns' | escape }}</p>
+        </div>
+
+        <ul class="taji-bundle-perks">
+          {%- if section.settings.bundle2_perk_1 != blank -%}<li>{{ section.settings.bundle2_perk_1 | escape }}</li>{%- endif -%}
+          {%- if section.settings.bundle2_perk_2 != blank -%}<li>{{ section.settings.bundle2_perk_2 | escape }}</li>{%- endif -%}
+          {%- if section.settings.bundle2_perk_3 != blank -%}<li>{{ section.settings.bundle2_perk_3 | escape }}</li>{%- endif -%}
+        </ul>
+
+        <a href="{{ section.settings.bundle2_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
+          {{ section.settings.bundle2_cta | default: 'Add Bundle to Cart' | escape }}
+        </a>
+      </div>
+
+      {%- comment -%} BUNDLE 3+ CARD {%- endcomment -%}
+      <div class="taji-bundle-card">
+        <p class="taji-bundle-label">{{ section.settings.bundle3_label | default: 'Best Value' | escape }}</p>
+        <h2 class="taji-bundle-title serif">{{ section.settings.bundle3_title | default: 'Three or More' | escape }}</h2>
+        <p class="taji-bundle-desc">{{ section.settings.bundle3_desc | default: 'Stock up or share with your sisters. Free delivery included on all orders of 3 or more.' | escape }}</p>
+
+        <div class="taji-bundle-price-wrap">
+          <div class="taji-bundle-price" style="font-size:32px; padding-top: 8px;">{{ section.settings.bundle3_price_text | default: 'From $25 each' | escape }}</div>
+          <p class="taji-bundle-per">{{ section.settings.bundle3_per | default: '+ free delivery' | escape }}</p>
+        </div>
+
+        <p class="taji-qty-label">Choose quantity</p>
+        <div class="taji-qty-wrap">
+          <button type="button" class="taji-qty-btn" id="taji-qty-minus">−</button>
+          <input type="number" class="taji-qty-input" id="taji-qty-input" value="3" min="3" max="99" readonly>
+          <button type="button" class="taji-qty-btn" id="taji-qty-plus">+</button>
+        </div>
+
+        <ul class="taji-bundle-perks">
+          {%- if section.settings.bundle3_perk_1 != blank -%}<li>{{ section.settings.bundle3_perk_1 | escape }}</li>{%- endif -%}
+          {%- if section.settings.bundle3_perk_2 != blank -%}<li>{{ section.settings.bundle3_perk_2 | escape }}</li>{%- endif -%}
+          {%- if section.settings.bundle3_perk_3 != blank -%}<li>{{ section.settings.bundle3_perk_3 | escape }}</li>{%- endif -%}
+        </ul>
+
+        <a href="{{ section.settings.bundle3_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
+          {{ section.settings.bundle3_cta | default: 'Shop & Save' | escape }}
+        </a>
+      </div>
+
+    </div>
+
+    {%- if section.settings.free_delivery_text != blank -%}
+    <div class="taji-free-delivery">
+      <span class="taji-free-delivery-icon">🚚</span>
+      <p class="taji-free-delivery-text">{{ section.settings.free_delivery_text | escape }}</p>
+    </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+<script>
+(function() {
+  var variantBtns = document.querySelectorAll('.taji-variant-btn');
+  variantBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      variantBtns.forEach(function(b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+    });
+  });
+
+  var qtyInput = document.getElementById('taji-qty-input');
+  var qtyMinus = document.getElementById('taji-qty-minus');
+  var qtyPlus  = document.getElementById('taji-qty-plus');
+  if (qtyInput && qtyMinus && qtyPlus) {
+    qtyMinus.addEventListener('click', function() {
+      var val = parseInt(qtyInput.value, 10);
+      if (val > 3) qtyInput.value = val - 1;
+    });
+    qtyPlus.addEventListener('click', function() {
+      var val = parseInt(qtyInput.value, 10);
+      qtyInput.value = val + 1;
+    });
+  }
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TAJI Product Bundles",
+  "tag": "div",
+  "class": "taji-product-bundles-page",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Choose Your Crown" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Find Your Perfect Fit." },
+    { "type": "textarea", "id": "subhead", "label": "Subheading", "default": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type." },
+    { "type": "text", "id": "single_currency", "label": "Currency symbol", "default": "$" },
+
+    {
+      "type": "header",
+      "content": "Single Crown"
+    },
+    { "type": "text", "id": "single_label", "label": "Card label", "default": "Single" },
+    { "type": "text", "id": "single_title", "label": "Card title", "default": "One Crown" },
+    { "type": "textarea", "id": "single_desc", "label": "Description", "default": "Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch." },
+    { "type": "text", "id": "single_original_price", "label": "Original price (before discount)", "default": "35" },
+    { "type": "text", "id": "single_price", "label": "Current price", "default": "25" },
+    { "type": "text", "id": "single_per", "label": "Price sublabel", "default": "per crown" },
+    { "type": "text", "id": "variant_1_label", "label": "Variant 1 label", "default": "Nylon" },
+    { "type": "text", "id": "variant_2_label", "label": "Variant 2 label", "default": "Rubber" },
+    { "type": "text", "id": "single_perk_1", "label": "Perk 1", "default": "All-day grip" },
+    { "type": "text", "id": "single_perk_2", "label": "Perk 2", "default": "Lightweight & discreet" },
+    { "type": "text", "id": "single_perk_3", "label": "Perk 3", "default": "Choose your fit" },
+    { "type": "text", "id": "single_cta", "label": "Button text", "default": "Add to Cart" },
+    { "type": "url", "id": "single_cta_url", "label": "Button URL" },
+
+    {
+      "type": "header",
+      "content": "Bundle of 2"
+    },
+    { "type": "text", "id": "bundle2_badge", "label": "Badge text (e.g. Most Popular)", "default": "Most Popular" },
+    { "type": "text", "id": "bundle2_label", "label": "Card label", "default": "Bundle" },
+    { "type": "text", "id": "bundle2_title", "label": "Card title", "default": "Two Crowns" },
+    { "type": "textarea", "id": "bundle2_desc", "label": "Description", "default": "Mix and match — one for everyday wear and one to gift or keep as a spare." },
+    { "type": "text", "id": "bundle2_original_price", "label": "Original price (before discount)", "default": "50" },
+    { "type": "text", "id": "bundle2_price", "label": "Bundle price", "default": "45" },
+    { "type": "text", "id": "bundle2_per", "label": "Price sublabel", "default": "for two crowns" },
+    { "type": "text", "id": "bundle2_perk_1", "label": "Perk 1", "default": "Save $5 vs two singles" },
+    { "type": "text", "id": "bundle2_perk_2", "label": "Perk 2", "default": "Mix Nylon & Rubber" },
+    { "type": "text", "id": "bundle2_perk_3", "label": "Perk 3", "default": "Perfect gift set" },
+    { "type": "text", "id": "bundle2_cta", "label": "Button text", "default": "Add Bundle to Cart" },
+    { "type": "url", "id": "bundle2_cta_url", "label": "Button URL" },
+
+    {
+      "type": "header",
+      "content": "3 or More (Free Delivery)"
+    },
+    { "type": "text", "id": "bundle3_label", "label": "Card label", "default": "Best Value" },
+    { "type": "text", "id": "bundle3_title", "label": "Card title", "default": "Three or More" },
+    { "type": "textarea", "id": "bundle3_desc", "label": "Description", "default": "Stock up or share with your sisters. Free delivery included on all orders of 3 or more." },
+    { "type": "text", "id": "bundle3_price_text", "label": "Price display text", "default": "From $25 each" },
+    { "type": "text", "id": "bundle3_per", "label": "Price sublabel", "default": "+ free delivery" },
+    { "type": "text", "id": "bundle3_perk_1", "label": "Perk 1", "default": "Free delivery included" },
+    { "type": "text", "id": "bundle3_perk_2", "label": "Perk 2", "default": "Mix any variants" },
+    { "type": "text", "id": "bundle3_perk_3", "label": "Perk 3", "default": "Great for gifting" },
+    { "type": "text", "id": "bundle3_cta", "label": "Button text", "default": "Shop & Save" },
+    { "type": "url", "id": "bundle3_cta_url", "label": "Button URL" },
+
+    {
+      "type": "header",
+      "content": "Free Delivery Banner"
+    },
+    { "type": "text", "id": "free_delivery_text", "label": "Banner text", "default": "Order 3 or more crowns and get **free delivery** anywhere in Lebanon." }
+  ],
+  "presets": [
+    { "name": "TAJI Product Bundles" }
+  ]
+}
+{% endschema %}
