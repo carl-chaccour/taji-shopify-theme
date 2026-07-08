@@ -64,7 +64,11 @@
       {%- if p.template_suffix == 'contact-taji' -%}{%- assign taji_contact_url = p.url -%}{%- endif -%}
     {%- endfor -%}
     {%- assign nav_url_1 = section.settings.nav_link_1_url | default: '/' -%}
-    {%- assign nav_url_2 = section.settings.nav_link_2_url | default: routes.all_products_collection_url -%}
+    {%- if section.settings.nav_link_2_url != blank -%}
+      {%- assign nav_url_2 = section.settings.nav_link_2_url -%}
+    {%- else -%}
+      {%- assign nav_url_2 = '/pages/products' -%}
+    {%- endif -%}
     {%- if section.settings.nav_link_3_url != blank -%}
       {%- assign nav_url_3 = section.settings.nav_link_3_url -%}
     {%- elsif taji_about_url != blank -%}
