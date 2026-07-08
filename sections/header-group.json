@@ -277,7 +277,7 @@
         "nav_link_1_label": "Home",
         "nav_link_1_url": "",
         "nav_link_2_label": "Products",
-        "nav_link_2_url": "",
+        "nav_link_2_url": "shopify://pages/products",
         "nav_link_3_label": "About Us",
         "nav_link_3_url": "",
         "nav_link_4_label": "Contact",
