@@ -16,6 +16,7 @@
         "headline": "Find Your Perfect Fit.",
         "subhead": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type.",
         "single_currency": "$",
+        "single_image": "shopify://shop_images/product-angle1.png",
         "single_label": "Single",
         "single_title": "One Crown",
         "single_desc": "Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.",
@@ -28,6 +29,7 @@
         "single_perk_2": "Lightweight & discreet",
         "single_perk_3": "Choose your fit",
         "single_cta": "Add to Cart",
+        "single_cta_url": "",
         "bundle2_badge": "Most Popular",
         "bundle2_label": "Bundle",
         "bundle2_title": "Two Crowns",
@@ -39,6 +41,7 @@
         "bundle2_perk_2": "Mix Nylon & Rubber",
         "bundle2_perk_3": "Perfect gift set",
         "bundle2_cta": "Add Bundle to Cart",
+        "bundle2_cta_url": "",
         "bundle3_label": "Best Value",
         "bundle3_title": "Three or More",
         "bundle3_desc": "Stock up or share with your sisters. Free delivery included on all orders of 3 or more.",
@@ -48,9 +51,12 @@
         "bundle3_perk_2": "Mix any variants",
         "bundle3_perk_3": "Great for gifting",
         "bundle3_cta": "Shop & Save",
+        "bundle3_cta_url": "",
         "free_delivery_text": "Order 3 or more crowns and get free delivery anywhere in Lebanon."
       }
     }
   },
-  "order": ["taji-product"]
+  "order": [
+    "taji-product"
+  ]
 }
