@@ -334,20 +334,10 @@
         "footer_whatsapp_url": "",
         "footer_copy": "© 2025 TAJI. All rights reserved."
       }
-    },
-    "taji_product_fCGEtK": {
-      "type": "taji-product",
-      "name": "TAJI Product Bundles",
-      "settings": {
-        "eyebrow": "Choose Your Crown",
-        "headline": "Find Your Perfect Fit.",
-        "subhead": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type."
-      }
     }
   },
   "order": [
     "featured_collection",
-    "landing_page_U9C9VL",
-    "taji_product_fCGEtK"
+    "landing_page_U9C9VL"
   ]
 }
