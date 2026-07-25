@@ -250,6 +250,8 @@
   }
 </style>
 
+{%- assign taji_product = section.settings.product -%}
+
 <div class="taji-product-page">
   <div class="taji-product-inner">
 
@@ -264,27 +266,47 @@
         <div class="taji-bundle-image-wrap">
           {%- if section.settings.single_image != blank -%}
             <img src="{{ section.settings.single_image | image_url: width: 600 }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" width="600" height="450" />
+          {%- elsif taji_product and taji_product.featured_image -%}
+            <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- else -%}
             <img src="{{ 'product-top.png' | asset_url }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" />
           {%- endif -%}
         </div>
         <p class="taji-bundle-label">{{ section.settings.single_label | default: 'Single' | escape }}</p>
         <h2 class="taji-bundle-title serif">{{ section.settings.single_title | default: 'One Crown' | escape }}</h2>
-        <p class="taji-bundle-desc">{{ section.settings.single_desc | default: 'Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.' | escape }}</p>
+        <p class="taji-bundle-desc">
+          {%- if section.settings.single_desc != blank -%}
+            {{ section.settings.single_desc | escape }}
+          {%- elsif taji_product -%}
+            {{ taji_product.description | strip_html | truncatewords: 30 }}
+          {%- else -%}
+            Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.
+          {%- endif -%}
+        </p>
 
         <div class="taji-bundle-price-wrap">
-          {%- if section.settings.single_original_price != blank -%}
-            <p class="taji-bundle-original">{{ section.settings.single_currency | default: '$' }}{{ section.settings.single_original_price }}</p>
+          {%- if taji_product -%}
+            {%- if taji_product.compare_at_price > taji_product.price -%}
+              <p class="taji-bundle-original">{{ taji_product.compare_at_price | money }}</p>
+            {%- endif -%}
+            <div class="taji-bundle-price">{{ taji_product.price | money }}</div>
+          {%- else -%}
+            {%- if section.settings.single_original_price != blank -%}
+              <p class="taji-bundle-original">{{ section.settings.single_currency | default: '$' }}{{ section.settings.single_original_price }}</p>
+            {%- endif -%}
+            <div class="taji-bundle-price"><sup>{{ section.settings.single_currency | default: '$' }}</sup>{{ section.settings.single_price | default: '25' }}</div>
           {%- endif -%}
-          <div class="taji-bundle-price"><sup>{{ section.settings.single_currency | default: '$' }}</sup>{{ section.settings.single_price | default: '25' }}</div>
           <p class="taji-bundle-per">{{ section.settings.single_per | default: 'per crown' | escape }}</p>
         </div>
 
-        <p class="taji-variant-label">Choose variant</p>
-        <div class="taji-variant-options">
-          <button type="button" class="taji-variant-btn active" data-variant="nylon">{{ section.settings.variant_1_label | default: 'Nylon' | escape }}</button>
-          <button type="button" class="taji-variant-btn" data-variant="rubber">{{ section.settings.variant_2_label | default: 'Rubber' | escape }}</button>
-        </div>
+        {%- if taji_product and taji_product.variants.size > 1 -%}
+          <p class="taji-variant-label">Choose variant</p>
+          <div class="taji-variant-options" id="taji-single-variant-options">
+            {%- for variant in taji_product.variants -%}
+              <button type="button" class="taji-variant-btn{% if forloop.first %} active{% endif %}" data-variant-id="{{ variant.id }}">{{ variant.title }}</button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
 
         <ul class="taji-bundle-perks">
           {%- if section.settings.single_perk_1 != blank -%}<li>{{ section.settings.single_perk_1 | escape }}</li>{%- endif -%}
@@ -292,9 +314,19 @@
           {%- if section.settings.single_perk_3 != blank -%}<li>{{ section.settings.single_perk_3 | escape }}</li>{%- endif -%}
         </ul>
 
-        <a href="{{ section.settings.single_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
-          {{ section.settings.single_cta | default: 'Add to Cart' | escape }}
-        </a>
+        {%- if taji_product -%}
+          {%- form 'product', taji_product, class: 'taji-add-form', id: 'taji-single-form' -%}
+            <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}" class="taji-variant-input">
+            <input type="hidden" name="quantity" value="1">
+            <button type="submit" class="taji-bundle-cta">
+              {{ section.settings.single_cta | default: 'Add to Cart' | escape }}
+            </button>
+          {%- endform -%}
+        {%- else -%}
+          <a href="{{ section.settings.single_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
+            {{ section.settings.single_cta | default: 'Add to Cart' | escape }}
+          </a>
+        {%- endif -%}
       </div>
 
       {%- comment -%} BUNDLE OF 2 CARD {%- endcomment -%}
@@ -305,6 +337,8 @@
         <div class="taji-bundle-image-wrap">
           {%- if section.settings.bundle2_image != blank -%}
             <img src="{{ section.settings.bundle2_image | image_url: width: 600 }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" width="600" height="450" />
+          {%- elsif taji_product and taji_product.featured_image -%}
+            <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- else -%}
             <img src="{{ 'hero-woman.png' | asset_url }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" />
           {%- endif -%}
@@ -327,9 +361,19 @@
           {%- if section.settings.bundle2_perk_3 != blank -%}<li>{{ section.settings.bundle2_perk_3 | escape }}</li>{%- endif -%}
         </ul>
 
-        <a href="{{ section.settings.bundle2_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
-          {{ section.settings.bundle2_cta | default: 'Add Bundle to Cart' | escape }}
-        </a>
+        {%- if taji_product -%}
+          {%- form 'product', taji_product, class: 'taji-add-form' -%}
+            <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="quantity" value="2">
+            <button type="submit" class="taji-bundle-cta">
+              {{ section.settings.bundle2_cta | default: 'Add Bundle to Cart' | escape }}
+            </button>
+          {%- endform -%}
+        {%- else -%}
+          <a href="{{ section.settings.bundle2_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
+            {{ section.settings.bundle2_cta | default: 'Add Bundle to Cart' | escape }}
+          </a>
+        {%- endif -%}
       </div>
 
       {%- comment -%} BUNDLE 3+ CARD {%- endcomment -%}
@@ -337,6 +381,8 @@
         <div class="taji-bundle-image-wrap">
           {%- if section.settings.bundle3_image != blank -%}
             <img src="{{ section.settings.bundle3_image | image_url: width: 600 }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" width="600" height="450" />
+          {%- elsif taji_product and taji_product.featured_image -%}
+            <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- else -%}
             <img src="{{ 'product-angle1.png' | asset_url }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" />
           {%- endif -%}
@@ -350,22 +396,44 @@
           <p class="taji-bundle-per">{{ section.settings.bundle3_per | default: '+ free delivery' | escape }}</p>
         </div>
 
-        <p class="taji-qty-label">Choose quantity</p>
-        <div class="taji-qty-wrap">
-          <button type="button" class="taji-qty-btn" id="taji-qty-minus">−</button>
-          <input type="number" class="taji-qty-input" id="taji-qty-input" value="3" min="3" max="99" readonly>
-          <button type="button" class="taji-qty-btn" id="taji-qty-plus">+</button>
-        </div>
+        {%- if taji_product -%}
+          {%- form 'product', taji_product, class: 'taji-add-form' -%}
+            <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}">
+            <p class="taji-qty-label">Choose quantity</p>
+            <div class="taji-qty-wrap">
+              <button type="button" class="taji-qty-btn" id="taji-qty-minus">−</button>
+              <input type="number" class="taji-qty-input" name="quantity" id="taji-qty-input" value="3" min="3" max="99" readonly>
+              <button type="button" class="taji-qty-btn" id="taji-qty-plus">+</button>
+            </div>
 
-        <ul class="taji-bundle-perks">
-          {%- if section.settings.bundle3_perk_1 != blank -%}<li>{{ section.settings.bundle3_perk_1 | escape }}</li>{%- endif -%}
-          {%- if section.settings.bundle3_perk_2 != blank -%}<li>{{ section.settings.bundle3_perk_2 | escape }}</li>{%- endif -%}
-          {%- if section.settings.bundle3_perk_3 != blank -%}<li>{{ section.settings.bundle3_perk_3 | escape }}</li>{%- endif -%}
-        </ul>
+            <ul class="taji-bundle-perks">
+              {%- if section.settings.bundle3_perk_1 != blank -%}<li>{{ section.settings.bundle3_perk_1 | escape }}</li>{%- endif -%}
+              {%- if section.settings.bundle3_perk_2 != blank -%}<li>{{ section.settings.bundle3_perk_2 | escape }}</li>{%- endif -%}
+              {%- if section.settings.bundle3_perk_3 != blank -%}<li>{{ section.settings.bundle3_perk_3 | escape }}</li>{%- endif -%}
+            </ul>
 
-        <a href="{{ section.settings.bundle3_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
-          {{ section.settings.bundle3_cta | default: 'Shop & Save' | escape }}
-        </a>
+            <button type="submit" class="taji-bundle-cta">
+              {{ section.settings.bundle3_cta | default: 'Shop & Save' | escape }}
+            </button>
+          {%- endform -%}
+        {%- else -%}
+          <p class="taji-qty-label">Choose quantity</p>
+          <div class="taji-qty-wrap">
+            <button type="button" class="taji-qty-btn" id="taji-qty-minus">−</button>
+            <input type="number" class="taji-qty-input" id="taji-qty-input" value="3" min="3" max="99" readonly>
+            <button type="button" class="taji-qty-btn" id="taji-qty-plus">+</button>
+          </div>
+
+          <ul class="taji-bundle-perks">
+            {%- if section.settings.bundle3_perk_1 != blank -%}<li>{{ section.settings.bundle3_perk_1 | escape }}</li>{%- endif -%}
+            {%- if section.settings.bundle3_perk_2 != blank -%}<li>{{ section.settings.bundle3_perk_2 | escape }}</li>{%- endif -%}
+            {%- if section.settings.bundle3_perk_3 != blank -%}<li>{{ section.settings.bundle3_perk_3 | escape }}</li>{%- endif -%}
+          </ul>
+
+          <a href="{{ section.settings.bundle3_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
+            {{ section.settings.bundle3_cta | default: 'Shop & Save' | escape }}
+          </a>
+        {%- endif -%}
       </div>
 
     </div>
@@ -382,11 +450,18 @@
 
 <script>
 (function() {
-  var variantBtns = document.querySelectorAll('.taji-variant-btn');
+  var TAJI_CART_ADD_URL = '{{ routes.cart_add_url }}';
+  var TAJI_CART_URL = '{{ routes.cart_url }}';
+  var singleForm = document.getElementById('taji-single-form');
+  var variantInput = singleForm ? singleForm.querySelector('.taji-variant-input') : null;
+  var variantBtns = document.querySelectorAll('#taji-single-variant-options .taji-variant-btn');
   variantBtns.forEach(function(btn) {
     btn.addEventListener('click', function() {
       variantBtns.forEach(function(b) { b.classList.remove('active'); });
       btn.classList.add('active');
+      if (variantInput && btn.dataset.variantId) {
+        variantInput.value = btn.dataset.variantId;
+      }
     });
   });
 
@@ -403,6 +478,38 @@
       qtyInput.value = val + 1;
     });
   }
+
+  var addForms = document.querySelectorAll('.taji-add-form');
+  addForms.forEach(function(form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var originalText = submitBtn ? submitBtn.textContent : '';
+      if (submitBtn) { submitBtn.textContent = 'Adding...'; submitBtn.disabled = true; }
+
+      fetch(TAJI_CART_ADD_URL + '.js', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify({
+          items: [{
+            id: form.querySelector('input[name="id"]').value,
+            quantity: parseInt(form.querySelector('input[name="quantity"]').value, 10) || 1
+          }]
+        })
+      })
+        .then(function(res) {
+          if (!res.ok) { return res.json().then(function(err) { throw new Error(err.description || 'Could not add to cart'); }); }
+          return res.json();
+        })
+        .then(function() {
+          window.location.href = TAJI_CART_URL;
+        })
+        .catch(function(err) {
+          alert(err.message || 'Something went wrong adding this to your cart.');
+          if (submitBtn) { submitBtn.textContent = originalText; submitBtn.disabled = false; }
+        });
+    });
+  });
 })();
 </script>
 
@@ -416,6 +523,12 @@
     { "type": "text", "id": "headline", "label": "Headline", "default": "Find Your Perfect Fit." },
     { "type": "textarea", "id": "subhead", "label": "Subheading", "default": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type." },
     { "type": "text", "id": "single_currency", "label": "Currency symbol", "default": "$" },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Crown product",
+      "info": "Select the real Shopify product to sell. Price, description, image, and Add to Cart will sync automatically from this product. Leave empty to show placeholder text only."
+    },
 
     {
       "type": "header",
