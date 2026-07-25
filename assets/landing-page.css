@@ -852,7 +852,9 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
   /* MOBILE: full-screen hero image */
   .hero {
     height: 100vh;
+    height: 100dvh;
     min-height: 100vh;
+    min-height: 100dvh;
     padding: 0;
     position: relative;
     overflow: hidden;
