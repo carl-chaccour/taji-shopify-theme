@@ -251,6 +251,10 @@
 </style>
 
 {%- assign taji_product = section.settings.product -%}
+{%- assign taji_has_product = false -%}
+{%- if taji_product != blank -%}
+  {%- assign taji_has_product = true -%}
+{%- endif -%}
 
 <div class="taji-product-page">
   <div class="taji-product-inner">
@@ -266,7 +270,7 @@
         <div class="taji-bundle-image-wrap">
           {%- if section.settings.single_image != blank -%}
             <img src="{{ section.settings.single_image | image_url: width: 600 }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" width="600" height="450" />
-          {%- elsif taji_product and taji_product.featured_image -%}
+          {%- elsif taji_has_product and taji_product.featured_image -%}
             <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- else -%}
             <img src="{{ 'product-top.png' | asset_url }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" />
@@ -277,7 +281,7 @@
         <p class="taji-bundle-desc">
           {%- if section.settings.single_desc != blank -%}
             {{ section.settings.single_desc | escape }}
-          {%- elsif taji_product -%}
+          {%- elsif taji_has_product -%}
             {{ taji_product.description | strip_html | truncatewords: 30 }}
           {%- else -%}
             Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.
@@ -285,7 +289,7 @@
         </p>
 
         <div class="taji-bundle-price-wrap">
-          {%- if taji_product -%}
+          {%- if taji_has_product -%}
             {%- if taji_product.compare_at_price > taji_product.price -%}
               <p class="taji-bundle-original">{{ taji_product.compare_at_price | money }}</p>
             {%- endif -%}
@@ -299,7 +303,7 @@
           <p class="taji-bundle-per">{{ section.settings.single_per | default: 'per crown' | escape }}</p>
         </div>
 
-        {%- if taji_product and taji_product.variants.size > 1 -%}
+        {%- if taji_has_product and taji_product.variants.size > 1 -%}
           <p class="taji-variant-label">Choose variant</p>
           <div class="taji-variant-options" id="taji-single-variant-options">
             {%- for variant in taji_product.variants -%}
@@ -314,7 +318,7 @@
           {%- if section.settings.single_perk_3 != blank -%}<li>{{ section.settings.single_perk_3 | escape }}</li>{%- endif -%}
         </ul>
 
-        {%- if taji_product -%}
+        {%- if taji_has_product -%}
           {%- form 'product', taji_product, class: 'taji-add-form', id: 'taji-single-form' -%}
             <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}" class="taji-variant-input">
             <input type="hidden" name="quantity" value="1">
@@ -337,7 +341,7 @@
         <div class="taji-bundle-image-wrap">
           {%- if section.settings.bundle2_image != blank -%}
             <img src="{{ section.settings.bundle2_image | image_url: width: 600 }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" width="600" height="450" />
-          {%- elsif taji_product and taji_product.featured_image -%}
+          {%- elsif taji_has_product and taji_product.featured_image -%}
             <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- else -%}
             <img src="{{ 'hero-woman.png' | asset_url }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" />
@@ -361,7 +365,7 @@
           {%- if section.settings.bundle2_perk_3 != blank -%}<li>{{ section.settings.bundle2_perk_3 | escape }}</li>{%- endif -%}
         </ul>
 
-        {%- if taji_product -%}
+        {%- if taji_has_product -%}
           {%- form 'product', taji_product, class: 'taji-add-form' -%}
             <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}">
             <input type="hidden" name="quantity" value="2">
@@ -381,7 +385,7 @@
         <div class="taji-bundle-image-wrap">
           {%- if section.settings.bundle3_image != blank -%}
             <img src="{{ section.settings.bundle3_image | image_url: width: 600 }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" width="600" height="450" />
-          {%- elsif taji_product and taji_product.featured_image -%}
+          {%- elsif taji_has_product and taji_product.featured_image -%}
             <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- else -%}
             <img src="{{ 'product-angle1.png' | asset_url }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" />
@@ -396,7 +400,7 @@
           <p class="taji-bundle-per">{{ section.settings.bundle3_per | default: '+ free delivery' | escape }}</p>
         </div>
 
-        {%- if taji_product -%}
+        {%- if taji_has_product -%}
           {%- form 'product', taji_product, class: 'taji-add-form' -%}
             <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}">
             <p class="taji-qty-label">Choose quantity</p>
