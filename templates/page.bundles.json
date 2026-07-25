@@ -14,7 +14,21 @@
       "settings": {
         "eyebrow": "Choose Your Crown",
         "headline": "Find Your Perfect Fit.",
-        "subhead": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type."
+        "subhead": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type.",
+        "nylon_product": "one-crown",
+        "nylon_image": "shopify://shop_images/product-angle1.png",
+        "nylon_label": "Nylon",
+        "nylon_title": "",
+        "nylon_material": "PA12 — Smooth Grip",
+        "nylon_desc": "Nylon for a firm hold or Rubber for a softer touch.",
+        "nylon_cta": "Add to Cart",
+        "rubber_product": "rubber",
+        "rubber_image": "shopify://shop_images/rubber-nobg.png",
+        "rubber_label": "Rubber",
+        "rubber_title": "",
+        "rubber_material": "TPEE — Soft Grip",
+        "rubber_desc": "Best for: fine, silky, or slippery hair. Soft grip, flexible wea",
+        "rubber_cta": "Add to Cart"
       }
     }
   },
