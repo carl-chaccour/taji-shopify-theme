@@ -16,7 +16,7 @@
   }
 
   .taji-product-inner {
-    max-width: 1000px;
+    max-width: 800px;
     margin: 0 auto;
   }
 
@@ -39,11 +39,11 @@
     margin: 0 auto 64px; line-height: 1.7;
   }
 
-  /* BUNDLE CARDS */
+  /* PRODUCT CARDS */
   .taji-bundles {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
     align-items: stretch;
   }
 
@@ -59,18 +59,6 @@
   .taji-bundle-card:hover {
     box-shadow: 0 8px 32px rgba(0,0,0,0.08);
     border-color: var(--gold);
-  }
-
-  .taji-bundle-card.featured {
-    border-color: var(--gold);
-    background: var(--cream);
-  }
-
-  .taji-bundle-badge {
-    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-    background: var(--gold); color: var(--black);
-    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-    font-weight: 600; padding: 5px 16px; white-space: nowrap;
   }
 
   .taji-bundle-image-wrap {
@@ -127,7 +115,7 @@
   }
 
   .taji-bundle-perks {
-    list-style: none; padding: 0; margin: 0 0 32px;
+    list-style: none; padding: 0; margin: 0 0 28px;
     border-top: 1px solid rgba(10,10,10,0.08);
     padding-top: 20px;
   }
@@ -141,33 +129,6 @@
     content: '✦'; color: var(--gold); font-size: 9px; flex-shrink: 0;
   }
 
-  /* VARIANT SELECTOR */
-  .taji-variant-label {
-    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: #888; font-weight: 600; margin-bottom: 10px;
-  }
-
-  .taji-variant-options {
-    display: flex; gap: 8px; margin-bottom: 24px;
-  }
-
-  .taji-variant-btn {
-    flex: 1; padding: 10px 8px;
-    border: 1px solid rgba(10,10,10,0.15);
-    background: transparent; cursor: pointer;
-    font-family: 'Jost', sans-serif;
-    font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--black); font-weight: 500;
-    transition: all 0.2s;
-  }
-
-  .taji-variant-btn:hover,
-  .taji-variant-btn.active {
-    border-color: var(--gold);
-    background: var(--gold);
-    color: var(--black);
-  }
-
   /* QUANTITY SELECTOR */
   .taji-qty-label {
     font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
@@ -177,7 +138,7 @@
   .taji-qty-wrap {
     display: flex; align-items: center; gap: 0;
     border: 1px solid rgba(10,10,10,0.15);
-    width: fit-content; margin-bottom: 24px;
+    width: fit-content; margin-bottom: 20px;
   }
 
   .taji-qty-btn {
@@ -213,48 +174,12 @@
     background: transparent; color: var(--black);
   }
 
-  .taji-bundle-card.featured .taji-bundle-cta {
-    background: var(--gold); border-color: var(--gold); color: var(--black);
-  }
-
-  .taji-bundle-card.featured .taji-bundle-cta:hover {
-    background: var(--black); border-color: var(--black); color: var(--white);
-  }
-
-  /* FREE DELIVERY BANNER */
-  .taji-free-delivery {
-    margin-top: 48px;
-    background: var(--black);
-    padding: 28px 40px;
-    display: flex; align-items: center; justify-content: center;
-    gap: 20px; flex-wrap: wrap;
-  }
-
-  .taji-free-delivery-icon {
-    font-size: 24px;
-  }
-
-  .taji-free-delivery-text {
-    color: var(--white);
-    font-size: 14px; font-weight: 300; letter-spacing: 0.06em;
-  }
-
-  .taji-free-delivery-text strong {
-    color: var(--gold); font-weight: 500;
-  }
-
   @media (max-width: 768px) {
     .taji-product-page { padding: 60px 20px 80px; }
     .taji-bundles { grid-template-columns: 1fr; gap: 32px; }
     .taji-bundle-card { padding: 36px 24px 28px; }
   }
 </style>
-
-{%- assign taji_product = section.settings.product -%}
-{%- assign taji_has_product = false -%}
-{%- if taji_product != blank -%}
-  {%- assign taji_has_product = true -%}
-{%- endif -%}
 
 <div class="taji-product-page">
   <div class="taji-product-inner">
@@ -265,189 +190,127 @@
 
     <div class="taji-bundles">
 
-      {%- comment -%} SINGLE CARD {%- endcomment -%}
+      {%- comment -%} NYLON CARD {%- endcomment -%}
+      {%- assign nylon_product = section.settings.nylon_product -%}
+      {%- assign has_nylon = false -%}
+      {%- if nylon_product != blank -%}{%- assign has_nylon = true -%}{%- endif -%}
+
       <div class="taji-bundle-card">
         <div class="taji-bundle-image-wrap">
-          {%- if section.settings.single_image != blank -%}
-            <img src="{{ section.settings.single_image | image_url: width: 600 }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" width="600" height="450" />
-          {%- elsif taji_has_product and taji_product.featured_image -%}
-            <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
-          {%- else -%}
-            <img src="{{ 'product-top.png' | asset_url }}" alt="{{ section.settings.single_title | default: 'One Crown' | escape }}" loading="lazy" />
+          {%- if section.settings.nylon_image != blank -%}
+            <img src="{{ section.settings.nylon_image | image_url: width: 600 }}" alt="{{ section.settings.nylon_title | default: 'Nylon Crown' | escape }}" loading="lazy" width="600" height="450" />
+          {%- elsif has_nylon and nylon_product.featured_image -%}
+            <img src="{{ nylon_product.featured_image | image_url: width: 600 }}" alt="{{ nylon_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- endif -%}
         </div>
-        <p class="taji-bundle-label">{{ section.settings.single_label | default: 'Single' | escape }}</p>
-        <h2 class="taji-bundle-title serif">{{ section.settings.single_title | default: 'One Crown' | escape }}</h2>
+        <p class="taji-bundle-label">{{ section.settings.nylon_label | default: 'Nylon' | escape }}</p>
+        <h2 class="taji-bundle-title serif">{{ section.settings.nylon_title | default: nylon_product.title | default: 'Nylon Crown' | escape }}</h2>
         <p class="taji-bundle-desc">
-          {%- if section.settings.single_desc != blank -%}
-            {{ section.settings.single_desc | escape }}
-          {%- elsif taji_has_product -%}
-            {{ taji_product.description | strip_html | truncatewords: 30 }}
+          {%- if section.settings.nylon_desc != blank -%}
+            {{ section.settings.nylon_desc | escape }}
+          {%- elsif has_nylon -%}
+            {{ nylon_product.description | strip_html | truncatewords: 30 }}
           {%- else -%}
-            Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch.
+            A firm, secure grip built for all-day wear.
           {%- endif -%}
         </p>
 
-        <div class="taji-bundle-price-wrap">
-          {%- if taji_has_product -%}
-            {%- if taji_product.compare_at_price > taji_product.price -%}
-              <p class="taji-bundle-original">{{ taji_product.compare_at_price | money }}</p>
+        {%- if has_nylon -%}
+          <div class="taji-bundle-price-wrap">
+            {%- if nylon_product.compare_at_price > nylon_product.price -%}
+              <p class="taji-bundle-original">{{ nylon_product.compare_at_price | money }}</p>
             {%- endif -%}
-            <div class="taji-bundle-price">{{ taji_product.price | money }}</div>
-          {%- else -%}
-            {%- if section.settings.single_original_price != blank -%}
-              <p class="taji-bundle-original">{{ section.settings.single_currency | default: '$' }}{{ section.settings.single_original_price }}</p>
-            {%- endif -%}
-            <div class="taji-bundle-price"><sup>{{ section.settings.single_currency | default: '$' }}</sup>{{ section.settings.single_price | default: '25' }}</div>
-          {%- endif -%}
-          <p class="taji-bundle-per">{{ section.settings.single_per | default: 'per crown' | escape }}</p>
-        </div>
-
-        {%- if taji_has_product and taji_product.variants.size > 1 -%}
-          <p class="taji-variant-label">Choose variant</p>
-          <div class="taji-variant-options" id="taji-single-variant-options">
-            {%- for variant in taji_product.variants -%}
-              <button type="button" class="taji-variant-btn{% if forloop.first %} active{% endif %}" data-variant-id="{{ variant.id }}">{{ variant.title }}</button>
-            {%- endfor -%}
+            <div class="taji-bundle-price">{{ nylon_product.price | money }}</div>
           </div>
         {%- endif -%}
 
         <ul class="taji-bundle-perks">
-          {%- if section.settings.single_perk_1 != blank -%}<li>{{ section.settings.single_perk_1 | escape }}</li>{%- endif -%}
-          {%- if section.settings.single_perk_2 != blank -%}<li>{{ section.settings.single_perk_2 | escape }}</li>{%- endif -%}
-          {%- if section.settings.single_perk_3 != blank -%}<li>{{ section.settings.single_perk_3 | escape }}</li>{%- endif -%}
+          {%- if section.settings.nylon_perk_1 != blank -%}<li>{{ section.settings.nylon_perk_1 | escape }}</li>{%- endif -%}
+          {%- if section.settings.nylon_perk_2 != blank -%}<li>{{ section.settings.nylon_perk_2 | escape }}</li>{%- endif -%}
+          {%- if section.settings.nylon_perk_3 != blank -%}<li>{{ section.settings.nylon_perk_3 | escape }}</li>{%- endif -%}
         </ul>
 
-        {%- if taji_has_product -%}
-          {%- form 'product', taji_product, class: 'taji-add-form', id: 'taji-single-form' -%}
-            <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}" class="taji-variant-input">
-            <input type="hidden" name="quantity" value="1">
+        {%- if has_nylon -%}
+          {%- form 'product', nylon_product, class: 'taji-add-form' -%}
+            <input type="hidden" name="id" value="{{ nylon_product.selected_or_first_available_variant.id }}">
+            <p class="taji-qty-label">Quantity</p>
+            <div class="taji-qty-wrap">
+              <button type="button" class="taji-qty-btn taji-qty-minus">−</button>
+              <input type="number" class="taji-qty-input" name="quantity" value="1" min="1" max="99" readonly>
+              <button type="button" class="taji-qty-btn taji-qty-plus">+</button>
+            </div>
             <button type="submit" class="taji-bundle-cta">
-              {{ section.settings.single_cta | default: 'Add to Cart' | escape }}
+              {{ section.settings.nylon_cta | default: 'Add to Cart' | escape }}
             </button>
           {%- endform -%}
         {%- else -%}
-          <a href="{{ section.settings.single_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
-            {{ section.settings.single_cta | default: 'Add to Cart' | escape }}
+          <a href="{{ routes.all_products_collection_url }}" class="taji-bundle-cta">
+            {{ section.settings.nylon_cta | default: 'Add to Cart' | escape }}
           </a>
         {%- endif -%}
       </div>
 
-      {%- comment -%} BUNDLE OF 2 CARD {%- endcomment -%}
-      <div class="taji-bundle-card featured">
-        {%- if section.settings.bundle2_badge != blank -%}
-          <div class="taji-bundle-badge">{{ section.settings.bundle2_badge | escape }}</div>
-        {%- endif -%}
-        <div class="taji-bundle-image-wrap">
-          {%- if section.settings.bundle2_image != blank -%}
-            <img src="{{ section.settings.bundle2_image | image_url: width: 600 }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" width="600" height="450" />
-          {%- elsif taji_has_product and taji_product.featured_image -%}
-            <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
-          {%- else -%}
-            <img src="{{ 'hero-woman.png' | asset_url }}" alt="{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}" loading="lazy" />
-          {%- endif -%}
-        </div>
-        <p class="taji-bundle-label">{{ section.settings.bundle2_label | default: 'Bundle' | escape }}</p>
-        <h2 class="taji-bundle-title serif">{{ section.settings.bundle2_title | default: 'Two Crowns' | escape }}</h2>
-        <p class="taji-bundle-desc">{{ section.settings.bundle2_desc | default: 'Mix and match — one for everyday wear and one to gift or keep as a spare.' | escape }}</p>
+      {%- comment -%} RUBBER CARD {%- endcomment -%}
+      {%- assign rubber_product = section.settings.rubber_product -%}
+      {%- assign has_rubber = false -%}
+      {%- if rubber_product != blank -%}{%- assign has_rubber = true -%}{%- endif -%}
 
-        <div class="taji-bundle-price-wrap">
-          {%- if section.settings.bundle2_original_price != blank -%}
-            <p class="taji-bundle-original">{{ section.settings.single_currency | default: '$' }}{{ section.settings.bundle2_original_price }}</p>
-          {%- endif -%}
-          <div class="taji-bundle-price"><sup>{{ section.settings.single_currency | default: '$' }}</sup>{{ section.settings.bundle2_price | default: '45' }}</div>
-          <p class="taji-bundle-per">{{ section.settings.bundle2_per | default: 'for two crowns' | escape }}</p>
-        </div>
-
-        <ul class="taji-bundle-perks">
-          {%- if section.settings.bundle2_perk_1 != blank -%}<li>{{ section.settings.bundle2_perk_1 | escape }}</li>{%- endif -%}
-          {%- if section.settings.bundle2_perk_2 != blank -%}<li>{{ section.settings.bundle2_perk_2 | escape }}</li>{%- endif -%}
-          {%- if section.settings.bundle2_perk_3 != blank -%}<li>{{ section.settings.bundle2_perk_3 | escape }}</li>{%- endif -%}
-        </ul>
-
-        {%- if taji_has_product -%}
-          {%- form 'product', taji_product, class: 'taji-add-form' -%}
-            <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}">
-            <input type="hidden" name="quantity" value="2">
-            <button type="submit" class="taji-bundle-cta">
-              {{ section.settings.bundle2_cta | default: 'Add Bundle to Cart' | escape }}
-            </button>
-          {%- endform -%}
-        {%- else -%}
-          <a href="{{ section.settings.bundle2_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
-            {{ section.settings.bundle2_cta | default: 'Add Bundle to Cart' | escape }}
-          </a>
-        {%- endif -%}
-      </div>
-
-      {%- comment -%} BUNDLE 3+ CARD {%- endcomment -%}
       <div class="taji-bundle-card">
         <div class="taji-bundle-image-wrap">
-          {%- if section.settings.bundle3_image != blank -%}
-            <img src="{{ section.settings.bundle3_image | image_url: width: 600 }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" width="600" height="450" />
-          {%- elsif taji_has_product and taji_product.featured_image -%}
-            <img src="{{ taji_product.featured_image | image_url: width: 600 }}" alt="{{ taji_product.title | escape }}" loading="lazy" width="600" height="450" />
-          {%- else -%}
-            <img src="{{ 'product-angle1.png' | asset_url }}" alt="{{ section.settings.bundle3_title | default: 'Three or More' | escape }}" loading="lazy" />
+          {%- if section.settings.rubber_image != blank -%}
+            <img src="{{ section.settings.rubber_image | image_url: width: 600 }}" alt="{{ section.settings.rubber_title | default: 'Rubber Crown' | escape }}" loading="lazy" width="600" height="450" />
+          {%- elsif has_rubber and rubber_product.featured_image -%}
+            <img src="{{ rubber_product.featured_image | image_url: width: 600 }}" alt="{{ rubber_product.title | escape }}" loading="lazy" width="600" height="450" />
           {%- endif -%}
         </div>
-        <p class="taji-bundle-label">{{ section.settings.bundle3_label | default: 'Best Value' | escape }}</p>
-        <h2 class="taji-bundle-title serif">{{ section.settings.bundle3_title | default: 'Three or More' | escape }}</h2>
-        <p class="taji-bundle-desc">{{ section.settings.bundle3_desc | default: 'Stock up or share with your sisters. Free delivery included on all orders of 3 or more.' | escape }}</p>
+        <p class="taji-bundle-label">{{ section.settings.rubber_label | default: 'Rubber' | escape }}</p>
+        <h2 class="taji-bundle-title serif">{{ section.settings.rubber_title | default: rubber_product.title | default: 'Rubber Crown' | escape }}</h2>
+        <p class="taji-bundle-desc">
+          {%- if section.settings.rubber_desc != blank -%}
+            {{ section.settings.rubber_desc | escape }}
+          {%- elsif has_rubber -%}
+            {{ rubber_product.description | strip_html | truncatewords: 30 }}
+          {%- else -%}
+            A softer touch, gentle on fine or delicate hair.
+          {%- endif -%}
+        </p>
 
-        <div class="taji-bundle-price-wrap">
-          <div class="taji-bundle-price" style="font-size:32px; padding-top: 8px;">{{ section.settings.bundle3_price_text | default: 'From $25 each' | escape }}</div>
-          <p class="taji-bundle-per">{{ section.settings.bundle3_per | default: '+ free delivery' | escape }}</p>
-        </div>
+        {%- if has_rubber -%}
+          <div class="taji-bundle-price-wrap">
+            {%- if rubber_product.compare_at_price > rubber_product.price -%}
+              <p class="taji-bundle-original">{{ rubber_product.compare_at_price | money }}</p>
+            {%- endif -%}
+            <div class="taji-bundle-price">{{ rubber_product.price | money }}</div>
+          </div>
+        {%- endif -%}
 
-        {%- if taji_has_product -%}
-          {%- form 'product', taji_product, class: 'taji-add-form' -%}
-            <input type="hidden" name="id" value="{{ taji_product.selected_or_first_available_variant.id }}">
-            <p class="taji-qty-label">Choose quantity</p>
+        <ul class="taji-bundle-perks">
+          {%- if section.settings.rubber_perk_1 != blank -%}<li>{{ section.settings.rubber_perk_1 | escape }}</li>{%- endif -%}
+          {%- if section.settings.rubber_perk_2 != blank -%}<li>{{ section.settings.rubber_perk_2 | escape }}</li>{%- endif -%}
+          {%- if section.settings.rubber_perk_3 != blank -%}<li>{{ section.settings.rubber_perk_3 | escape }}</li>{%- endif -%}
+        </ul>
+
+        {%- if has_rubber -%}
+          {%- form 'product', rubber_product, class: 'taji-add-form' -%}
+            <input type="hidden" name="id" value="{{ rubber_product.selected_or_first_available_variant.id }}">
+            <p class="taji-qty-label">Quantity</p>
             <div class="taji-qty-wrap">
-              <button type="button" class="taji-qty-btn" id="taji-qty-minus">−</button>
-              <input type="number" class="taji-qty-input" name="quantity" id="taji-qty-input" value="3" min="3" max="99" readonly>
-              <button type="button" class="taji-qty-btn" id="taji-qty-plus">+</button>
+              <button type="button" class="taji-qty-btn taji-qty-minus">−</button>
+              <input type="number" class="taji-qty-input" name="quantity" value="1" min="1" max="99" readonly>
+              <button type="button" class="taji-qty-btn taji-qty-plus">+</button>
             </div>
-
-            <ul class="taji-bundle-perks">
-              {%- if section.settings.bundle3_perk_1 != blank -%}<li>{{ section.settings.bundle3_perk_1 | escape }}</li>{%- endif -%}
-              {%- if section.settings.bundle3_perk_2 != blank -%}<li>{{ section.settings.bundle3_perk_2 | escape }}</li>{%- endif -%}
-              {%- if section.settings.bundle3_perk_3 != blank -%}<li>{{ section.settings.bundle3_perk_3 | escape }}</li>{%- endif -%}
-            </ul>
-
             <button type="submit" class="taji-bundle-cta">
-              {{ section.settings.bundle3_cta | default: 'Shop & Save' | escape }}
+              {{ section.settings.rubber_cta | default: 'Add to Cart' | escape }}
             </button>
           {%- endform -%}
         {%- else -%}
-          <p class="taji-qty-label">Choose quantity</p>
-          <div class="taji-qty-wrap">
-            <button type="button" class="taji-qty-btn" id="taji-qty-minus">−</button>
-            <input type="number" class="taji-qty-input" id="taji-qty-input" value="3" min="3" max="99" readonly>
-            <button type="button" class="taji-qty-btn" id="taji-qty-plus">+</button>
-          </div>
-
-          <ul class="taji-bundle-perks">
-            {%- if section.settings.bundle3_perk_1 != blank -%}<li>{{ section.settings.bundle3_perk_1 | escape }}</li>{%- endif -%}
-            {%- if section.settings.bundle3_perk_2 != blank -%}<li>{{ section.settings.bundle3_perk_2 | escape }}</li>{%- endif -%}
-            {%- if section.settings.bundle3_perk_3 != blank -%}<li>{{ section.settings.bundle3_perk_3 | escape }}</li>{%- endif -%}
-          </ul>
-
-          <a href="{{ section.settings.bundle3_cta_url | default: routes.all_products_collection_url }}" class="taji-bundle-cta">
-            {{ section.settings.bundle3_cta | default: 'Shop & Save' | escape }}
+          <a href="{{ routes.all_products_collection_url }}" class="taji-bundle-cta">
+            {{ section.settings.rubber_cta | default: 'Add to Cart' | escape }}
           </a>
         {%- endif -%}
       </div>
 
     </div>
-
-    {%- if section.settings.free_delivery_text != blank -%}
-    <div class="taji-free-delivery">
-      <span class="taji-free-delivery-icon">🚚</span>
-      <p class="taji-free-delivery-text">{{ section.settings.free_delivery_text | escape }}</p>
-    </div>
-    {%- endif -%}
 
   </div>
 </div>
@@ -456,35 +319,24 @@
 (function() {
   var TAJI_CART_ADD_URL = '{{ routes.cart_add_url }}';
   var TAJI_CART_URL = '{{ routes.cart_url }}';
-  var singleForm = document.getElementById('taji-single-form');
-  var variantInput = singleForm ? singleForm.querySelector('.taji-variant-input') : null;
-  var variantBtns = document.querySelectorAll('#taji-single-variant-options .taji-variant-btn');
-  variantBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      variantBtns.forEach(function(b) { b.classList.remove('active'); });
-      btn.classList.add('active');
-      if (variantInput && btn.dataset.variantId) {
-        variantInput.value = btn.dataset.variantId;
-      }
-    });
+
+  document.querySelectorAll('.taji-bundle-card').forEach(function(card) {
+    var qtyInput = card.querySelector('.taji-qty-input');
+    var qtyMinus = card.querySelector('.taji-qty-minus');
+    var qtyPlus  = card.querySelector('.taji-qty-plus');
+    if (qtyInput && qtyMinus && qtyPlus) {
+      qtyMinus.addEventListener('click', function() {
+        var val = parseInt(qtyInput.value, 10);
+        if (val > 1) qtyInput.value = val - 1;
+      });
+      qtyPlus.addEventListener('click', function() {
+        var val = parseInt(qtyInput.value, 10);
+        qtyInput.value = val + 1;
+      });
+    }
   });
 
-  var qtyInput = document.getElementById('taji-qty-input');
-  var qtyMinus = document.getElementById('taji-qty-minus');
-  var qtyPlus  = document.getElementById('taji-qty-plus');
-  if (qtyInput && qtyMinus && qtyPlus) {
-    qtyMinus.addEventListener('click', function() {
-      var val = parseInt(qtyInput.value, 10);
-      if (val > 3) qtyInput.value = val - 1;
-    });
-    qtyPlus.addEventListener('click', function() {
-      var val = parseInt(qtyInput.value, 10);
-      qtyInput.value = val + 1;
-    });
-  }
-
-  var addForms = document.querySelectorAll('.taji-add-form');
-  addForms.forEach(function(form) {
+  document.querySelectorAll('.taji-add-form').forEach(function(form) {
     form.addEventListener('submit', function(e) {
       e.preventDefault();
       var submitBtn = form.querySelector('button[type="submit"]');
@@ -526,72 +378,44 @@
     { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Choose Your Crown" },
     { "type": "text", "id": "headline", "label": "Headline", "default": "Find Your Perfect Fit." },
     { "type": "textarea", "id": "subhead", "label": "Subheading", "default": "Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type." },
-    { "type": "text", "id": "single_currency", "label": "Currency symbol", "default": "$" },
+
+    {
+      "type": "header",
+      "content": "Nylon Crown"
+    },
     {
       "type": "product",
-      "id": "product",
-      "label": "Crown product",
-      "info": "Select the real Shopify product to sell. Price, description, image, and Add to Cart will sync automatically from this product. Leave empty to show placeholder text only."
+      "id": "nylon_product",
+      "label": "Nylon product",
+      "info": "Price, description, image, and Add to Cart sync automatically from this product."
     },
+    { "type": "image_picker", "id": "nylon_image", "label": "Card image (overrides product image)" },
+    { "type": "text", "id": "nylon_label", "label": "Card label", "default": "Nylon" },
+    { "type": "text", "id": "nylon_title", "label": "Card title (overrides product title)" },
+    { "type": "textarea", "id": "nylon_desc", "label": "Description (overrides product description)" },
+    { "type": "text", "id": "nylon_perk_1", "label": "Perk 1", "default": "Firm, secure hold" },
+    { "type": "text", "id": "nylon_perk_2", "label": "Perk 2", "default": "Best for thick hair" },
+    { "type": "text", "id": "nylon_perk_3", "label": "Perk 3", "default": "Lightweight & discreet" },
+    { "type": "text", "id": "nylon_cta", "label": "Button text", "default": "Add to Cart" },
 
     {
       "type": "header",
-      "content": "Single Crown"
+      "content": "Rubber Crown"
     },
-    { "type": "image_picker", "id": "single_image", "label": "Card image" },
-    { "type": "text", "id": "single_label", "label": "Card label", "default": "Single" },
-    { "type": "text", "id": "single_title", "label": "Card title", "default": "One Crown" },
-    { "type": "textarea", "id": "single_desc", "label": "Description", "default": "Choose your preferred grip type — Nylon for a firm hold or Rubber for a softer touch." },
-    { "type": "text", "id": "single_original_price", "label": "Original price (before discount)", "default": "35" },
-    { "type": "text", "id": "single_price", "label": "Current price", "default": "25" },
-    { "type": "text", "id": "single_per", "label": "Price sublabel", "default": "per crown" },
-    { "type": "text", "id": "variant_1_label", "label": "Variant 1 label", "default": "Nylon" },
-    { "type": "text", "id": "variant_2_label", "label": "Variant 2 label", "default": "Rubber" },
-    { "type": "text", "id": "single_perk_1", "label": "Perk 1", "default": "All-day grip" },
-    { "type": "text", "id": "single_perk_2", "label": "Perk 2", "default": "Lightweight & discreet" },
-    { "type": "text", "id": "single_perk_3", "label": "Perk 3", "default": "Choose your fit" },
-    { "type": "text", "id": "single_cta", "label": "Button text", "default": "Add to Cart" },
-    { "type": "url", "id": "single_cta_url", "label": "Button URL" },
-
     {
-      "type": "header",
-      "content": "Bundle of 2"
+      "type": "product",
+      "id": "rubber_product",
+      "label": "Rubber product",
+      "info": "Price, description, image, and Add to Cart sync automatically from this product."
     },
-    { "type": "image_picker", "id": "bundle2_image", "label": "Card image" },
-    { "type": "text", "id": "bundle2_badge", "label": "Badge text (e.g. Most Popular)", "default": "Most Popular" },
-    { "type": "text", "id": "bundle2_label", "label": "Card label", "default": "Bundle" },
-    { "type": "text", "id": "bundle2_title", "label": "Card title", "default": "Two Crowns" },
-    { "type": "textarea", "id": "bundle2_desc", "label": "Description", "default": "Mix and match — one for everyday wear and one to gift or keep as a spare." },
-    { "type": "text", "id": "bundle2_original_price", "label": "Original price (before discount)", "default": "50" },
-    { "type": "text", "id": "bundle2_price", "label": "Bundle price", "default": "45" },
-    { "type": "text", "id": "bundle2_per", "label": "Price sublabel", "default": "for two crowns" },
-    { "type": "text", "id": "bundle2_perk_1", "label": "Perk 1", "default": "Save $5 vs two singles" },
-    { "type": "text", "id": "bundle2_perk_2", "label": "Perk 2", "default": "Mix Nylon & Rubber" },
-    { "type": "text", "id": "bundle2_perk_3", "label": "Perk 3", "default": "Perfect gift set" },
-    { "type": "text", "id": "bundle2_cta", "label": "Button text", "default": "Add Bundle to Cart" },
-    { "type": "url", "id": "bundle2_cta_url", "label": "Button URL" },
-
-    {
-      "type": "header",
-      "content": "3 or More (Free Delivery)"
-    },
-    { "type": "image_picker", "id": "bundle3_image", "label": "Card image" },
-    { "type": "text", "id": "bundle3_label", "label": "Card label", "default": "Best Value" },
-    { "type": "text", "id": "bundle3_title", "label": "Card title", "default": "Three or More" },
-    { "type": "textarea", "id": "bundle3_desc", "label": "Description", "default": "Stock up or share with your sisters. Free delivery included on all orders of 3 or more." },
-    { "type": "text", "id": "bundle3_price_text", "label": "Price display text", "default": "From $25 each" },
-    { "type": "text", "id": "bundle3_per", "label": "Price sublabel", "default": "+ free delivery" },
-    { "type": "text", "id": "bundle3_perk_1", "label": "Perk 1", "default": "Free delivery included" },
-    { "type": "text", "id": "bundle3_perk_2", "label": "Perk 2", "default": "Mix any variants" },
-    { "type": "text", "id": "bundle3_perk_3", "label": "Perk 3", "default": "Great for gifting" },
-    { "type": "text", "id": "bundle3_cta", "label": "Button text", "default": "Shop & Save" },
-    { "type": "url", "id": "bundle3_cta_url", "label": "Button URL" },
-
-    {
-      "type": "header",
-      "content": "Free Delivery Banner"
-    },
-    { "type": "text", "id": "free_delivery_text", "label": "Banner text", "default": "Order 3 or more crowns and get **free delivery** anywhere in Lebanon." }
+    { "type": "image_picker", "id": "rubber_image", "label": "Card image (overrides product image)" },
+    { "type": "text", "id": "rubber_label", "label": "Card label", "default": "Rubber" },
+    { "type": "text", "id": "rubber_title", "label": "Card title (overrides product title)" },
+    { "type": "textarea", "id": "rubber_desc", "label": "Description (overrides product description)" },
+    { "type": "text", "id": "rubber_perk_1", "label": "Perk 1", "default": "Soft, gentle grip" },
+    { "type": "text", "id": "rubber_perk_2", "label": "Perk 2", "default": "Best for fine hair" },
+    { "type": "text", "id": "rubber_perk_3", "label": "Perk 3", "default": "Lightweight & discreet" },
+    { "type": "text", "id": "rubber_cta", "label": "Button text", "default": "Add to Cart" }
   ],
   "presets": [
     { "name": "TAJI Product Bundles" }
