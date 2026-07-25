@@ -92,7 +92,7 @@
         </a>
       </div>
       <!-- Shop Now: desktop only -->
-      <a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}" class="btn-nav">
+      <a href="{{ section.settings.nav_shop_btn_url | default: nav_url_2 }}" class="btn-nav">
         {{- section.settings.nav_shop_btn_text | default: 'Shop Now' -}}
       </a>
     </div>
@@ -117,7 +117,7 @@
     {%- endif -%}
   </ul>
   <div class="nav-drawer-cta">
-    <a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}" class="btn-primary">
+    <a href="{{ section.settings.nav_shop_btn_url | default: nav_url_2 }}" class="btn-primary">
       {{- section.settings.nav_shop_btn_text | default: 'Shop Now' -}}
     </a>
   </div>
@@ -142,7 +142,7 @@
         <p class="hero-arabic">{{ section.settings.hero_arabic | escape }}</p>
       {%- endif -%}
       <div class="hero-cta-wrap">
-        <a href="{{ section.settings.hero_cta_url | default: routes.all_products_collection_url }}" class="btn-primary">
+        <a href="{{ section.settings.hero_cta_url | default: nav_url_2 }}" class="btn-primary">
           {{- section.settings.hero_cta_text | default: 'Crown Yourself →' -}}
         </a>
       </div>
@@ -243,7 +243,7 @@
             {%- endfor -%}
           </ul>
         {%- endif -%}
-        <a href="{{ section.settings.product_shop_url | default: routes.all_products_collection_url }}" class="btn-primary">
+        <a href="{{ section.settings.product_shop_url | default: nav_url_2 }}" class="btn-primary">
           {{- section.settings.product_shop_text | default: 'Shop The Crown' -}}
         </a>
       </div>
@@ -752,7 +752,7 @@
       <p class="variant-no-product">No product selected — assign one in the theme editor</p>
     {%- endif -%}
     <a
-      href="{{ section.settings.cta_fallback_url | default: routes.all_products_collection_url }}"
+      href="{{ section.settings.cta_fallback_url | default: nav_url_2 }}"
       class="btn-primary final-cta-btn"
     >
       {{- section.settings.cta_button_text | default: 'Shop Now' -}}
@@ -801,7 +801,7 @@
             <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label | escape }}</a></li>
           {%- endif -%}
           {%- if section.settings.nav_shop_btn_text != blank -%}
-            <li><a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}">{{ section.settings.nav_shop_btn_text | escape }}</a></li>
+            <li><a href="{{ section.settings.nav_shop_btn_url | default: nav_url_2 }}">{{ section.settings.nav_shop_btn_text | escape }}</a></li>
           {%- endif -%}
         </ul>
       </div>
