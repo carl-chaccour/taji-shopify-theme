@@ -1,252 +1,85 @@
 {{ 'landing-page.css' | asset_url | stylesheet_tag }}
 
 <style>
-  :root {
-    --gold: #D4B36F;
-    --black: #0A0A0A;
-    --cream: #FAF8F4;
-    --cream-alt: #F2EDE6;
-    --white: #ffffff;
-  }
-
-  .taji-product-page {
-    background: var(--cream);
-    padding: 80px 32px 120px;
-    font-family: 'Jost', sans-serif;
-  }
-
-  .taji-product-inner {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-
-  .taji-product-eyebrow {
-    font-size: 11px; letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gold); font-weight: 600; margin-bottom: 16px;
-    text-align: center;
-  }
-
-  .taji-product-headline {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(32px, 4vw, 52px);
-    font-weight: 400; color: var(--black);
-    text-align: center; margin-bottom: 12px; line-height: 1.2;
-  }
-
   .taji-product-subhead {
     font-size: 15px; font-weight: 300; color: #666;
     text-align: center; max-width: 520px;
-    margin: 0 auto 64px; line-height: 1.7;
+    margin: -32px auto 56px; line-height: 1.7;
   }
-
-  /* PRODUCT CARDS */
-  .taji-bundles {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 32px;
-    align-items: stretch;
-  }
-
-  .taji-bundle-card {
-    background: var(--white);
-    border: 1px solid rgba(10,10,10,0.1);
-    padding: 40px 32px 36px;
-    display: flex; flex-direction: column;
-    position: relative;
-    transition: box-shadow 0.25s, border-color 0.25s;
-  }
-
-  .taji-bundle-card:hover {
-    box-shadow: 0 8px 32px rgba(0,0,0,0.08);
-    border-color: var(--gold);
-  }
-
-  .taji-bundle-image-wrap {
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    overflow: hidden;
-    margin-bottom: 24px;
-    background: var(--cream-alt);
-  }
-
-  .taji-bundle-image-wrap img {
-    width: 100%; height: 100%;
-    object-fit: cover; display: block;
-  }
-
-  .taji-bundle-label {
-    font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--gold); font-weight: 600; margin-bottom: 10px;
-  }
-
-  .taji-bundle-title {
+  .taji-variant-price {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 26px; font-weight: 400; color: var(--black);
-    margin-bottom: 8px; line-height: 1.2;
+    font-size: 24px; font-weight: 400;
+    color: var(--black); margin-bottom: 24px;
   }
-
-  .taji-bundle-desc {
-    font-size: 13px; font-weight: 300; color: #777;
-    line-height: 1.7; margin-bottom: 28px; flex: 1;
-  }
-
-  .taji-bundle-price-wrap {
-    margin-bottom: 24px;
-  }
-
-  .taji-bundle-original {
-    font-size: 14px; color: #aaa; text-decoration: line-through;
-    font-weight: 300; margin-bottom: 4px;
-  }
-
-  .taji-bundle-price {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 42px; font-weight: 400; color: var(--black);
-    line-height: 1;
-  }
-
-  .taji-bundle-price sup {
-    font-size: 20px; vertical-align: super; line-height: 0;
-  }
-
-  .taji-bundle-per {
-    font-size: 12px; color: #999; font-weight: 300;
-    margin-top: 4px; letter-spacing: 0.04em;
-  }
-
-  .taji-bundle-perks {
-    list-style: none; padding: 0; margin: 0 0 28px;
-    border-top: 1px solid rgba(10,10,10,0.08);
-    padding-top: 20px;
-  }
-
-  .taji-bundle-perks li {
-    font-size: 13px; font-weight: 300; color: #555;
-    padding: 6px 0; display: flex; align-items: center; gap: 10px;
-  }
-
-  .taji-bundle-perks li::before {
-    content: '✦'; color: var(--gold); font-size: 9px; flex-shrink: 0;
-  }
-
-  /* QUANTITY SELECTOR */
-  .taji-qty-label {
-    font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: #888; font-weight: 600; margin-bottom: 10px;
-  }
-
-  .taji-qty-wrap {
-    display: flex; align-items: center; gap: 0;
-    border: 1px solid rgba(10,10,10,0.15);
-    width: fit-content; margin-bottom: 20px;
-  }
-
-  .taji-qty-btn {
-    width: 36px; height: 36px; background: none;
-    border: none; cursor: pointer;
-    font-size: 18px; color: var(--black);
-    display: flex; align-items: center; justify-content: center;
-    font-weight: 300;
-  }
-
-  .taji-qty-input {
-    width: 44px; height: 36px; border: none;
-    border-left: 1px solid rgba(10,10,10,0.1);
-    border-right: 1px solid rgba(10,10,10,0.1);
-    text-align: center; font-family: 'Jost', sans-serif;
-    font-size: 14px; font-weight: 400; color: var(--black);
-    background: transparent; outline: none;
-  }
-
-  /* BUTTONS */
-  .taji-bundle-cta {
-    display: block; width: 100%;
-    padding: 15px 24px;
-    background: var(--black); color: var(--white);
-    text-align: center; cursor: pointer;
-    font-family: 'Jost', sans-serif;
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    font-weight: 500; border: 1px solid var(--black);
-    transition: all 0.25s; text-decoration: none;
-  }
-
-  .taji-bundle-cta:hover {
-    background: transparent; color: var(--black);
-  }
-
-  @media (max-width: 768px) {
-    .taji-product-page { padding: 60px 20px 80px; }
-    .taji-bundles { grid-template-columns: 1fr; gap: 32px; }
-    .taji-bundle-card { padding: 36px 24px 28px; }
+  .taji-variant-price .taji-price-original {
+    font-size: 15px; color: #aaa; text-decoration: line-through;
+    font-weight: 300; margin-right: 8px;
   }
 </style>
 
-<div class="taji-product-page">
-  <div class="taji-product-inner">
+{%- comment -%} ======= VARIANTS / COLLECTION (same design as homepage) ======= {%- endcomment -%}
+<section class="section section-white" id="taji-product-collection">
+  <div class="section-inner">
+    <p class="section-eyebrow">{{ section.settings.eyebrow | default: 'Choose Your Crown' | escape }}</p>
+    <h2 class="section-headline serif">{{ section.settings.headline | default: 'Find Your Perfect Fit.' | escape }}</h2>
+    {%- if section.settings.subhead != blank -%}
+      <p class="taji-product-subhead">{{ section.settings.subhead | escape }}</p>
+    {%- endif -%}
 
-    <p class="taji-product-eyebrow">{{ section.settings.eyebrow | default: 'Choose Your Crown' | escape }}</p>
-    <h1 class="taji-product-headline serif">{{ section.settings.headline | default: 'Find Your Perfect Fit.' | escape }}</h1>
-    <p class="taji-product-subhead">{{ section.settings.subhead | default: 'Every TAJI crown is engineered for all-day grip. Choose the variant that works best for your hair type.' | escape }}</p>
-
-    <div class="taji-bundles">
+    <div class="variants-grid">
 
       {%- comment -%} NYLON CARD {%- endcomment -%}
       {%- assign nylon_product = section.settings.nylon_product -%}
       {%- assign has_nylon = false -%}
       {%- if nylon_product != blank -%}{%- assign has_nylon = true -%}{%- endif -%}
 
-      <div class="taji-bundle-card">
-        <div class="taji-bundle-image-wrap">
+      <div class="variant-card">
+        <div class="variant-img-box">
           {%- if section.settings.nylon_image != blank -%}
-            <img src="{{ section.settings.nylon_image | image_url: width: 600 }}" alt="{{ section.settings.nylon_title | default: 'Nylon Crown' | escape }}" loading="lazy" width="600" height="450" />
+            <img src="{{ section.settings.nylon_image | image_url: width: 500 }}" alt="{{ section.settings.nylon_title | default: 'Nylon Crown' | escape }}" loading="lazy" />
           {%- elsif has_nylon and nylon_product.featured_image -%}
-            <img src="{{ nylon_product.featured_image | image_url: width: 600 }}" alt="{{ nylon_product.title | escape }}" loading="lazy" width="600" height="450" />
+            <img src="{{ nylon_product.featured_image | image_url: width: 500 }}" alt="{{ nylon_product.title | escape }}" loading="lazy" />
+          {%- else -%}
+            <img src="{{ 'product-top.png' | asset_url }}" alt="Nylon Crown" loading="lazy" />
           {%- endif -%}
         </div>
-        <p class="taji-bundle-label">{{ section.settings.nylon_label | default: 'Nylon' | escape }}</p>
-        <h2 class="taji-bundle-title serif">{{ section.settings.nylon_title | default: nylon_product.title | default: 'Nylon Crown' | escape }}</h2>
-        <p class="taji-bundle-desc">
+        <p class="variant-label">{{ section.settings.nylon_label | default: 'Nylon' | escape }}</p>
+        <h3 class="variant-name serif">{{ section.settings.nylon_title | default: nylon_product.title | default: 'Nylon Crown' | escape }}</h3>
+        {%- if section.settings.nylon_material != blank -%}
+          <p class="variant-material">{{ section.settings.nylon_material | escape }}</p>
+        {%- endif -%}
+        <p class="variant-desc">
           {%- if section.settings.nylon_desc != blank -%}
             {{ section.settings.nylon_desc | escape }}
           {%- elsif has_nylon -%}
-            {{ nylon_product.description | strip_html | truncatewords: 30 }}
+            {{ nylon_product.description | strip_html | truncatewords: 26 }}
           {%- else -%}
             A firm, secure grip built for all-day wear.
           {%- endif -%}
         </p>
 
         {%- if has_nylon -%}
-          <div class="taji-bundle-price-wrap">
+          <p class="taji-variant-price">
             {%- if nylon_product.compare_at_price > nylon_product.price -%}
-              <p class="taji-bundle-original">{{ nylon_product.compare_at_price | money }}</p>
+              <span class="taji-price-original">{{ nylon_product.compare_at_price | money }}</span>
             {%- endif -%}
-            <div class="taji-bundle-price">{{ nylon_product.price | money }}</div>
-          </div>
-        {%- endif -%}
-
-        <ul class="taji-bundle-perks">
-          {%- if section.settings.nylon_perk_1 != blank -%}<li>{{ section.settings.nylon_perk_1 | escape }}</li>{%- endif -%}
-          {%- if section.settings.nylon_perk_2 != blank -%}<li>{{ section.settings.nylon_perk_2 | escape }}</li>{%- endif -%}
-          {%- if section.settings.nylon_perk_3 != blank -%}<li>{{ section.settings.nylon_perk_3 | escape }}</li>{%- endif -%}
-        </ul>
-
-        {%- if has_nylon -%}
-          {%- form 'product', nylon_product, class: 'taji-add-form' -%}
-            <input type="hidden" name="id" value="{{ nylon_product.selected_or_first_available_variant.id }}">
-            <p class="taji-qty-label">Quantity</p>
-            <div class="taji-qty-wrap">
-              <button type="button" class="taji-qty-btn taji-qty-minus">−</button>
-              <input type="number" class="taji-qty-input" name="quantity" value="1" min="1" max="99" readonly>
-              <button type="button" class="taji-qty-btn taji-qty-plus">+</button>
-            </div>
-            <button type="submit" class="taji-bundle-cta">
-              {{ section.settings.nylon_cta | default: 'Add to Cart' | escape }}
+            {{ nylon_product.price | money }}
+          </p>
+          {%- assign nylon_variant = nylon_product.selected_or_first_available_variant -%}
+          {%- form 'product', nylon_product, class: 'variant-form' -%}
+            <input type="hidden" name="id" value="{{ nylon_variant.id }}" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-secondary">
+              {{- section.settings.nylon_cta | default: 'Add to Cart' -}}
             </button>
           {%- endform -%}
         {%- else -%}
-          <a href="{{ routes.all_products_collection_url }}" class="taji-bundle-cta">
-            {{ section.settings.nylon_cta | default: 'Add to Cart' | escape }}
-          </a>
+          {%- if request.design_mode -%}
+            <p class="variant-no-product">No product selected — assign one in the theme editor</p>
+          {%- endif -%}
+          <button type="button" class="btn-secondary" disabled>
+            {{- section.settings.nylon_cta | default: 'Add to Cart' -}}
+          </button>
         {%- endif -%}
       </div>
 
@@ -255,119 +88,59 @@
       {%- assign has_rubber = false -%}
       {%- if rubber_product != blank -%}{%- assign has_rubber = true -%}{%- endif -%}
 
-      <div class="taji-bundle-card">
-        <div class="taji-bundle-image-wrap">
+      <div class="variant-card">
+        <div class="variant-img-box">
           {%- if section.settings.rubber_image != blank -%}
-            <img src="{{ section.settings.rubber_image | image_url: width: 600 }}" alt="{{ section.settings.rubber_title | default: 'Rubber Crown' | escape }}" loading="lazy" width="600" height="450" />
+            <img src="{{ section.settings.rubber_image | image_url: width: 500 }}" alt="{{ section.settings.rubber_title | default: 'Rubber Crown' | escape }}" loading="lazy" />
           {%- elsif has_rubber and rubber_product.featured_image -%}
-            <img src="{{ rubber_product.featured_image | image_url: width: 600 }}" alt="{{ rubber_product.title | escape }}" loading="lazy" width="600" height="450" />
+            <img src="{{ rubber_product.featured_image | image_url: width: 500 }}" alt="{{ rubber_product.title | escape }}" loading="lazy" />
+          {%- else -%}
+            <img src="{{ 'product-inside.png' | asset_url }}" alt="Rubber Crown" loading="lazy" />
           {%- endif -%}
         </div>
-        <p class="taji-bundle-label">{{ section.settings.rubber_label | default: 'Rubber' | escape }}</p>
-        <h2 class="taji-bundle-title serif">{{ section.settings.rubber_title | default: rubber_product.title | default: 'Rubber Crown' | escape }}</h2>
-        <p class="taji-bundle-desc">
+        <p class="variant-label">{{ section.settings.rubber_label | default: 'Rubber' | escape }}</p>
+        <h3 class="variant-name serif">{{ section.settings.rubber_title | default: rubber_product.title | default: 'Rubber Crown' | escape }}</h3>
+        {%- if section.settings.rubber_material != blank -%}
+          <p class="variant-material">{{ section.settings.rubber_material | escape }}</p>
+        {%- endif -%}
+        <p class="variant-desc">
           {%- if section.settings.rubber_desc != blank -%}
             {{ section.settings.rubber_desc | escape }}
           {%- elsif has_rubber -%}
-            {{ rubber_product.description | strip_html | truncatewords: 30 }}
+            {{ rubber_product.description | strip_html | truncatewords: 26 }}
           {%- else -%}
             A softer touch, gentle on fine or delicate hair.
           {%- endif -%}
         </p>
 
         {%- if has_rubber -%}
-          <div class="taji-bundle-price-wrap">
+          <p class="taji-variant-price">
             {%- if rubber_product.compare_at_price > rubber_product.price -%}
-              <p class="taji-bundle-original">{{ rubber_product.compare_at_price | money }}</p>
+              <span class="taji-price-original">{{ rubber_product.compare_at_price | money }}</span>
             {%- endif -%}
-            <div class="taji-bundle-price">{{ rubber_product.price | money }}</div>
-          </div>
-        {%- endif -%}
-
-        <ul class="taji-bundle-perks">
-          {%- if section.settings.rubber_perk_1 != blank -%}<li>{{ section.settings.rubber_perk_1 | escape }}</li>{%- endif -%}
-          {%- if section.settings.rubber_perk_2 != blank -%}<li>{{ section.settings.rubber_perk_2 | escape }}</li>{%- endif -%}
-          {%- if section.settings.rubber_perk_3 != blank -%}<li>{{ section.settings.rubber_perk_3 | escape }}</li>{%- endif -%}
-        </ul>
-
-        {%- if has_rubber -%}
-          {%- form 'product', rubber_product, class: 'taji-add-form' -%}
-            <input type="hidden" name="id" value="{{ rubber_product.selected_or_first_available_variant.id }}">
-            <p class="taji-qty-label">Quantity</p>
-            <div class="taji-qty-wrap">
-              <button type="button" class="taji-qty-btn taji-qty-minus">−</button>
-              <input type="number" class="taji-qty-input" name="quantity" value="1" min="1" max="99" readonly>
-              <button type="button" class="taji-qty-btn taji-qty-plus">+</button>
-            </div>
-            <button type="submit" class="taji-bundle-cta">
-              {{ section.settings.rubber_cta | default: 'Add to Cart' | escape }}
+            {{ rubber_product.price | money }}
+          </p>
+          {%- assign rubber_variant = rubber_product.selected_or_first_available_variant -%}
+          {%- form 'product', rubber_product, class: 'variant-form' -%}
+            <input type="hidden" name="id" value="{{ rubber_variant.id }}" />
+            <input type="hidden" name="quantity" value="1" />
+            <button type="submit" class="btn-secondary">
+              {{- section.settings.rubber_cta | default: 'Add to Cart' -}}
             </button>
           {%- endform -%}
         {%- else -%}
-          <a href="{{ routes.all_products_collection_url }}" class="taji-bundle-cta">
-            {{ section.settings.rubber_cta | default: 'Add to Cart' | escape }}
-          </a>
+          {%- if request.design_mode -%}
+            <p class="variant-no-product">No product selected — assign one in the theme editor</p>
+          {%- endif -%}
+          <button type="button" class="btn-secondary" disabled>
+            {{- section.settings.rubber_cta | default: 'Add to Cart' -}}
+          </button>
         {%- endif -%}
       </div>
 
     </div>
-
   </div>
-</div>
-
-<script>
-(function() {
-  var TAJI_CART_ADD_URL = '{{ routes.cart_add_url }}';
-  var TAJI_CART_URL = '{{ routes.cart_url }}';
-
-  document.querySelectorAll('.taji-bundle-card').forEach(function(card) {
-    var qtyInput = card.querySelector('.taji-qty-input');
-    var qtyMinus = card.querySelector('.taji-qty-minus');
-    var qtyPlus  = card.querySelector('.taji-qty-plus');
-    if (qtyInput && qtyMinus && qtyPlus) {
-      qtyMinus.addEventListener('click', function() {
-        var val = parseInt(qtyInput.value, 10);
-        if (val > 1) qtyInput.value = val - 1;
-      });
-      qtyPlus.addEventListener('click', function() {
-        var val = parseInt(qtyInput.value, 10);
-        qtyInput.value = val + 1;
-      });
-    }
-  });
-
-  document.querySelectorAll('.taji-add-form').forEach(function(form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var submitBtn = form.querySelector('button[type="submit"]');
-      var originalText = submitBtn ? submitBtn.textContent : '';
-      if (submitBtn) { submitBtn.textContent = 'Adding...'; submitBtn.disabled = true; }
-
-      fetch(TAJI_CART_ADD_URL + '.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-        body: JSON.stringify({
-          items: [{
-            id: form.querySelector('input[name="id"]').value,
-            quantity: parseInt(form.querySelector('input[name="quantity"]').value, 10) || 1
-          }]
-        })
-      })
-        .then(function(res) {
-          if (!res.ok) { return res.json().then(function(err) { throw new Error(err.description || 'Could not add to cart'); }); }
-          return res.json();
-        })
-        .then(function() {
-          window.location.href = TAJI_CART_URL;
-        })
-        .catch(function(err) {
-          alert(err.message || 'Something went wrong adding this to your cart.');
-          if (submitBtn) { submitBtn.textContent = originalText; submitBtn.disabled = false; }
-        });
-    });
-  });
-})();
-</script>
+</section>
 
 {% schema %}
 {
@@ -392,10 +165,8 @@
     { "type": "image_picker", "id": "nylon_image", "label": "Card image (overrides product image)" },
     { "type": "text", "id": "nylon_label", "label": "Card label", "default": "Nylon" },
     { "type": "text", "id": "nylon_title", "label": "Card title (overrides product title)" },
+    { "type": "text", "id": "nylon_material", "label": "Material tagline", "default": "PA12 — Smooth Grip" },
     { "type": "textarea", "id": "nylon_desc", "label": "Description (overrides product description)" },
-    { "type": "text", "id": "nylon_perk_1", "label": "Perk 1", "default": "Firm, secure hold" },
-    { "type": "text", "id": "nylon_perk_2", "label": "Perk 2", "default": "Best for thick hair" },
-    { "type": "text", "id": "nylon_perk_3", "label": "Perk 3", "default": "Lightweight & discreet" },
     { "type": "text", "id": "nylon_cta", "label": "Button text", "default": "Add to Cart" },
 
     {
@@ -411,10 +182,8 @@
     { "type": "image_picker", "id": "rubber_image", "label": "Card image (overrides product image)" },
     { "type": "text", "id": "rubber_label", "label": "Card label", "default": "Rubber" },
     { "type": "text", "id": "rubber_title", "label": "Card title (overrides product title)" },
+    { "type": "text", "id": "rubber_material", "label": "Material tagline", "default": "TPEE — Soft Grip" },
     { "type": "textarea", "id": "rubber_desc", "label": "Description (overrides product description)" },
-    { "type": "text", "id": "rubber_perk_1", "label": "Perk 1", "default": "Soft, gentle grip" },
-    { "type": "text", "id": "rubber_perk_2", "label": "Perk 2", "default": "Best for fine hair" },
-    { "type": "text", "id": "rubber_perk_3", "label": "Perk 3", "default": "Lightweight & discreet" },
     { "type": "text", "id": "rubber_cta", "label": "Button text", "default": "Add to Cart" }
   ],
   "presets": [
