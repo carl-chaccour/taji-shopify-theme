@@ -209,11 +209,12 @@
         "variant_WC6mAk": {
           "type": "variant",
           "settings": {
-            "product": "",
+            "product": "rubber",
             "label": "Variant 02",
             "name": "Rubber",
             "material": "TPEE — Soft Grip",
             "desc": "Best for: fine, silky, or slippery hair. Soft grip, flexible wear.",
+            "image": "shopify://shop_images/product-angle1.png",
             "button_text": "Add to Cart"
           }
         }
