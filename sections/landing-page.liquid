@@ -635,6 +635,11 @@
 
 {%- comment -%} ======= VARIANTS / COLLECTION ======= {%- endcomment -%}
 {%- assign variants = section.blocks | where: 'type', 'variant' -%}
+{%- capture taji_variant_cart_icon -%}
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+    <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/>
+  </svg>
+{%- endcapture -%}
 <section class="section section-white" id="collection">
   <div class="section-inner">
     {%- if section.settings.variants_eyebrow != blank -%}
@@ -675,7 +680,8 @@
               {%- form 'product', variant_product, class: 'variant-form' -%}
                 <input type="hidden" name="id" value="{{ first_variant.id }}" />
                 <input type="hidden" name="quantity" value="1" />
-                <button type="submit" class="btn-secondary">
+                <button type="submit" class="btn-secondary" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;">
+                  {{- taji_variant_cart_icon -}}
                   {{- block.settings.button_text | default: 'Add to Cart' -}}
                 </button>
               {%- endform -%}
@@ -683,7 +689,8 @@
               {%- if request.design_mode -%}
                 <p class="variant-no-product">No product selected — assign one in the theme editor</p>
               {%- endif -%}
-              <button type="button" class="btn-secondary" disabled>
+              <button type="button" class="btn-secondary" style="display:inline-flex; align-items:center; justify-content:center; gap:8px;" disabled>
+                {{- taji_variant_cart_icon -}}
                 {{- block.settings.button_text | default: 'Add to Cart' -}}
               </button>
             {%- endif -%}
