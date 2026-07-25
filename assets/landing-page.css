@@ -890,7 +890,9 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
   .hero-callout { display: none; }
 
   .hero-cta-mobile {
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     left: 20px;
     bottom: 28px;
@@ -899,7 +901,12 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
     backdrop-filter: blur(6px);
     color: var(--white, #fff);
     border: 1.5px solid rgba(255,255,255,0.8);
-    padding: 14px 32px;
+    padding: 14px 18px;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    border-radius: 2px;
   }
   .hero-cta-mobile:hover {
     background: rgba(10,10,10,0.5);
