@@ -218,6 +218,7 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(212,179,111,0.12); }
   margin-top: 4px;
 }
 .hero-cta-wrap { margin-bottom: 20px; }
+.hero-cta-mobile { display: none; }
 .hero-shipping { font-size: 11px; letter-spacing: 0.1em; color: #555; margin-top: 16px; }
 .hero-image-wrap { position: relative; display: flex; justify-content: center; align-items: center; }
 .hero-bg-motif {
@@ -885,6 +886,14 @@ footer { background: var(--white); border-top: 1px solid var(--gold); padding: 6
     border-radius: 0;
   }
   .hero-callout { display: none; }
+
+  .hero-cta-mobile {
+    display: inline-block;
+    position: absolute;
+    left: 20px;
+    bottom: 28px;
+    z-index: 5;
+  }
 
   /* MOBILE: logo overlay centered in viewport */
   .logo-scroll-overlay {
