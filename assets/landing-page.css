@@ -583,10 +583,10 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(212,179,111,0.12); }
   margin-bottom: 28px;
 }
 .variant-img-box img { height: 160px; object-fit: contain; filter: drop-shadow(0 8px 24px rgba(0,0,0,0.12)); }
-.variant-label { font-size: 12px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; }
-.variant-name { font-family: 'Cormorant Garamond', serif; font-size: 30px; font-weight: 400; letter-spacing: 0.1em; margin: 8px 0 6px; color: var(--black); }
-.variant-material { font-size: 13px; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; font-weight: 500; }
-.variant-desc { font-size: 16px; font-weight: 300; line-height: 1.7; color: #444; margin-bottom: 28px; }
+.variant-label { font-size: 14px; color: var(--gold); letter-spacing: 0.2em; text-transform: uppercase; }
+.variant-name { font-family: 'Cormorant Garamond', serif; font-size: 36px; font-weight: 400; letter-spacing: 0.1em; margin: 8px 0 6px; color: var(--black); }
+.variant-material { font-size: 15px; letter-spacing: 0.1em; color: var(--gold); text-transform: uppercase; margin-bottom: 16px; font-weight: 500; }
+.variant-desc { font-size: 18px; font-weight: 300; line-height: 1.7; color: #444; margin-bottom: 28px; }
 .variant-form { display: inline-block; }
 
 /* Editor-only placeholder — hidden from real visitors via Shopify's design_mode check in Liquid */
