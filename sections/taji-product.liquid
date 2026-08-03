@@ -46,9 +46,9 @@
       <div class="variant-card">
         <div class="variant-img-box">
           {%- if section.settings.nylon_image != blank -%}
-            <img src="{{ section.settings.nylon_image | image_url: width: 500 }}" alt="{{ section.settings.nylon_title | default: 'Nylon Crown' | escape }}" loading="lazy" />
+            <img src="{{ section.settings.nylon_image | image_url: width: 350 }}" alt="{{ section.settings.nylon_title | default: 'Nylon Crown' | escape }}" loading="lazy" />
           {%- elsif has_nylon and nylon_product.featured_image -%}
-            <img src="{{ nylon_product.featured_image | image_url: width: 500 }}" alt="{{ nylon_product.title | escape }}" loading="lazy" />
+            <img src="{{ nylon_product.featured_image | image_url: width: 350 }}" alt="{{ nylon_product.title | escape }}" loading="lazy" />
           {%- else -%}
             <img src="{{ 'product-top.png' | asset_url }}" alt="Nylon Crown" loading="lazy" />
           {%- endif -%}
@@ -103,9 +103,9 @@
       <div class="variant-card">
         <div class="variant-img-box">
           {%- if section.settings.rubber_image != blank -%}
-            <img src="{{ section.settings.rubber_image | image_url: width: 500 }}" alt="{{ section.settings.rubber_title | default: 'Rubber Crown' | escape }}" loading="lazy" />
+            <img src="{{ section.settings.rubber_image | image_url: width: 350 }}" alt="{{ section.settings.rubber_title | default: 'Rubber Crown' | escape }}" loading="lazy" />
           {%- elsif has_rubber and rubber_product.featured_image -%}
-            <img src="{{ rubber_product.featured_image | image_url: width: 500 }}" alt="{{ rubber_product.title | escape }}" loading="lazy" />
+            <img src="{{ rubber_product.featured_image | image_url: width: 350 }}" alt="{{ rubber_product.title | escape }}" loading="lazy" />
           {%- else -%}
             <img src="{{ 'product-inside.png' | asset_url }}" alt="Rubber Crown" loading="lazy" />
           {%- endif -%}
