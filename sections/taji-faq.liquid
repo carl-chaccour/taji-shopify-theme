@@ -1,0 +1,172 @@
+{{ 'landing-page.css' | asset_url | stylesheet_tag }}
+
+<style>
+  .taji-faq-page {
+    background: var(--cream);
+    padding: 140px 32px 100px;
+  }
+  .taji-faq-inner {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  .taji-faq-category {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--gold);
+    margin: 48px 0 16px;
+  }
+  .taji-faq-category:first-of-type { margin-top: 16px; }
+  .taji-faq-item {
+    border-bottom: 1px solid rgba(10,10,10,0.12);
+  }
+  .taji-faq-question {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 20px 0;
+    font-family: 'Jost', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--black);
+  }
+  .taji-faq-question .taji-faq-icon {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    position: relative;
+  }
+  .taji-faq-question .taji-faq-icon::before,
+  .taji-faq-question .taji-faq-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--gold);
+    transition: transform 0.25s ease;
+  }
+  .taji-faq-question .taji-faq-icon::before {
+    left: 0; top: 50%;
+    width: 100%; height: 1.5px;
+    transform: translateY(-50%);
+  }
+  .taji-faq-question .taji-faq-icon::after {
+    top: 0; left: 50%;
+    width: 1.5px; height: 100%;
+    transform: translateX(-50%);
+  }
+  .taji-faq-item.open .taji-faq-icon::after { transform: translateX(-50%) rotate(90deg); opacity: 0; }
+  .taji-faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .taji-faq-answer-inner {
+    padding-bottom: 22px;
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #444;
+  }
+</style>
+
+<div class="taji-faq-page">
+  <div class="taji-faq-inner">
+    <p class="section-eyebrow">{{ section.settings.eyebrow | default: 'Need to Know' | escape }}</p>
+    <h1 class="section-headline serif">{{ section.settings.headline | default: 'Frequently Asked Questions' | escape }}</h1>
+
+    {%- assign faq_items = section.blocks | where: 'type', 'faq_item' -%}
+    {%- assign current_category = '' -%}
+    {%- for block in faq_items -%}
+      {%- if block.settings.category != blank and block.settings.category != current_category -%}
+        {%- assign current_category = block.settings.category -%}
+        <p class="taji-faq-category">{{ current_category | escape }}</p>
+      {%- endif -%}
+      <div class="taji-faq-item" {{ block.shopify_attributes }}>
+        <button type="button" class="taji-faq-question" aria-expanded="false">
+          <span>{{ block.settings.question | escape }}</span>
+          <span class="taji-faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="taji-faq-answer">
+          <div class="taji-faq-answer-inner">{{ block.settings.answer }}</div>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</div>
+
+<script>
+(function() {
+  document.querySelectorAll('.taji-faq-item').forEach(function(item) {
+    var btn = item.querySelector('.taji-faq-question');
+    var answer = item.querySelector('.taji-faq-answer');
+    btn.addEventListener('click', function() {
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.taji-faq-item.open').forEach(function(openItem) {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          openItem.querySelector('.taji-faq-question').setAttribute('aria-expanded', 'false');
+          openItem.querySelector('.taji-faq-answer').style.maxHeight = null;
+        }
+      });
+      if (isOpen) {
+        item.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+        answer.style.maxHeight = null;
+      } else {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+})();
+</script>
+
+{% schema %}
+{
+  "name": "TAJI FAQ",
+  "tag": "div",
+  "class": "taji-faq-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Need to Know" },
+    { "type": "text", "id": "headline", "label": "Headline", "default": "Frequently Asked Questions" }
+  ],
+  "blocks": [
+    {
+      "type": "faq_item",
+      "name": "FAQ Item",
+      "settings": [
+        { "type": "text", "id": "category", "label": "Category label", "info": "Shown as a section heading above this question. Leave blank to skip." },
+        { "type": "text", "id": "question", "label": "Question" },
+        { "type": "richtext", "id": "answer", "label": "Answer" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "TAJI FAQ",
+      "blocks": [
+        { "type": "faq_item", "settings": { "category": "Product & How It Works", "question": "What is the TAJI hijab grip crown?", "answer": "<p>A lightweight, comb-like crown you wear under your hijab that anchors the fabric in place from the inside — no pins, no constant readjusting.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How does it actually keep my hijab from slipping?", "answer": "<p>The crown's teeth grip your hair on one side while the raised edge anchors your hijab fabric on the other, creating friction that holds everything in place through movement, wind, and long hours.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Will it be visible under my hijab?", "answer": "<p>No — it sits flat against your head and is fully hidden once your hijab is wrapped. It's designed to be completely discreet.</p>" } },
+        { "type": "faq_item", "settings": { "category": "Choosing Nylon vs Rubber", "question": "What's the difference between the Nylon and Rubber versions?", "answer": "<p>Nylon offers a firmer, more structured grip and works best for thick, coarse, or normal hair. Rubber offers a softer, more flexible grip and works best for fine, silky, or slippery hair.</p>" } },
+        { "type": "faq_item", "settings": { "question": "I'm not sure which one is right for me — can I try both?", "answer": "<p>Yes, many customers order one of each to see which feels better for their hair type and hijab style.</p>" } },
+        { "type": "faq_item", "settings": { "category": "Comfort & Wear", "question": "Is it comfortable to wear all day?", "answer": "<p>Yes — it's designed for 8+ hours of wear without pressure points or discomfort. Most customers say they forget they're wearing it.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Will it damage or pull my hair?", "answer": "<p>No — the grip is firm enough to hold your hijab but gentle enough not to snag, pull, or damage your hair with regular use.</p>" } },
+        { "type": "faq_item", "settings": { "question": "Can I wear it with any hijab style or fabric?", "answer": "<p>Yes, it works with chiffon, jersey, cotton, and other common hijab fabrics, and with most wrap styles.</p>" } },
+        { "type": "faq_item", "settings": { "category": "Care & Durability", "question": "How do I clean it?", "answer": "<p>Wipe with a damp cloth as needed. Avoid soaking or machine washing.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How long does it last?", "answer": "<p>With normal daily use and proper care, it's built to last well over a year.</p>" } },
+        { "type": "faq_item", "settings": { "category": "Ordering, Shipping & Payment", "question": "Do you deliver across Lebanon?", "answer": "<p>Yes, we deliver nationwide.</p>" } },
+        { "type": "faq_item", "settings": { "question": "How long does delivery take?", "answer": "<p>2-4 business days across Lebanon.</p>" } },
+        { "type": "faq_item", "settings": { "question": "What payment methods do you accept?", "answer": "<p>Cash on Delivery (COD) — pay when your order arrives.</p>" } },
+        { "type": "faq_item", "settings": { "category": "Trust", "question": "Is TAJI a Lebanese brand?", "answer": "<p>Yes, TAJI is proudly designed and based in Lebanon.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

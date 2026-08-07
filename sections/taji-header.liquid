@@ -59,9 +59,11 @@
 
     {%- assign taji_about_url = '' -%}
     {%- assign taji_contact_url = '' -%}
+    {%- assign taji_faq_url = '' -%}
     {%- for p in pages -%}
       {%- if p.template_suffix == 'about' -%}{%- assign taji_about_url = p.url -%}{%- endif -%}
       {%- if p.template_suffix == 'contact-taji' -%}{%- assign taji_contact_url = p.url -%}{%- endif -%}
+      {%- if p.template_suffix == 'faq' -%}{%- assign taji_faq_url = p.url -%}{%- endif -%}
     {%- endfor -%}
     {%- assign nav_url_1 = section.settings.nav_link_1_url | default: '/' -%}
     {%- if section.settings.nav_link_2_url != blank -%}
@@ -83,6 +85,13 @@
     {%- else -%}
       {%- assign nav_url_4 = '/pages/contact' -%}
     {%- endif -%}
+    {%- if section.settings.nav_link_5_url != blank -%}
+      {%- assign nav_url_5 = section.settings.nav_link_5_url -%}
+    {%- elsif taji_faq_url != blank -%}
+      {%- assign nav_url_5 = taji_faq_url -%}
+    {%- else -%}
+      {%- assign nav_url_5 = '/pages/faq' -%}
+    {%- endif -%}
     <ul class="nav-links">
       {%- if section.settings.nav_link_1_label != blank -%}
         <li><a href="{{ nav_url_1 }}" {% if request.path == nav_url_1 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_1_label }}</a></li>
@@ -95,6 +104,9 @@
       {%- endif -%}
       {%- if section.settings.nav_link_4_label != blank -%}
         <li><a href="{{ nav_url_4 }}" {% if request.path == nav_url_4 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_4_label }}</a></li>
+      {%- endif -%}
+      {%- if section.settings.nav_link_5_label != blank -%}
+        <li><a href="{{ nav_url_5 }}" {% if request.path == nav_url_5 %}style="color:var(--gold)"{% endif %}>{{ section.settings.nav_link_5_label }}</a></li>
       {%- endif -%}
     </ul>
 
@@ -139,6 +151,9 @@
     {%- if section.settings.nav_link_4_label != blank -%}
       <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label }}</a></li>
     {%- endif -%}
+    {%- if section.settings.nav_link_5_label != blank -%}
+      <li><a href="{{ nav_url_5 }}">{{ section.settings.nav_link_5_label }}</a></li>
+    {%- endif -%}
   </ul>
   <div class="nav-drawer-cta">
     <a href="{{ section.settings.nav_shop_btn_url | default: routes.all_products_collection_url }}" class="btn-primary">
@@ -181,7 +196,9 @@
     { "type": "text", "id": "nav_link_3_label", "label": "Nav link 3 label", "default": "About Us" },
     { "type": "url", "id": "nav_link_3_url", "label": "Nav link 3 URL" },
     { "type": "text", "id": "nav_link_4_label", "label": "Nav link 4 label", "default": "Contact" },
-    { "type": "url", "id": "nav_link_4_url", "label": "Nav link 4 URL" }
+    { "type": "url", "id": "nav_link_4_url", "label": "Nav link 4 URL" },
+    { "type": "text", "id": "nav_link_5_label", "label": "Nav link 5 label", "default": "FAQ" },
+    { "type": "url", "id": "nav_link_5_url", "label": "Nav link 5 URL" }
   ]
 }
 {% endschema %}

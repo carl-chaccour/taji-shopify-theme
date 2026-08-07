@@ -44,14 +44,17 @@
     <!-- Desktop nav links -->
     {%- assign taji_about_url = '/pages/about' -%}
     {%- assign taji_contact_url = '/pages/contact' -%}
+    {%- assign taji_faq_url = '/pages/faq' -%}
     {%- for p in pages -%}
       {%- if p.template_suffix == 'about' -%}{%- assign taji_about_url = p.url -%}{%- endif -%}
       {%- if p.template_suffix == 'contact-taji' -%}{%- assign taji_contact_url = p.url -%}{%- endif -%}
+      {%- if p.template_suffix == 'faq' -%}{%- assign taji_faq_url = p.url -%}{%- endif -%}
     {%- endfor -%}
     {%- assign nav_url_1 = section.settings.nav_link_1_url | default: '/' -%}
     {%- assign nav_url_2 = section.settings.nav_link_2_url | default: '/pages/products' -%}
     {%- assign nav_url_3 = section.settings.nav_link_3_url | default: taji_about_url -%}
     {%- assign nav_url_4 = section.settings.nav_link_4_url | default: taji_contact_url -%}
+    {%- assign nav_url_5 = section.settings.nav_link_5_url | default: taji_faq_url -%}
     <ul class="nav-links">
       {%- if section.settings.nav_link_1_label != blank -%}
         <li><a href="{{ nav_url_1 }}">{{ section.settings.nav_link_1_label }}</a></li>
@@ -64,6 +67,9 @@
       {%- endif -%}
       {%- if section.settings.nav_link_4_label != blank -%}
         <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label }}</a></li>
+      {%- endif -%}
+      {%- if section.settings.nav_link_5_label != blank -%}
+        <li><a href="{{ nav_url_5 }}">{{ section.settings.nav_link_5_label }}</a></li>
       {%- endif -%}
     </ul>
 
@@ -111,6 +117,9 @@
     {%- endif -%}
     {%- if section.settings.nav_link_4_label != blank -%}
       <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label }}</a></li>
+    {%- endif -%}
+    {%- if section.settings.nav_link_5_label != blank -%}
+      <li><a href="{{ nav_url_5 }}">{{ section.settings.nav_link_5_label }}</a></li>
     {%- endif -%}
   </ul>
   <div class="nav-drawer-cta">
@@ -800,6 +809,9 @@
           {%- if section.settings.nav_link_4_label != blank -%}
             <li><a href="{{ nav_url_4 }}">{{ section.settings.nav_link_4_label | escape }}</a></li>
           {%- endif -%}
+          {%- if section.settings.nav_link_5_label != blank -%}
+            <li><a href="{{ nav_url_5 }}">{{ section.settings.nav_link_5_label | escape }}</a></li>
+          {%- endif -%}
           {%- if section.settings.nav_shop_btn_text != blank -%}
             <li><a href="{{ section.settings.nav_shop_btn_url | default: nav_url_2 }}">{{ section.settings.nav_shop_btn_text | escape }}</a></li>
           {%- endif -%}
@@ -975,6 +987,17 @@
       "type": "url",
       "id": "nav_link_4_url",
       "label": "Nav link 4 URL"
+    },
+    {
+      "type": "text",
+      "id": "nav_link_5_label",
+      "label": "Nav link 5 label",
+      "default": "FAQ"
+    },
+    {
+      "type": "url",
+      "id": "nav_link_5_url",
+      "label": "Nav link 5 URL"
     },
     {
       "type": "header",
