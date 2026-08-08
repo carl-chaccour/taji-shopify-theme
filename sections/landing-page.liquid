@@ -818,19 +818,27 @@
         </ul>
       </div>
       <div>
+        {%- assign taji_terms_url = section.settings.footer_terms_url -%}
+        {%- assign taji_refund_url = section.settings.footer_refund_url -%}
+        {%- assign taji_shipping_url = section.settings.footer_shipping_url -%}
+        {%- for p in pages -%}
+          {%- if p.template_suffix == 'terms' -%}{%- assign taji_terms_url = p.url -%}{%- endif -%}
+          {%- if p.template_suffix == 'refund' -%}{%- assign taji_refund_url = p.url -%}{%- endif -%}
+          {%- if p.template_suffix == 'shipping' -%}{%- assign taji_shipping_url = p.url -%}{%- endif -%}
+        {%- endfor -%}
         <p class="footer-col-title">{{ section.settings.footer_legal_title | default: 'Legal' | escape }}</p>
         <ul class="footer-col-links">
-          {%- if section.settings.footer_terms_url != blank -%}
-            <li><a href="{{ section.settings.footer_terms_url }}">{{ section.settings.footer_terms_label | default: 'Terms of Service' | escape }}</a></li>
+          {%- if taji_terms_url != blank -%}
+            <li><a href="{{ taji_terms_url }}">{{ section.settings.footer_terms_label | default: 'Terms of Service' | escape }}</a></li>
           {%- endif -%}
           {%- if section.settings.footer_privacy_url != blank -%}
             <li><a href="{{ section.settings.footer_privacy_url }}">{{ section.settings.footer_privacy_label | default: 'Privacy Policy' | escape }}</a></li>
           {%- endif -%}
-          {%- if section.settings.footer_refund_url != blank -%}
-            <li><a href="{{ section.settings.footer_refund_url }}">{{ section.settings.footer_refund_label | default: 'Refund Policy' | escape }}</a></li>
+          {%- if taji_refund_url != blank -%}
+            <li><a href="{{ taji_refund_url }}">{{ section.settings.footer_refund_label | default: 'Refund Policy' | escape }}</a></li>
           {%- endif -%}
-          {%- if section.settings.footer_shipping_url != blank -%}
-            <li><a href="{{ section.settings.footer_shipping_url }}">{{ section.settings.footer_shipping_label | default: 'Shipping Policy' | escape }}</a></li>
+          {%- if taji_shipping_url != blank -%}
+            <li><a href="{{ taji_shipping_url }}">{{ section.settings.footer_shipping_label | default: 'Shipping Policy' | escape }}</a></li>
           {%- endif -%}
         </ul>
       </div>
