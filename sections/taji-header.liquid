@@ -6,13 +6,6 @@
   .announcement-bar-section { display: none !important; }
 </style>
 
-{%- if request.page_type == 'index' -%}
-<style>
-  /* Homepage only: TAJI Landing Page section has its own custom footer, hide Dawn's duplicate */
-  .shopify-section-group-footer-group { display: none !important; }
-</style>
-{%- endif -%}
-
 {%- comment -%} Do not render nav on homepage — landing-page section handles it {%- endcomment -%}
 {%- unless request.page_type == 'index' -%}
 <style>

@@ -1,1 +1,48 @@
-{"name":"t:sections.footer.name","type":"footer","sections":{"footer":{"type":"footer","settings":{"color_scheme":"scheme-1","newsletter_enable":true,"newsletter_heading":"Subscribe to our emails","enable_follow_on_shop":true,"show_social":true,"enable_country_selector":true,"enable_language_selector":true,"payment_enable":true,"show_policy":true,"margin_top":0,"padding_top":36,"padding_bottom":36}}},"order":["footer"]}
+{
+  "name": "TAJI Footer",
+  "type": "footer",
+  "sections": {
+    "taji-footer": {
+      "type": "taji-footer",
+      "settings": {
+        "nav_logo": "shopify://shop_images/taji-logo-fit.png",
+        "nav_shop_btn_text": "Shop Now",
+        "nav_shop_btn_url": "",
+        "nav_link_1_label": "Home",
+        "nav_link_1_url": "",
+        "nav_link_2_label": "Products",
+        "nav_link_2_url": "",
+        "nav_link_3_label": "About Us",
+        "nav_link_3_url": "",
+        "nav_link_4_label": "Contact",
+        "nav_link_4_url": "",
+        "nav_link_5_label": "FAQ",
+        "nav_link_5_url": "",
+        "footer_arabic": "",
+        "footer_tagline": "The hijab grip crown designed for women who refuse to be distracted. Made in Lebanon.",
+        "footer_links_title": "Quick Links",
+        "footer_legal_title": "Legal",
+        "footer_terms_label": "Terms of Service",
+        "footer_terms_url": "/policies/terms-of-service",
+        "footer_privacy_label": "Privacy Policy",
+        "footer_privacy_url": "/policies/privacy-policy",
+        "footer_refund_label": "Refund Policy",
+        "footer_refund_url": "/policies/refund-policy",
+        "footer_shipping_label": "Shipping Policy",
+        "footer_shipping_url": "/policies/shipping-policy",
+        "footer_contact_title": "Contact Us",
+        "footer_email": "info@taji-lb.com",
+        "footer_instagram_url": "",
+        "footer_instagram_label": "Instagram @taji-lb",
+        "footer_location": "Lebanon — nationwide delivery",
+        "footer_response_time": "We reply within 24 hours",
+        "footer_whatsapp_url": "",
+        "footer_copy": "© 2025 TAJI. All rights reserved.",
+        "footer_newsletter_enable": true,
+        "footer_newsletter_heading": "Subscribe to Our Emails",
+        "footer_newsletter_success": "Thanks for subscribing!"
+      }
+    }
+  },
+  "order": ["taji-footer"]
+}
