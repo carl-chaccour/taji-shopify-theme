@@ -874,6 +874,38 @@
         {%- endif -%}
       </div>
     </div>
+
+    {%- if section.settings.footer_newsletter_enable -%}
+    <div class="footer-newsletter">
+      <p class="footer-newsletter-heading serif">{{ section.settings.footer_newsletter_heading | default: 'Subscribe to Our Emails' | escape }}</p>
+      {%- form 'customer', id: 'TajiFooterNewsletter', class: 'footer-newsletter-form' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        {%- if form.posted_successfully? -%}
+          <p class="footer-newsletter-success">✓ {{ section.settings.footer_newsletter_success | default: "Thanks for subscribing!" | escape }}</p>
+        {%- else -%}
+          <div class="footer-newsletter-field">
+            <input
+              type="email"
+              name="contact[email]"
+              id="TajiFooterNewsletter-email"
+              placeholder="{{ 'newsletter.label' | t }}"
+              autocomplete="email"
+              required
+            >
+            <button type="submit" class="footer-newsletter-submit" aria-label="{{ 'newsletter.button_label' | t }}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </button>
+          </div>
+          {%- if form.errors -%}
+            <p class="footer-newsletter-error">{{ form.errors.messages.email }}</p>
+          {%- endif -%}
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+    {%- endif -%}
+
     <div class="footer-bottom">
       <p class="footer-copy">{{ section.settings.footer_copy | default: '© 2025 TAJI. All rights reserved.' | escape }}</p>
       <div class="footer-social">
@@ -1422,6 +1454,24 @@
       "id": "footer_copy",
       "label": "Copyright text",
       "default": "© 2025 TAJI. All rights reserved."
+    },
+    {
+      "type": "checkbox",
+      "id": "footer_newsletter_enable",
+      "label": "Show newsletter signup",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "footer_newsletter_heading",
+      "label": "Newsletter heading",
+      "default": "Subscribe to Our Emails"
+    },
+    {
+      "type": "text",
+      "id": "footer_newsletter_success",
+      "label": "Newsletter success message",
+      "default": "Thanks for subscribing!"
     }
   ],
   "blocks": [
