@@ -28,7 +28,9 @@
   {%- if p.template_suffix == 'bundles' -%}{%- assign taji_products_url = p.url -%}{%- endif -%}
 {%- endfor -%}
 
-<script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+{%- unless settings.cart_type == 'drawer' -%}
+  <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+{%- endunless -%}
 
 <cart-items
   class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}"
