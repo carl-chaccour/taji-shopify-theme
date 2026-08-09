@@ -6,6 +6,14 @@
   .announcement-bar-section { display: none !important; }
 </style>
 
+{%- comment -%}
+  Dawn's header section is disabled (we use our own TAJI nav), but Dawn's cart.js
+  unconditionally expects an element with id="cart-icon-bubble" to exist on every
+  page so it can update the cart count badge after AJAX cart changes. Without it,
+  cart.js throws mid-update and silently fails to refresh the cart totals.
+{%- endcomment -%}
+<a href="{{ routes.cart_url }}" id="cart-icon-bubble" aria-hidden="true" style="display:none;"></a>
+
 {%- if request.page_type == 'index' -%}
 <style>
   /* Homepage only: TAJI Landing Page section has its own custom footer, hide Dawn's duplicate */
