@@ -548,6 +548,95 @@ nav.scrolled { box-shadow: 0 2px 20px rgba(212,179,111,0.12); }
 }
 .stories-hint { text-align: center; margin-top: 28px; font-size: 11px; letter-spacing: 0.12em; color: #aaa; text-transform: uppercase; }
 
+.story-card { cursor: pointer; }
+
+/* STORY LIGHTBOX */
+.taji-story-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.taji-story-lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.taji-story-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(10,10,10,0.9);
+}
+.taji-story-lightbox-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 92vw;
+  max-height: 90vh;
+  transform: scale(0.92);
+  transition: transform 0.35s ease;
+}
+.taji-story-lightbox.open .taji-story-lightbox-content {
+  transform: scale(1);
+}
+.taji-story-lightbox-content img {
+  max-width: 92vw;
+  max-height: 76vh;
+  width: auto;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  display: block;
+}
+.taji-story-lightbox-close {
+  position: absolute;
+  top: -44px;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.12);
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+.taji-story-lightbox-close:hover { background: rgba(255,255,255,0.22); }
+.taji-story-lightbox-caption {
+  margin-top: 16px;
+  text-align: center;
+  color: #fff;
+}
+.taji-story-lightbox-caption span { display: block; }
+.taji-story-lightbox-caption #taji-story-lightbox-label {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+.taji-story-lightbox-caption #taji-story-lightbox-sublabel {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+@media (max-width: 768px) {
+  .taji-story-lightbox-content { max-width: 94vw; }
+  .taji-story-lightbox-content img { max-width: 94vw; max-height: 68vh; }
+  .taji-story-lightbox-close { top: -48px; right: 4px; width: 40px; height: 40px; }
+  .taji-story-lightbox-caption #taji-story-lightbox-label { font-size: 19px; }
+}
+
 /* REVIEWS */
 .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .review-card { background: var(--cream); padding: 36px 28px; position: relative; transition: transform 0.2s ease; }

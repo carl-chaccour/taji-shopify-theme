@@ -577,9 +577,20 @@
     {%- if story_cards.size > 0 -%}
       <div class="stories-row">
         {%- for block in story_cards -%}
+          {%- if block.settings.image != blank -%}
+            {%- assign story_full_src = block.settings.image | image_url: width: 1000 -%}
+          {%- else -%}
+            {%- assign story_full_src = 'product-top.png' | asset_url -%}
+          {%- endif -%}
           <div
             class="story-card"
             style="background: {{ block.settings.bg_color | default: '#0d0d0d' }};"
+            data-story-full="{{ story_full_src }}"
+            data-story-label="{{ block.settings.label | escape }}"
+            data-story-sublabel="{{ block.settings.sublabel | escape }}"
+            role="button"
+            tabindex="0"
+            aria-label="View {{ block.settings.label | escape }}"
             {{ block.shopify_attributes }}
           >
             <div class="story-ring"></div>
@@ -604,7 +615,68 @@
       </div>
     {%- endif -%}
   </div>
+
+  <div class="taji-story-lightbox" id="taji-story-lightbox" aria-hidden="true">
+    <div class="taji-story-lightbox-backdrop" id="taji-story-lightbox-backdrop"></div>
+    <div class="taji-story-lightbox-content">
+      <button type="button" class="taji-story-lightbox-close" id="taji-story-lightbox-close" aria-label="Close">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <img src="" alt="" id="taji-story-lightbox-img" />
+      <div class="taji-story-lightbox-caption">
+        <span id="taji-story-lightbox-label"></span>
+        <span id="taji-story-lightbox-sublabel"></span>
+      </div>
+    </div>
+  </div>
 </section>
+
+<script>
+(function() {
+  var section = document.currentScript.closest('section.stories-section') || document.getElementById('stories');
+  if (!section) return;
+  var lightbox = section.querySelector('#taji-story-lightbox');
+  var backdrop = section.querySelector('#taji-story-lightbox-backdrop');
+  var closeBtn = section.querySelector('#taji-story-lightbox-close');
+  var imgEl = section.querySelector('#taji-story-lightbox-img');
+  var labelEl = section.querySelector('#taji-story-lightbox-label');
+  var sublabelEl = section.querySelector('#taji-story-lightbox-sublabel');
+  if (!lightbox) return;
+
+  function openLightbox(card) {
+    imgEl.src = card.getAttribute('data-story-full');
+    imgEl.alt = card.getAttribute('data-story-label') || '';
+    labelEl.textContent = card.getAttribute('data-story-label') || '';
+    sublabelEl.textContent = card.getAttribute('data-story-sublabel') || '';
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    lightbox.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    setTimeout(function() { imgEl.src = ''; }, 300);
+  }
+
+  section.querySelectorAll('.story-card').forEach(function(card) {
+    card.addEventListener('click', function() { openLightbox(card); });
+    card.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openLightbox(card);
+      }
+    });
+  });
+
+  backdrop.addEventListener('click', closeLightbox);
+  closeBtn.addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && lightbox.classList.contains('open')) closeLightbox();
+  });
+})();
+</script>
 
 {%- comment -%} ======= REVIEWS ======= {%- endcomment -%}
 {%- assign reviews = section.blocks | where: 'type', 'review' -%}
