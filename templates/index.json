@@ -160,15 +160,16 @@
           "settings": {
             "image": "shopify://shop_images/Taji_-_Reel_6_1.gif",
             "label": "Grip Test",
-            "sublabel": "Never Falls",
+            "sublabel": "Put to the test",
             "bg_color": "#121008"
           }
         },
         "story_card_zmnyjR": {
           "type": "story_card",
           "settings": {
-            "label": "All Day Wear",
-            "sublabel": "8-hour hold",
+            "image": "shopify://shop_images/Taji_-_Reel_4_1.gif",
+            "label": "Unboxing",
+            "sublabel": "First look",
             "bg_color": "#0f0f0f"
           }
         },
