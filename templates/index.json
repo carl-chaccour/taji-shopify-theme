@@ -134,6 +134,7 @@
         "story_card_wBWRgK": {
           "type": "story_card",
           "settings": {
+            "image": "shopify://shop_images/Taji_-_Reel_1_1_1.gif",
             "label": "How to Place",
             "sublabel": "Step 1",
             "bg_color": "#1a1209"
