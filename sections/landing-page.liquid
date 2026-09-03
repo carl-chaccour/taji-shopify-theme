@@ -595,22 +595,13 @@
               <img src="{{ 'product-top.png' | asset_url }}" alt="{{ block.settings.label | escape }}" class="story-thumb" />
             {%- endif -%}
             <div class="story-gradient"></div>
-            <div class="story-play-btn"><div class="story-play-icon"></div></div>
             <div class="story-label">
               <span class="story-label-text">{{ block.settings.label | escape }}</span>
               <span class="story-label-sub">{{ block.settings.sublabel | escape }}</span>
             </div>
-            <div class="story-mute-badge" aria-hidden="true">
-              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="2" stroke-linecap="round">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
-              </svg>
-            </div>
           </div>
         {%- endfor -%}
       </div>
-    {%- endif -%}
-    {%- if section.settings.stories_hint != blank -%}
-      <p class="stories-hint">{{ section.settings.stories_hint | escape }}</p>
     {%- endif -%}
   </div>
 </section>
@@ -1232,12 +1223,6 @@
       "id": "stories_headline",
       "label": "Stories headline",
       "default": "Watch. Learn. Crown."
-    },
-    {
-      "type": "text",
-      "id": "stories_hint",
-      "label": "Stories hint text",
-      "default": "Hover to preview ✦ Tap to play"
     },
     {
       "type": "header",
