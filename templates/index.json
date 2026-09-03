@@ -158,8 +158,9 @@
         "story_card_R4WiRz": {
           "type": "story_card",
           "settings": {
-            "label": "Fine Hair",
-            "sublabel": "Rubber variant",
+            "image": "shopify://shop_images/Taji_-_Reel_6_1.gif",
+            "label": "Grip Test",
+            "sublabel": "Never Falls",
             "bg_color": "#121008"
           }
         },
@@ -262,6 +263,8 @@
         "nav_link_3_url": "shopify://pages/about-us",
         "nav_link_4_label": "Contact",
         "nav_link_4_url": "shopify://pages/contact-1",
+        "nav_link_5_label": "FAQ",
+        "nav_link_5_url": "",
         "hero_eyebrow": "✦   The Hijab Grip Crown   ✦",
         "hero_headline_line1": "Your Hijab.",
         "hero_headline_italic": "Finally Stays.",
@@ -332,7 +335,10 @@
         "footer_location": "Lebanon — nationwide delivery",
         "footer_response_time": "We reply within 24 hours",
         "footer_whatsapp_url": "",
-        "footer_copy": "© 2025 TAJI. All rights reserved."
+        "footer_copy": "© 2025 TAJI. All rights reserved.",
+        "footer_newsletter_enable": true,
+        "footer_newsletter_heading": "Subscribe to Our Emails",
+        "footer_newsletter_success": "Thanks for subscribing!"
       }
     }
   },
