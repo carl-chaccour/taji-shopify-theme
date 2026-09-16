@@ -19,7 +19,6 @@
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   }
   .taji-cart-icon { flex-shrink: 0; }
-  .taji-review-widget { margin-top: 24px; }
 </style>
 
 {%- capture taji_cart_icon -%}
@@ -85,9 +84,6 @@
               {{- section.settings.nylon_cta | default: 'Add to Cart' -}}
             </button>
           {%- endform -%}
-          <div class="taji-review-widget">
-            {%- render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: nylon_product -%}
-          </div>
         {%- else -%}
           {%- if request.design_mode -%}
             <p class="variant-no-product">No product selected — assign one in the theme editor</p>
@@ -145,9 +141,6 @@
               {{- section.settings.rubber_cta | default: 'Add to Cart' -}}
             </button>
           {%- endform -%}
-          <div class="taji-review-widget">
-            {%- render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: rubber_product -%}
-          </div>
         {%- else -%}
           {%- if request.design_mode -%}
             <p class="variant-no-product">No product selected — assign one in the theme editor</p>
