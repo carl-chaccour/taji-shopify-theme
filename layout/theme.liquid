@@ -359,14 +359,14 @@
          Covers both the review display widget and the "write a review" popup,
          since Judge.me themes both through these CSS custom properties. */
       :root {
-        --jdgm-primary-color: #D4B36F;
-        --jdgm-secondary-color: rgba(212, 179, 111, 0.12);
-        --jdgm-star-color: #D4B36F;
-        --jdgm-write-review-text-color: #0A0A0A;
-        --jdgm-write-review-bg-color: #D4B36F;
-        --jdgm-paginate-color: #D4B36F;
-        --jdgm-border-radius: 2;
-        --jdgm-reviewer-name-color: #0A0A0A;
+        --jdgm-primary-color: #D4B36F !important;
+        --jdgm-secondary-color: rgba(212, 179, 111, 0.12) !important;
+        --jdgm-star-color: #D4B36F !important;
+        --jdgm-write-review-text-color: #0A0A0A !important;
+        --jdgm-write-review-bg-color: #D4B36F !important;
+        --jdgm-paginate-color: #D4B36F !important;
+        --jdgm-border-radius: 2 !important;
+        --jdgm-reviewer-name-color: #0A0A0A !important;
       }
       [class*="jdgm-"] {
         font-family: 'Jost', sans-serif !important;
@@ -382,6 +382,18 @@
         text-transform: uppercase !important;
         letter-spacing: 0.08em !important;
         font-size: 12px !important;
+      }
+      /* Direct class-based backup, in case this widget doesn't fully respect the variables above */
+      .jdgm-star.jdgm--on,
+      .jdgm-star.jdgm--half::before {
+        color: #D4B36F !important;
+      }
+      .jdgm-write-rev-link,
+      .jdgm-form .jdgm-submit-rev,
+      .jdgm-paginate__page.jdgm-paginate__current-page {
+        background-color: #D4B36F !important;
+        border-color: #D4B36F !important;
+        color: #0A0A0A !important;
       }
     </style>
   </head>
