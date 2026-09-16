@@ -354,6 +354,35 @@
         text-transform: uppercase;
         font-size: 12px;
       }
+
+      /* Judge.me reviews: rebrand to match TAJI (gold accents, flat corners).
+         Covers both the review display widget and the "write a review" popup,
+         since Judge.me themes both through these CSS custom properties. */
+      :root {
+        --jdgm-primary-color: #D4B36F;
+        --jdgm-secondary-color: rgba(212, 179, 111, 0.12);
+        --jdgm-star-color: #D4B36F;
+        --jdgm-write-review-text-color: #0A0A0A;
+        --jdgm-write-review-bg-color: #D4B36F;
+        --jdgm-paginate-color: #D4B36F;
+        --jdgm-border-radius: 2;
+        --jdgm-reviewer-name-color: #0A0A0A;
+      }
+      [class*="jdgm-"] {
+        font-family: 'Jost', sans-serif !important;
+      }
+      .jdgm-rev-widg__title,
+      .jdgm-form__title,
+      .jdgm-form__product-title {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 500 !important;
+      }
+      .jdgm-write-rev-link,
+      .jdgm-form .jdgm-submit-rev {
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        font-size: 12px !important;
+      }
     </style>
   </head>
 
