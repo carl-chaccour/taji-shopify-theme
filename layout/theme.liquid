@@ -346,6 +346,18 @@
           margin-top: 100px;
         }
       }
+      /* Empty cart page: same issue as the product page — Dawn skips its own
+         top padding entirely when the cart is empty, so the "Your cart is
+         empty" heading sits under our fixed nav and gets clipped. */
+      main#MainContent cart-items.is-empty {
+        display: block;
+        margin-top: 130px;
+      }
+      @media (max-width: 749px) {
+        main#MainContent cart-items.is-empty {
+          margin-top: 100px;
+        }
+      }
       .color-scheme-6 .button,
       .color-scheme-6 button.button,
       .color-scheme-6 .shopify-payment-button__button--unbranded {
