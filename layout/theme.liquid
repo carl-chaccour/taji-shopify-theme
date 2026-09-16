@@ -395,6 +395,30 @@
         border-color: #D4B36F !important;
         color: #0A0A0A !important;
       }
+
+      /* The actual Judge.me "Review Widget" app block sets its colors as an
+         inline style on its own root element (class "jm-review-widget"),
+         which beats any :root override no matter the specificity. Target
+         that element directly instead so our values win. */
+      .jm-review-widget {
+        --jm-review-widget-star-and-histogram-color: #D4B36F !important;
+        --jm-review-widget-button-color: #D4B36F !important;
+        --jm-review-widget-button-text-color: #0A0A0A !important;
+        --jm-widget-primary-color: #D4B36F !important;
+        --jm-review-widget-form-button-color: #D4B36F !important;
+        --jm-review-widget-form-button-text-color: #0A0A0A !important;
+      }
+      [class*="jm-"] {
+        font-family: 'Jost', sans-serif !important;
+      }
+      .jm-review-widget h1,
+      .jm-review-widget h2,
+      .jm-review-widget h3,
+      .jm-form__title,
+      .jm-form__product-title {
+        font-family: 'Cormorant Garamond', serif !important;
+        font-weight: 500 !important;
+      }
     </style>
   </head>
 
