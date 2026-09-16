@@ -14,6 +14,31 @@
 {%- endcomment -%}
 <a href="{{ routes.cart_url }}" id="cart-icon-bubble" aria-hidden="true" style="display:none;"></a>
 
+{%- comment -%}
+  Dawn's own JS (sections/header.liquid) sets --header-height, used by many
+  native templates (e.g. main-product's sticky info / viewport height calc).
+  Since Dawn's header is disabled, that never runs and the variable stays
+  unset, causing content to overlap our fixed nav. Set it here from our own
+  nav + announcement bar instead.
+{%- endcomment -%}
+<script>
+  (function() {
+    function setTajiHeaderHeight() {
+      var nav = document.getElementById('taji-main-nav');
+      var announcement = document.querySelector('.taji-announcement-bar');
+      var height = (nav ? nav.offsetHeight : 0) + (announcement ? announcement.offsetHeight : 0);
+      document.documentElement.style.setProperty('--header-height', height + 'px');
+    }
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', setTajiHeaderHeight);
+    } else {
+      setTajiHeaderHeight();
+    }
+    window.addEventListener('resize', setTajiHeaderHeight);
+    window.addEventListener('load', setTajiHeaderHeight);
+  })();
+</script>
+
 {%- if request.page_type == 'index' -%}
 <style>
   /* Homepage only: TAJI Landing Page section has its own custom footer, hide Dawn's duplicate */
