@@ -66,6 +66,16 @@ document.addEventListener('DOMContentLoaded', function () {
   // This file intentionally does NOT intercept form submissions — the theme's
   // own cart drawer / AJAX handler (e.g. Dawn's cart-notification.js) will
   // pick up the standard product form submission automatically.
+
+  // Clickable product cards: clicking anywhere on a .variant-card navigates
+  // to that product's page, except when the click targets the Add to Cart
+  // form/button (or any other interactive element) inside the card.
+  document.querySelectorAll('.variant-card[data-product-url]').forEach(function (card) {
+    card.addEventListener('click', function (e) {
+      if (e.target.closest('form, button, a, input, select, textarea')) return;
+      window.location.href = card.dataset.productUrl;
+    });
+  });
 });
 
 // Also run immediately in case DOMContentLoaded already fired

@@ -722,7 +722,7 @@
       <div class="variants-grid">
         {%- for block in variants -%}
           {%- assign variant_product = block.settings.product -%}
-          <div class="variant-card" {{ block.shopify_attributes }}>
+          <div class="variant-card" {% if variant_product != blank %}data-product-url="{{ variant_product.url }}"{% endif %} {{ block.shopify_attributes }}>
             <div class="variant-img-box">
               {%- if block.settings.image != blank -%}
                 <img
