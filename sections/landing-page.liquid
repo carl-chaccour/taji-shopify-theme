@@ -429,29 +429,19 @@
     font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
     color: #a0856a; font-weight: 600; margin-bottom: 12px;
   }
-  .taji-quran-arabic-text {
-    font-family: 'Noto Naskh Arabic', serif;
-    font-size: clamp(18px, 2.5vw, 26px);
-    line-height: 1.8; color: #3d2b1a;
-    direction: rtl; text-align: right;
-    flex: 1;
+  .taji-quran-quote-block {
+    width: 100%;
+    text-align: center;
   }
-  .taji-quran-divider {
-    width: 1px; align-self: stretch;
-    background: rgba(139,109,56,0.25); flex-shrink: 0;
-  }
-  .taji-quran-right {
-    flex: 1; text-align: left;
-  }
-  .taji-quran-translation {
+  .taji-quran-quote-text {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(14px, 1.6vw, 18px);
-    font-style: italic; color: #6b4c30;
-    line-height: 1.7; margin-bottom: 12px;
+    font-size: clamp(20px, 2.6vw, 30px);
+    font-style: italic; color: #3d2b1a;
+    line-height: 1.6; margin-bottom: 14px;
   }
-  .taji-quran-surah {
+  .taji-quran-quote-author {
     font-family: 'Jost', sans-serif;
-    font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase;
     color: #a0856a; font-weight: 600;
   }
 
@@ -472,9 +462,6 @@
     .taji-quran-roll { width: 18px; min-height: 140px; }
     .taji-quran-paper { padding: 24px 20px; min-height: 140px; gap: 20px; }
     .taji-quran-paper-content { flex-direction: column; gap: 16px; }
-    .taji-quran-divider { width: 100%; height: 1px; align-self: auto; }
-    .taji-quran-arabic-text { text-align: center; font-size: 18px; }
-    .taji-quran-right { text-align: center; }
     .taji-quran-paper-outer { max-height: 320px; }
   }
 </style>
@@ -487,8 +474,8 @@
       {{ section.settings.quran_eyebrow | default: 'A Gift Inside Every Package' | escape }}
       <span></span>
     </div>
-    <h2 class="taji-quran-headline serif">{{ section.settings.quran_headline | default: 'A Verse That Travels With You.' | escape }}</h2>
-    <p class="taji-quran-body">{{ section.settings.quran_body | default: 'Every TAJI crown arrives with a hand-selected Quran verse printed on a beautiful keepsake card. A reminder of grace, confidence, and purpose — tucked inside every order.' | escape }}</p>
+    <h2 class="taji-quran-headline serif">{{ section.settings.quran_headline | default: 'A Quote That Travels With You.' | escape }}</h2>
+    <p class="taji-quran-body">{{ section.settings.quran_body | default: 'Every TAJI crown arrives with a hand-picked quote printed on a beautiful keepsake card. A little reminder of confidence and grace — tucked inside every order.' | escape }}</p>
     <span class="taji-quran-tag">{{ section.settings.quran_tag | default: '✦ Exclusive to TAJI' | escape }}</span>
   </div>
 
@@ -505,14 +492,10 @@
               loading="lazy"
             />
           {%- else -%}
-            <div class="taji-quran-arabic-text">
+            <div class="taji-quran-quote-block">
               <p class="taji-quran-paper-label">{{ section.settings.quran_paper_label | default: 'Your TAJI Gift' | escape }}</p>
-              {{ section.settings.quran_arabic | default: 'يُدْنِينَ عَلَيْهِنَّ مِن جَلَابِيبِهِنَّ ۚ ذَٰلِكَ أَدْنَىٰ أَن يُعْرَفْنَ' | escape }}
-            </div>
-            <div class="taji-quran-divider"></div>
-            <div class="taji-quran-right">
-              <p class="taji-quran-translation">{{ section.settings.quran_translation | default: '"Let them draw their cloaks close around them — that is more proper, so that they will be recognised."' | escape }}</p>
-              <p class="taji-quran-surah">{{ section.settings.quran_surah | default: '— Surah Al-Ahzab, 33:59' | escape }}</p>
+              <p class="taji-quran-quote-text">&ldquo;{{ section.settings.quote_text | default: 'Confidence is the best accessory you will ever wear.' | escape }}&rdquo;</p>
+              <p class="taji-quran-quote-author">{{ section.settings.quote_author | default: '— TAJI' | escape }}</p>
             </div>
           {%- endif -%}
         </div>
@@ -1253,17 +1236,16 @@
     },
     {
       "type": "header",
-      "content": "Quran Verse Gift Section"
+      "content": "Quote Gift Section"
     },
     { "type": "text", "id": "quran_eyebrow", "label": "Eyebrow", "default": "A Gift Inside Every Package" },
-    { "type": "text", "id": "quran_headline", "label": "Headline", "default": "A Verse That Travels With You." },
-    { "type": "textarea", "id": "quran_body", "label": "Body text", "default": "Every TAJI crown arrives with a hand-selected Quran verse printed on authentic papyrus paper. A reminder of grace, confidence, and purpose — tucked inside every order." },
+    { "type": "text", "id": "quran_headline", "label": "Headline", "default": "A Quote That Travels With You." },
+    { "type": "textarea", "id": "quran_body", "label": "Body text", "default": "Every TAJI crown arrives with a hand-picked quote printed on a beautiful keepsake card. A little reminder of confidence and grace — tucked inside every order." },
     { "type": "text", "id": "quran_tag", "label": "Tag label", "default": "✦ Exclusive to TAJI" },
-    { "type": "image_picker", "id": "quran_image", "label": "Verse card photo (optional — replaces the styled card)" },
+    { "type": "image_picker", "id": "quran_image", "label": "Quote card photo (optional — replaces the styled card)" },
     { "type": "text", "id": "quran_paper_label", "label": "Paper label", "default": "Your TAJI Gift" },
-    { "type": "text", "id": "quran_arabic", "label": "Arabic verse", "default": "يُدْنِينَ عَلَيْهِنَّ مِن جَلَابِيبِهِنَّ ۚ ذَٰلِكَ أَدْنَىٰ أَن يُعْرَفْنَ" },
-    { "type": "text", "id": "quran_translation", "label": "Verse translation", "default": "\"Let them draw their cloaks close around them — that is more proper, so that they will be recognised.\"" },
-    { "type": "text", "id": "quran_surah", "label": "Surah reference", "default": "— Surah Al-Ahzab, 33:59" },
+    { "type": "text", "id": "quote_text", "label": "Quote", "default": "Confidence is the best accessory you will ever wear." },
+    { "type": "text", "id": "quote_author", "label": "Quote attribution", "default": "— TAJI" },
     {
       "type": "header",
       "content": "How It Works"
