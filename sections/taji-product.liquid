@@ -19,6 +19,13 @@
     display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   }
   .taji-cart-icon { flex-shrink: 0; }
+  .taji-details-link {
+    display: block; margin-top: 14px;
+    font-size: 12px; letter-spacing: 0.06em;
+    color: var(--gold); text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .taji-details-link:hover { color: var(--black); }
 </style>
 
 {%- capture taji_cart_icon -%}
@@ -84,6 +91,7 @@
               {{- section.settings.nylon_cta | default: 'Add to Cart' -}}
             </button>
           {%- endform -%}
+          <a href="{{ nylon_product.url }}" class="taji-details-link">View Details &amp; Reviews</a>
         {%- else -%}
           {%- if request.design_mode -%}
             <p class="variant-no-product">No product selected — assign one in the theme editor</p>
@@ -141,6 +149,7 @@
               {{- section.settings.rubber_cta | default: 'Add to Cart' -}}
             </button>
           {%- endform -%}
+          <a href="{{ rubber_product.url }}" class="taji-details-link">View Details &amp; Reviews</a>
         {%- else -%}
           {%- if request.design_mode -%}
             <p class="variant-no-product">No product selected — assign one in the theme editor</p>
