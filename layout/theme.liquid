@@ -346,6 +346,13 @@
           margin-top: 100px;
         }
       }
+      /* Native product page: force a square media container instead of Dawn's
+         default (which sizes the box to each image's own aspect ratio).
+         media_fit is "contain" so images are letterboxed, never cropped. */
+      main#MainContent .product-media-container {
+        --ratio: 1 !important;
+        --preview-ratio: 1 !important;
+      }
       /* Empty cart page: same issue as the product page — Dawn skips its own
          top padding entirely when the cart is empty, so the "Your cart is
          empty" heading sits under our fixed nav and gets clipped. */
