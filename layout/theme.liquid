@@ -335,6 +335,17 @@
         --font-body-weight: 300;
         --font-body-weight-bold: 500;
       }
+      /* Native product page: enforce top spacing so content clears our fixed nav,
+         regardless of Dawn's own padding_top setting (which Shopify's theme
+         editor can silently reset back to its default). */
+      main#MainContent .product {
+        margin-top: 130px;
+      }
+      @media (max-width: 749px) {
+        main#MainContent .product {
+          margin-top: 100px;
+        }
+      }
       .color-scheme-6 .button,
       .color-scheme-6 button.button,
       .color-scheme-6 .shopify-payment-button__button--unbranded {
