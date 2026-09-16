@@ -411,6 +411,13 @@
       [class*="jm-"]:not([class*="font-icon"]):not([class*="star-rating"]) {
         font-family: 'Jost', sans-serif !important;
       }
+      /* Force star color directly (bypassing the CSS variable), since nested
+         review-item components re-declare the variable locally with Judge.me's
+         default teal, overriding the widget-level variable override above. */
+      [class*="jm-star-rating"] [class*="font-icon"],
+      .jm-star-rating__font-icon {
+        color: #D4B36F !important;
+      }
       .jm-review-widget h1,
       .jm-review-widget h2,
       .jm-review-widget h3,
