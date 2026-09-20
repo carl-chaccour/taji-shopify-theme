@@ -150,6 +150,8 @@
 {%- endif -%}
 
 {%- if request.page_type == 'index' -%}
+  {%- assign taji_seo_nylon = all_products['nylon'] -%}
+  {%- assign taji_seo_rubber = all_products['rubber'] -%}
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -170,22 +172,43 @@
     "@type": "OfferCatalog",
     "name": "TAJI Hijab Grip Crowns",
     "itemListElement": [
+      {%- if taji_seo_nylon != blank -%}
       {
         "@type": "Offer",
+        "url": "{{ request.origin }}{{ taji_seo_nylon.url }}",
+        "priceCurrency": "{{ cart.currency.iso_code }}",
+        "price": "{{ taji_seo_nylon.price | money_without_currency | strip_html }}",
+        "availability": {%- if taji_seo_nylon.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
         "itemOffered": {
           "@type": "Product",
           "name": "TAJI Nylon Hijab Grip Crown",
-          "description": "PA12 smooth grip. Best for thick, coarse, or normal hair."
+          "description": "PA12 smooth grip. Best for thick, coarse, or normal hair.",
+          "url": "{{ request.origin }}{{ taji_seo_nylon.url }}"
+          {%- if taji_seo_nylon.featured_image -%}
+          , "image": "https:{{ taji_seo_nylon.featured_image | image_url }}"
+          {%- endif -%}
         }
-      },
+      }
+      {%- endif -%}
+      {%- if taji_seo_nylon != blank and taji_seo_rubber != blank -%},{%- endif -%}
+      {%- if taji_seo_rubber != blank -%}
       {
         "@type": "Offer",
+        "url": "{{ request.origin }}{{ taji_seo_rubber.url }}",
+        "priceCurrency": "{{ cart.currency.iso_code }}",
+        "price": "{{ taji_seo_rubber.price | money_without_currency | strip_html }}",
+        "availability": {%- if taji_seo_rubber.available -%}"https://schema.org/InStock"{%- else -%}"https://schema.org/OutOfStock"{%- endif -%},
         "itemOffered": {
           "@type": "Product",
           "name": "TAJI Rubber Hijab Grip Crown",
-          "description": "TPEE soft grip. Best for fine, silky, or slippery hair."
+          "description": "TPEE soft grip. Best for fine, silky, or slippery hair.",
+          "url": "{{ request.origin }}{{ taji_seo_rubber.url }}"
+          {%- if taji_seo_rubber.featured_image -%}
+          , "image": "https:{{ taji_seo_rubber.featured_image | image_url }}"
+          {%- endif -%}
         }
       }
+      {%- endif -%}
     ]
   }
 }
